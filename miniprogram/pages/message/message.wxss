@@ -1,0 +1,6 @@
+/* pages/message/message.wxss */
+
+.van-tabar{
+  width:100%rpx;
+  height:100rpx;
+}
