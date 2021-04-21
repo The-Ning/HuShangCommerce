@@ -22,11 +22,16 @@
 </swiper>
 
 <!-- 正方形格子 -->
-<van-grid gutter="{{ 10 }}">
-  <van-grid-item icon="photo-o" text="文字" wx:for="{{ 8 }}" wx:key="key" />
+<van-grid>
+  <van-grid-item icon="photo-o" text="带饭" />
+  <van-grid-item icon="photo-o" text="代课" />
+  <van-grid-item icon="photo-o" text="取件" />
+  <van-grid-item icon="photo-o" text="书籍" />
 </van-grid>
 
 <!-- 按钮 -->
+<!--
 <button bindtap="btnHandler" data-step="{{1}}">点击增加消息条数+1</button>
 <button bindtap="btnHandler" data-step="{{-1}}">点击增加消息条数-1</button>
+-->
 
