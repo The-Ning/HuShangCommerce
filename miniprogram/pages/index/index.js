@@ -2,13 +2,18 @@
 import { createStoreBindings } from'mobx-miniprogram-bindings'
 import { store } from '../../store/store'
 
+
+var database = wx.cloud.database();
+
 Page({
 
+  
   /**
-   * 页面的初始数据
+   * 页面的初始数据//
    */
   data: {
-
+   name:'',
+   id:0
   },
 
    /**
@@ -21,7 +26,68 @@ Page({
       actions: ['updateNum']
     })
   },
+  // 查询数据库信息
+  getData(){
+    database.collection('test').where({
+      _id:'1'
+    }).get().then(res=>{
+      this.setData({
+        name:res.data[0].name
+      }
+    )
+  })},
+  // 给数据库插入信息
+  addData(){
+    wx.showLoading({
+      title:'数据正在插入中。。',
+      mask:true
+    })
+  database.collection('test').add({
+    data:{
+    _id:'5',
+    name:'still-Ning',
+    age:22,
+    boy:true
+    }
+  }).then(res=>{
+    console.log(res);
+    wx.hideLoading();
+  })
+  },
 
+  // 提交表单事件，进数据库
+  btnSubmit(res){
+ // 解构赋值var {account,password} = res.detail.value;
+ // 直接获取对象
+ var dataVuale = res.detail.value;
+ console.log(dataVuale);
+   database.collection('test').add({
+     data:dataVuale
+   }).then(res=>{
+     console.log(res);
+   })
+  },
+
+  // 修改数据
+  updateData(){
+    database.collection('test').where({
+      account:'zhuNing'
+    }).update({
+      data:{
+      account:'NingZhu'
+      }
+    }).then(res=>console.log(res))
+  },
+
+  //删除数据
+  delData(){
+    database.collection('test').where({
+      account:'NingZhu'
+    }).remove().then(res =>{
+      console.log(res);
+    })
+  },
+  
   btnHandler(e) {
    
     this.updateNum(e.target.dataset.step)

@@ -11,7 +11,7 @@
 <!-- swiper轮播图 -->
 <swiper class="swiper-container" indicator-dots indicator-color="white" indicator-active-color="gray" autoplay interval="1800" circular>
   <swiper-item>
-    <view class="item">A</view>
+    <image src='cloud://one-ev4od.6f6e-one-ev4od-1302814385/imgs/swipers/xcxlog.jpg'></image>
   </swiper-item>
   <swiper-item>
     <view class="item">B</view>
@@ -29,6 +29,15 @@
   <van-grid-item icon="photo-o" text="书籍" />
 </van-grid>
 
+
+<button bindtap="delData">删除数据</button>
+<form bindsubmit="btnSubmit">
+  <input type="text" name='account' placeholder="Please input account"></input>
+  <input type="text" name='password' placeholder="Please input password"></input>
+  <button form-type="submit" type='primary'>提交</button>
+  <button form-type="reset">重置</button>
+</form>
+<button bindtap='updateData' type='primary'>修改</button>
 <!-- 按钮 -->
 <!--
 <button bindtap="btnHandler" data-step="{{1}}">点击增加消息条数+1</button>
