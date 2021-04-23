@@ -1,7 +1,6 @@
 <!--pages/index/index.wxml-->
 <!-- 搜索框 -->
 <van-search
-  value="{{ value }}"
   placeholder="请输入搜索关键词"
   show-action
   bind:search="onSearch"
@@ -23,10 +22,10 @@
 
 <!-- 正方形格子 -->
 <van-grid>
-  <van-grid-item icon="cloud://one-ev4od.6f6e-one-ev4od-1302814385/imgs/主页分类/书本03.png" text="书籍资料" />
-  <van-grid-item icon="photo-o" text="二手衣物" />
-  <van-grid-item icon="photo-o" text="带饭取件" />
-  <van-grid-item icon="photo-o" text="其他服务" />
+  <van-grid-item icon="cloud://one-ev4od.6f6e-one-ev4od-1302814385/imgs/主页分类/书本03.png" text="书籍资料" bindtap="getBookShop"/>
+  <van-grid-item icon="cloud://one-ev4od.6f6e-one-ev4od-1302814385/imgs/主页分类/服装.png" text="二手衣物" bindtap="getClotheShop"/>
+  <van-grid-item icon="cloud://one-ev4od.6f6e-one-ev4od-1302814385/imgs/主页分类/美食.png" text="带饭取件" bindtap="getItemShop"/>
+  <van-grid-item icon="cloud://one-ev4od.6f6e-one-ev4od-1302814385/imgs/主页分类/其他.png" text="其他服务" bindtap="getOtherShop"/>
 </van-grid>
 
 
@@ -38,9 +37,9 @@
   <button form-type="reset">重置</button>
 </form>
 <view>{{
-  datasturct.shopname
+  booklist[0].shopname
 }}</view>
-<image src='{{datasturct.imgsrc}}'></image>
+<image src='{{booklist[0].imgsrc}}'></image>
 <!-- 按钮 -->
 <!--
 <button bindtap="btnHandler" data-step="{{1}}">点击增加消息条数+1</button>

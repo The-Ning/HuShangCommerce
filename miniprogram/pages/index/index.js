@@ -17,7 +17,7 @@ Page({
    classify:[
      
    ],
-   datasturct:{}
+   booklist:[]
   },
 
    /**
@@ -28,19 +28,22 @@ Page({
       store,
       fields: ['size'],
       actions: ['updateNum']
-    }),
-    this.getData()
+    })
+  },
+
+  // 获取书籍类商品信息并渲染
+  getBookShop(){
+      db.collection('shops').where({
+        Id:1
+      }).get().then(res=>{
+        this.setData({
+          booklist:res.data
+        }
+      )})
   },
   // 查询数据库信息
-  getData(){
-    db.collection('shops').where({
-      Id:1
-    }).get().then(res=>{
-      this.setData({
-        datasturct:res.data[0]
-      }
-    )
-  })},
+  
+ 
   // 给数据库插入信息
   addData(){
     wx.showLoading({
@@ -60,18 +63,8 @@ Page({
   })
   },
 
-  // 提交表单事件，进数据库
-  btnSubmit(res){
- // 解构赋值var {account,password} = res.detail.value;
- // 直接获取对象
- var dataVuale = res.detail.value;
- console.log(dataVuale);
-   db.collection('test').add({
-     data:dataVuale
-   }).then(res=>{
-     console.log(res);
-   })
-  },
+ 
+  
 
   // 修改数据
   
