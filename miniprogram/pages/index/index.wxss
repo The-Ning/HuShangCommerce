@@ -4,10 +4,9 @@
   height: 350rpx;
   margin-bottom: 20rpx;
 }
-.item {
+.image-item {
   height: 100%;
-  line-height: 350rpx;
-  text-align: center;
+  width:100%;
 }
 swiper-item:nth-child(1) {
   background-color: lightgreen;
