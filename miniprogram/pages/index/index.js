@@ -3,8 +3,8 @@ import { createStoreBindings } from'mobx-miniprogram-bindings'
 import { store } from '../../store/store'
 
 
-var db = wx.cloud.database();
-
+const db = wx.cloud.database();
+const _ = db.command;
 Page({
 
   
@@ -34,7 +34,7 @@ Page({
   // 获取书籍类商品信息并渲染
   getBookShop(){
       db.collection('shops').where({
-        Id:1
+        Id:_.eq(1)
       }).get().then(res=>{
         this.setData({
           booklist:res.data

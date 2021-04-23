@@ -1,4 +1,7 @@
 /* pages/index/index.wxss */
+#body{
+  background-color: #F5F5F5;
+}
 /* 轮播图 */
 .swiper-container {
   height: 350rpx;
@@ -16,4 +19,22 @@ swiper-item:nth-child(2) {
 }
 swiper-item:nth-child(3) {
   background-color: lightpink;
+}
+
+.hs{
+  color:#00FF7F;
+  height: 30rpx;
+  width:100%;
+ 
+  text-align: center;
+  line-height:30rpx;
+  margin-top:5rpx;
+  font-size:30rpx;
+ 
+}
+
+.shop-item{
+  width:50%;
+  height:100rpx;
+  border:solid 1px red;
 }

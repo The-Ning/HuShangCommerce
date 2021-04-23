@@ -1,5 +1,6 @@
 <!--pages/index/index.wxml-->
 <!-- 搜索框 -->
+<view id='body'>
 <van-search
   placeholder="请输入搜索关键词"
   show-action
@@ -27,22 +28,22 @@
   <van-grid-item icon="cloud://one-ev4od.6f6e-one-ev4od-1302814385/imgs/主页分类/美食.png" text="带饭取件" bindtap="getItemShop"/>
   <van-grid-item icon="cloud://one-ev4od.6f6e-one-ev4od-1302814385/imgs/主页分类/其他.png" text="其他服务" bindtap="getOtherShop"/>
 </van-grid>
+<view  class='hs'>湖商二手交易平台</view>
 
-
-<button bindtap="delData">删除数据</button>
-<form bindsubmit="btnSubmit">
-  <input type="text" name='account' placeholder="Please input account"></input>
-  <input type="text" name='password' placeholder="Please input password"></input>
-  <button form-type="submit" type='primary'>提交</button>
-  <button form-type="reset">重置</button>
-</form>
-<view>{{
-  booklist[0].shopname
-}}</view>
-<image src='{{booklist[0].imgsrc}}'></image>
-<!-- 按钮 -->
-<!--
-<button bindtap="btnHandler" data-step="{{1}}">点击增加消息条数+1</button>
-<button bindtap="btnHandler" data-step="{{-1}}">点击增加消息条数-1</button>
--->
-
+<!---->
+<view id='shops'>
+<van-card
+  num="2"
+  tag="标签"
+  price="10.00"
+  desc="描述信息"
+  title="商品标题"
+  thumb="cloud://one-ev4od.6f6e-one-ev4od-1302814385/imgs/主页分类/其他.png"
+>
+  <view slot="footer">
+    <van-button size="mini">加入购物车</van-button>
+    <van-button size="mini">立即购买</van-button>
+  </view>
+</van-card>
+</view>
+</view>
