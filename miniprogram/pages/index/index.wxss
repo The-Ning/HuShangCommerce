@@ -25,7 +25,7 @@ swiper-item:nth-child(3) {
   color:#00FF7F;
   height: 30rpx;
   width:100%;
- 
+ margin-bottom:10rpx;
   text-align: center;
   line-height:30rpx;
   margin-top:5rpx;

@@ -43,7 +43,7 @@ Page({
   },
   // 查询数据库信息
   
- 
+  
   // 给数据库插入信息
   addData(){
     wx.showLoading({
