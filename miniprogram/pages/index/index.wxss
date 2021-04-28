@@ -69,6 +69,7 @@ swiper-item:nth-child(3) {
   border-top-left-radius: 10rpx;
   border-top-right-radius: 10rpx;
   padding-top: 20rpx;
+  height:500rpx;
 }
 
 .footlist::after {

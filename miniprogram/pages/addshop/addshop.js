@@ -1,4 +1,4 @@
-// pages/add/add.js
+// miniprogram/pages/addshop/addshop.js
 Page({
 
   /**
@@ -21,7 +21,19 @@ Page({
   onReady: function () {
 
   },
-
+  submit:function(e){
+   wx.showLoading({
+     title: '上传中',
+   })
+    wx.cloud.callFunction({
+      name:'addshop',
+      data:e.detail.value 
+    }).then(res=>{
+      console.log(res);
+      wx.hideLoading();
+       
+    })
+  },
   /**
    * 生命周期函数--监听页面显示
    */

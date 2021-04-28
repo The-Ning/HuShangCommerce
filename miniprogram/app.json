@@ -1,10 +1,11 @@
 {
   "pages": [
+    "pages/addshop/addshop",
     "pages/index/index",
     "pages/message/message",
-    "pages/add/add",
     "pages/shopcart/shopcart",
     "pages/mine/mine"
+    
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -12,47 +13,45 @@
     "navigationBarTitleText": "湖商二手交易小程序",
     "navigationBarTextStyle": "black"
   },
-
   "tabBar": {
     "custom": true,
-    "list": [{
-      "pagePath": "pages/index/index",
-      "text": "首页",
-      "iconPath": "/tabs/home.png",
-      "selectedIconPath": "/tabs/home-active.png"
-    },
-    {
-      "pagePath": "pages/message/message",
-      "text": "消息",
-      "iconPath": "/tabs/message.png",
-      "selectedIconPath": "/tabs/message-active.png"
-    },
-    {
-      "pagePath": "pages/add/add",
-      "text": "添加",
-      "iconPath": "/tabs/message.png",
-      "selectedIconPath": "/tabs/message-active.png"
-    },
-    {
-      "pagePath": "pages/shopcart/shopcart",
-      "text": "购物车",
-      "iconPath": "/tabs/message.png",
-      "selectedIconPath": "/tabs/message-active.png"
-    },
-    {
-      "pagePath": "pages/mine/mine",
-      "text": "我的",
-      "iconPath": "/tabs/message.png",
-      "selectedIconPath": "/tabs/message-active.png"
-    }
-  ]
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "首页",
+        "iconPath": "/tabs/home.png",
+        "selectedIconPath": "/tabs/home-active.png"
+      },
+      {
+        "pagePath": "pages/message/message",
+        "text": "消息",
+        "iconPath": "/tabs/message.png",
+        "selectedIconPath": "/tabs/message-active.png"
+      },
+      {
+        "pagePath": "pages/addshop/addshop",
+        "text": "添加",
+        "iconPath": "/tabs/message.png",
+        "selectedIconPath": "/tabs/message-active.png"
+      },
+      {
+        "pagePath": "pages/shopcart/shopcart",
+        "text": "购物车",
+        "iconPath": "/tabs/message.png",
+        "selectedIconPath": "/tabs/message-active.png"
+      },
+      {
+        "pagePath": "pages/mine/mine",
+        "text": "我的",
+        "iconPath": "/tabs/message.png",
+        "selectedIconPath": "/tabs/message-active.png"
+      }
+    ]
   },
-
   "sitemapLocation": "sitemap.json",
-
   "usingComponents": {
     "van-tabbar": "@vant/weapp/tabbar/index",
     "van-tabbar-item": "@vant/weapp/tabbar-item/index",
-    "van-slider":"@vant/weapp/slider/index"
+    "van-slider": "@vant/weapp/slider/index"
   }
 }

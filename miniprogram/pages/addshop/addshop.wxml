@@ -1,0 +1,13 @@
+<!--miniprogram/pages/addshop/addshop.wxml-->
+
+<form bindsubmit="submit">
+ 用户头像 <input name='avatarturl' />
+ 点击量 <input name='clickload' />
+ id<input name='id' />
+ imgsrc<input name='imgsrc' />
+ order<input name='order' />
+ title<input name='title' />
+ userid<input name='userid' />
+ username<input name='username' />
+ <button form-type="submit">添加商品数据</button>
+</form>
