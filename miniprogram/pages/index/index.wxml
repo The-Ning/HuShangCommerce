@@ -31,22 +31,14 @@
 <view  class='hs'>校内热点商品</view>
 
 <!---->
-<view id='shops'>
-
-<van-card 
- 
-
-  num="2"
-  tag="标签"
-  price="10.00"
-  desc="描述信息"
-  title="商品标题"
-  thumb="cloud://one-ev4od.6f6e-one-ev4od-1302814385/imgs/主页分类/其他.png"
->
-  <view slot="footer">
-    <van-button size='normal' round='true' color='#333'>加入购物车</van-button>
-    <van-button size="mini">立即购买</van-button>
-  </view>
-</van-card>
-</view>
+<scroll-view  style="height:400rpx;background-color:pink;" scroll-y="true" bindscrolltoupper="upper" bindscrolltolower="lower" bindscroll="scroll">
+  <view  class="shop-item"></view>
+  <view  class="shop-item"></view>
+  <view  class="shop-item"></view>
+  <view  class="shop-item"></view>
+  <view  class="shop-item"></view>
+  <view  class="shop-item"></view>
+  <view  class="shop-item"></view>
+  <view  class="shop-item"></view>
+</scroll-view>
 </view>

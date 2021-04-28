@@ -30,11 +30,21 @@ swiper-item:nth-child(3) {
   line-height:30rpx;
   margin-top:5rpx;
   font-size:30rpx;
+}
+scroll-view{
+  display:flex;
+  justify-content: center;
  
 }
-
 .shop-item{
-  width:50%;
+  width:45%;
+  
   height:100rpx;
-  border:solid 1px red;
+  border:solid 1rpx;
+  box-sizing: border-box;
+}
+
+van-grid-item:hover{
+ background-color: #00FF7F;
+ color:#00FF7F;
 }

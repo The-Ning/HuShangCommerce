@@ -17,7 +17,8 @@ Page({
    classify:[
      
    ],
-   booklist:[]
+   booklist:[],
+   shoplist:[{shopname:1},{shopname:2}]
   },
 
    /**
