@@ -31,14 +31,49 @@
 <view  class='hs'>校内热点商品</view>
 
 <!---->
-<scroll-view  style="height:400rpx;background-color:pink;" scroll-y="true" bindscrolltoupper="upper" bindscrolltolower="lower" bindscroll="scroll">
-  <view  class="shop-item"></view>
-  <view  class="shop-item"></view>
-  <view  class="shop-item"></view>
-  <view  class="shop-item"></view>
-  <view  class="shop-item"></view>
-  <view  class="shop-item"></view>
-  <view  class="shop-item"></view>
-  <view  class="shop-item"></view>
-</scroll-view>
+<view class='footlist'>
+  <view class="foot-left">
+    <block wx:for="{{list}}" wx:key="{{ item.id }}">
+      <view class='footbox' catchtap='jumpdetail' catchlongtap="deletefoot" bindtouchend="touchend" id="{{item.id}}" wx:if="{{index%2==0}}" data-cover="{{item.banner}}" data-title="{{item.title}}">
+        <image class='cover' src="{{item.banner}}" mode="widthFix"></image>
+        <view class="box-shadow">
+          <text class='t1'>{{item.title}}</text>
+          <view class='bot'>
+            <view class='personbox' data-userid="{{item.userid}}" catchtap="toProfile">
+              <image src="{{item.userinfo.avatarurl}}"></image>
+              <text class="username">{{item.userinfo.nickName}} </text>
+            </view>
+            <view class='thump' data-fid='{{item.id}}' catchtap='thumptap'>
+              <image class='un' data-fid='{{item.id}}' wx:if="{{item.islike=='1'}}" catchtap='unthumptap' src="../../images/thumph.png"></image>
+              <view style="color:red;">❤ </view>
+              <view class='thumpnum'>{{item.like}}</view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </block>
+  </view>
+
+  <view class="foot-right">
+    <block wx:for="{{list}}" wx:key="{{ item.id }}">
+      <view class='footbox' catchtap='jumpdetail' catchlongtap="deletefoot" bindtouchend="touchend" id="{{item.id}}" wx:if="{{index%2==1}}" data-cover="{{item.banner}}" data-title="{{item.title}}">
+        <image class='cover' src="{{item.banner}}" mode="widthFix"></image>
+        <view class="box-shadow">
+          <text class='t1'>{{item.title}}</text>
+          <view class='bot'>
+            <view class='personbox' data-userid="{{item.userid}}" catchtap="toProfile">
+              <image src="{{item.userinfo.avatarurl}}"></image>
+              <text class="username">{{item.userinfo.nickName}}</text>
+            </view>
+            <view class='thump' data-fid='{{item.id}}' catchtap='thumptap'>
+              <image class='un' data-fid='{{item.id}}' wx:if="{{item.islike=='1'}}" catchtap='unthumptap' src="../../images/thumph.png"></image>
+              <view style="color:red;">❤</view>
+              <view class='thumpnum'>{{item.like}}</view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </block>
+  </view>
+</view>
 </view>

@@ -31,20 +31,151 @@ swiper-item:nth-child(3) {
   margin-top:5rpx;
   font-size:30rpx;
 }
-scroll-view{
+.shop-list{
   display:flex;
-  justify-content: center;
- 
+  flex-direction: row;
+  box-sizing: border-box;
+  width:100%;
+  justify-content: space-between;
+  background-color: bisque;
+  height:900rpx;
+  padding:15rpx 20rpx 5rpx 20rpx;
+}
+.shop-right
+{
+  width:48%;
+  height:100%;
+  background-color: brown;
+}
+.shop-left{
+  width:48%;
+  height:50rpx;
+  background-color: pink;
+  height:100%;
 }
 .shop-item{
-  width:45%;
-  
-  height:100rpx;
-  border:solid 1rpx;
+  width: 100%;
+  margin: 0 auto;
+  background: #fff;
   box-sizing: border-box;
+  position: relative;
+  padding: 24rpx;
+  padding-top: 10rpx;
 }
 
-van-grid-item:hover{
- background-color: #00FF7F;
- color:#00FF7F;
+
+.footlist {
+  position: relative;
+  border-top-left-radius: 10rpx;
+  border-top-right-radius: 10rpx;
+  padding-top: 20rpx;
 }
+
+.footlist::after {
+  content: '';
+  clear: both;
+  display: block;
+}
+
+.foot-left {
+  float: left;
+  width: 50%;
+}
+
+.foot-right {
+  float: left;
+  width: 50%;
+}
+
+.footbox {
+  width: 100%;
+  margin: 0 auto;
+  background: #fff;
+  box-sizing: border-box;
+  position: relative;
+  padding: 24rpx;
+  padding-top: 10rpx;
+}
+
+.box-shadow {
+  padding: 6rpx 10rpx 18rpx 10rpx;
+  box-sizing: border-box;
+  box-shadow: 0 2rpx 2rpx rgba(88, 88, 88, 0.233);
+  border-bottom-left-radius: 10rpx;
+  border-bottom-right-radius: 10rpx;
+}
+
+.footbox {
+  width: 100%;
+  margin: 0 auto;
+  background: #fff;
+  box-sizing: border-box;
+  position: relative;
+  padding: 24rpx;
+  padding-top: 10rpx;
+}
+
+.footbox image {
+  width: 100%;
+  border-top-left-radius: 10rpx;
+  border-top-right-radius: 10rpx;
+}
+
+.footbox .thump {
+  display: flex;
+  justify-content: space-between;
+  width: auto;
+  height: 42rpx;
+}
+
+.footbox .thump image {
+  width: 40rpx;
+  height: 42rpx;
+  float: right;
+}
+
+.footbox .bot {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  padding-top: 10rpx;
+}
+
+.footbox .bot::after {
+  display: block;
+  content: "";
+  clear: both;
+}
+
+.footbox .bot .t1 {
+  font-size: 30rpx;
+  color: #1f1607;
+  line-height: 1.5;
+  /* margin-left: 38rpx; */
+  overflow: hidden;
+  width: 100%;
+  margin-top: 15rpx;
+}
+
+.footbox .bot .t2 {
+  font-size: 28rpx;
+  color: #000;
+  line-height: 100rpx;
+  margin-left: 30rpx;
+  float: left;
+}
+
+.foot-left .footbox {
+  padding-right: 12rpx;
+}
+
+.personbox image {
+  width: 42rpx;
+  height: 42rpx;
+  border-radius: 50%;
+  background: #edaf39;
+  float: left;
+  border-top-left-radius: 10rpx;
+  border-top-right-radius: 10rpx;
+}
+
