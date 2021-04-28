@@ -11,3 +11,5 @@
  username<input name='username' />
  <button form-type="submit">添加商品数据</button>
 </form>
+
+<button type='primary' bindtap='uploadImg'>上传图片到云端</button>

@@ -34,6 +34,16 @@ Page({
        
     })
   },
+  uploadImg:function(){
+      wx.chooseImage({
+      }).then(res=>{
+        const tempFilePath = res.tempFilePaths[0]
+        wx.cloud.uploadFile({
+          cloudPath:'imgs/' + Date.now() + '.jpg',
+          filePath:tempFilePath
+        })
+      })
+  },
   /**
    * 生命周期函数--监听页面显示
    */
