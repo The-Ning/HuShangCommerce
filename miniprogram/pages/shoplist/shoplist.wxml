@@ -5,8 +5,9 @@
     </view>
     <view class="info">
       <text><text class="tit">名称：</text>{{item.title}}</text>
-      <text><text class="tit">clickload：</text>{{item.clickload}}</text>
       <text><text class="tit">价格：</text>{{item.price}}<text class="tit"> 元</text></text>
-      <text><text class="tit">用户名：</text>{{item.username}}</text>
+      <text><text class="tit">描述：</text>{{item.detailed}}</text>
+      <!-- <text><text class="tit">：</text>{{item.clickload}}</text> -->
+      <van-button round type="info" size="mini" color="red">加入购物车</van-button>
     </view>
 </view>

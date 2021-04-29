@@ -14,7 +14,6 @@
   display: block;
   margin-right: 15rpx;
 }
-
 .info {
   display: flex;
   flex-direction: column;
@@ -28,3 +27,5 @@
   font-size: 30rpx;
   font-weight: 700;
 }
+
+
