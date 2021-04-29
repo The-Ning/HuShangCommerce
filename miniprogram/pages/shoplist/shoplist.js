@@ -11,7 +11,7 @@ Page({
     shopList: [],
     page: 1,
     pageSize: 10,
-    total: 0,
+    avatarurl: ''
   },
 
   /**
@@ -21,16 +21,18 @@ Page({
     this.setData({
       query: options
     })
+    console.log(options)
     this.getShopList()
   },
 
   getShopList() {
-    db.collection('shoptable').where({
-      id : parseInt(this.data.query.id)
-    }).get({ 
+    db.collection(this.data.query.class).get({ 
       // get 方法会触发网络请求，往数据库取数据
-     success: function (res) {
-     console.log(res)
+     success: (res) => {
+         console.log(res)
+         this.setData({
+          shopList: [...this.data.shopList, ...res.data]
+         })
      }
     })
   },

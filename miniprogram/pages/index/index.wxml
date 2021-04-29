@@ -27,28 +27,28 @@
       icon="cloud://one-ev4od.6f6e-one-ev4od-1302814385/imgs/主页分类/书本03.png" 
       text="学习资料" 
       link-type="navigateTo"
-      url="/pages/shoplist/shoplist?id=1&title=学习资料"
+      url="/pages/shoplist/shoplist?class=shoptable&title=学习资料"
       bindtap="getBookShop"
   />
   <van-grid-item 
       icon="cloud://one-ev4od.6f6e-one-ev4od-1302814385/imgs/主页分类/服装.png" 
       text="服装运动"
       link-type="navigateTo"
-      url="/pages/shoplist/shoplist?id=2&title=服装运动" 
+      url="/pages/shoplist/shoplist?class=shoptabletwo&title=服装运动" 
       bindtap="getClotheShop"
   />
   <van-grid-item 
       icon="cloud://one-ev4od.6f6e-one-ev4od-1302814385/imgs/主页分类/美食.png" 
       text="带饭取件"
       link-type="navigateTo"
-      url="/pages/shoplist/shoplist?id=3&title=带饭取件" 
+      url="/pages/shoplist/shoplist?class=3&title=带饭取件" 
       bindtap="getItemShop"
   />
   <van-grid-item 
       icon="cloud://one-ev4od.6f6e-one-ev4od-1302814385/imgs/主页分类/其他.png" 
       text="其他服务"
       link-type="navigateTo"
-      url="/pages/shoplist/shoplist?id=4&title=其他服务" 
+      url="/pages/shoplist/shoplist?class=4&title=其他服务" 
       bindtap="getOtherShop"
   />
 </van-grid>

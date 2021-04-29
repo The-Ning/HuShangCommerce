@@ -27,7 +27,7 @@
         {
           "name": "pages/shoplist/shoplist",
           "pathName": "pages/shoplist/shoplist",
-          "query": "id=1&title=学习资料",
+          "query": "class=shoptable&title=学习资料",
           "scene": null
         }
       ]
