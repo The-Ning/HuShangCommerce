@@ -46,29 +46,29 @@ Component({
     "list": [{
       "pagePath": "/pages/index/index",
       "text": "首页",
-      "iconPath": "cloud://one-ev4od.6f6e-one-ev4od-1302814385/imgs/tabbar/底部log/home.png",
-      "selectedIconPath": "cloud://one-ev4od.6f6e-one-ev4od-1302814385/imgs/tabbar/底部log/home-active.png",
+      "iconPath": "../imgs/tabbar/home.png",
+      "selectedIconPath": "../imgs/tabbar/home-active.png",
       
     },
     {
       "pagePath": "/pages/message/message",
       "text": "消息",
-      "iconPath": "cloud://one-ev4od.6f6e-one-ev4od-1302814385/imgs/tabbar/底部log/message.png",
-      "selectedIconPath": "cloud://one-ev4od.6f6e-one-ev4od-1302814385/imgs/tabbar/底部log/message-active.png",
+      "iconPath": "../imgs/tabbar/message.png",
+      "selectedIconPath": "../imgs/tabbar/message-active.png",
       info: 2
     },
     
     {
       "pagePath": "/pages/shopcart/shopcart",
       "text": "购物车",
-      "iconPath": "cloud://one-ev4od.6f6e-one-ev4od-1302814385/imgs/tabbar/底部log/shopcart.png",
-      "selectedIconPath": "cloud://one-ev4od.6f6e-one-ev4od-1302814385/imgs/tabbar/底部log/shopcart-active.png"
+      "iconPath": "../imgs/tabbar/shopcart.png",
+      "selectedIconPath": "../imgs/tabbar/shopcart-active.png"
     },
     {
       "pagePath": "/pages/mine/mine",
       "text": "我的",
-      "iconPath": "cloud://one-ev4od.6f6e-one-ev4od-1302814385/imgs/tabbar/底部log/user.png",
-      "selectedIconPath": "cloud://one-ev4od.6f6e-one-ev4od-1302814385/imgs/tabbar/底部log/user-active.png"
+      "iconPath": "../imgs/tabbar/user.png",
+      "selectedIconPath": "../imgs/tabbar/user-active.png"
     }
   ]
   },

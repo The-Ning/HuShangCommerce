@@ -12,39 +12,7 @@ Page({
    * 页面的初始数据//
    */
   data: {
-   name:'',
-   id:0,
-   classify:[
-     
-   ],
-   booklist:[],
-   shoplist:[{shopname:1},{shopname:2}],
-   list: [{
-    id: 174,
-    userid: 10,
-    title: "日本岚山、和服一日游",
-    banner: "cloud://one-ev4od.6f6e-one-ev4od-1302814385/imgs/shops/datastruct.jpg",
-    points: 6,
-    like: "62",
-    islike: 0
-  },
-  {
-    id: 173,
-    userid: 9,
-    title: "日本阿寒湖一日游",
-    imgsrc: "https://hbimg.huabanimg.com/ee5bf07b84fead3d57b445d2e7fa8eb6afe827c617e9c-ha1fZH_fw658",
-    points: 7,
-    like: "92",
-    userinfo: {
-      id: 9,
-      nickName: "大飞狼",
-      avatarurl: "https://pic3.zhimg.com/80/v2-fd0a58741fdf20f256c755719f81871e_hd.jpg"
-    },
-    islike: 0
-  },
-  
-  
-]
+   list: []
   },
 
    /**
@@ -68,9 +36,7 @@ Page({
     })
   },
 
-  // 获取书籍类商品信息并渲染
   
-  // 查询数据库信息
   
   
   // 给数据库插入信息
@@ -87,7 +53,6 @@ Page({
     boy:true
     }
   }).then(res=>{
-    console.log(res);
     wx.hideLoading();
   })
   },

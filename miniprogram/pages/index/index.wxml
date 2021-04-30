@@ -11,41 +11,41 @@
 <!-- swiper轮播图 -->
 <swiper class="swiper-container" indicator-dots indicator-color="white" indicator-active-color="gray" autoplay interval="1800" circular>
   <swiper-item>
-    <image src='cloud://one-ev4od.6f6e-one-ev4od-1302814385/imgs/swipers/src=http___5b0988e595225.cdn.sohucs.com_images_20180906_842fb0b73a3940a3b567cf22431539e4.jpeg&refer=http___5b0988e595225.cdn.sohucs.jpg' class='image-item'></image>
+    <image src='../../imgs/swipers/src=http___5b0988e595225.cdn.sohucs.com_images_20180906_842fb0b73a3940a3b567cf22431539e4.jpeg&refer=http___5b0988e595225.cdn.sohucs.jpg' class='image-item'></image>
   </swiper-item>
   <swiper-item>
-    <image src='cloud://one-ev4od.6f6e-one-ev4od-1302814385/imgs/swipers/src=http___img.51miz.com_Templet_00_19_52_19_195219_c3e8071348f03e0b00338825d8d4992d.jpg-0.jpg&refer=http___img.51miz.jpg' class='image-item'></image>
+    <image src='../../imgs/swipers/src=http___img.51miz.com_Templet_00_19_52_19_195219_c3e8071348f03e0b00338825d8d4992d.jpg-0.jpg&refer=http___img.51miz.jpg' class='image-item'></image>
   </swiper-item>
   <swiper-item>
-    <image src='cloud://one-ev4od.6f6e-one-ev4od-1302814385/imgs/swipers/u=456458569,3687964588&fm=26&gp=0.jpg' class='image-item'></image>
+    <image src='../../imgs/swipers/u=456458569,3687964588&fm=26&gp=0.jpg' class='image-item'></image>
   </swiper-item>
 </swiper>
 
 <!-- 正方形格子 -->
 <van-grid clickable column-num="4">
   <van-grid-item 
-      icon="cloud://one-ev4od.6f6e-one-ev4od-1302814385/imgs/主页分类/书本03.png" 
+      icon="/imgs/index/book.png" 
       text="学习资料" 
       link-type="navigateTo"
       url="/pages/shoplist/shoplist?class=shoptableone&title=学习资料"
       bindtap="getBookShop"
   />
   <van-grid-item 
-      icon="cloud://one-ev4od.6f6e-one-ev4od-1302814385/imgs/主页分类/服装.png" 
+      icon="/imgs/index/clothe.png" 
       text="服装运动"
       link-type="navigateTo"
       url="/pages/shoplist/shoplist?class=shoptabletwo&title=服装运动" 
       bindtap="getClotheShop"
   />
   <van-grid-item 
-      icon="cloud://one-ev4od.6f6e-one-ev4od-1302814385/imgs/主页分类/美食.png" 
+      icon="/imgs/index/food.png" 
       text="带饭取件"
       link-type="navigateTo"
       url="/pages/shoplist/shoplist?class=shoptablethree&title=带饭取件" 
       bindtap="getItemShop"
   />
   <van-grid-item 
-      icon="cloud://one-ev4od.6f6e-one-ev4od-1302814385/imgs/主页分类/其他.png" 
+      icon="/imgs/index/other.png" 
       text="其他服务"
       link-type="navigateTo"
       url="/pages/shoplist/shoplist?class=shoptablefour&title=其他服务" 
@@ -58,7 +58,7 @@
 
 <view class='footlist'>
   <view class="foot-left">
-    <block wx:for="{{list}}" wx:key="{{ item.id }}">
+    <block wx:for="{{list}}" wx:key="item._id">
       <view class='footbox' catchtap='jumpdetail' catchlongtap="deletefoot" bindtouchend="touchend" id="{{item.id}}" wx:if="{{index%2==0}}" data-cover="{{item.imgsrc}}" data-title="{{item.title}}">
         <image class='cover' src="{{item.imgsrc}}" mode="widthFix"></image>
         <view class="box-shadow">
@@ -69,7 +69,7 @@
               <text class="username">{{item.username}} </text>
             </view>
             <view class='thump' data-fid='{{item.id}}' catchtap='thumptap'>
-              <image class='un' data-fid='{{item.id}}' wx:if="{{item.islike=='1'}}" catchtap='unthumptap' src="../../images/thumph.png"></image>
+              <image class='un' data-fid='{{item.id}}' wx:if="{{item.islike=='1'}}" catchtap='unthumptap' ></image>
               <view style="color:red;">❤ </view>
               <view class='thumpnum'>{{item.clickload}}</view>
             </view>
@@ -80,7 +80,7 @@
   </view>
 
   <view class="foot-right">
-    <block wx:for="{{list}}" wx:key="{{ item.id }}">
+    <block wx:for="{{list}}" wx:key="item._id">
       <view class='footbox' catchtap='jumpdetail' catchlongtap="deletefoot" bindtouchend="touchend" id="{{item.id}}" wx:if="{{index%2==1}}" data-cover="{{item.imgsrc}}" data-title="{{item.title}}">
         <image class='cover' src="{{item.imgsrc}}" mode="widthFix"></image>
         <view class="box-shadow">

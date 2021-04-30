@@ -19,22 +19,36 @@ Page({
    */
   onLoad: function (options) {
     this.setData({
-      query: options
+      query: options // url传过来的参数
     })
-    console.log(options)
     this.getShopList()
   },
+
+  // 跳转商品详细信息函数
+  shopspecify(event){
+   
+    var table = event.currentTarget.dataset.table;
+    var _id = event.currentTarget.dataset._id;
+
+    wx.navigateTo({
+      url:'/pages/specify/specify?table='+table+'&_id='+_id
+    }).then(res=>{
+      console.log(res)
+    })
+    
+  },
+
 
   getShopList() {
     db.collection(this.data.query.class).get({ 
       // get 方法会触发网络请求，往数据库取数据
-     success: (res) => {
-         console.log(res)
-         this.setData({
-          shopList: [...this.data.shopList, ...res.data]
-         })
-     }
+    }).then( res=>{
+    console.log(res)
+    this.setData({
+     shopList: [...this.data.shopList, ...res.data]
+    
     })
+  })
   },
   /**
    * 生命周期函数--监听页面初次渲染完成

@@ -1,5 +1,9 @@
 <!--pages/shoplist/shoplist.wxml-->
-<view class="shop-item" wx:for="{{shopList}}" wx:key="id">
+<view class="shop-item" wx:for="{{shopList}}" wx:key="id"
+bindtap='shopspecify'
+data-table='{{query.class}}'
+data-_id='{{item._id}}'
+>
     <view class="thumb">
       <image src="{{item.imgsrc}}"></image>
     </view>

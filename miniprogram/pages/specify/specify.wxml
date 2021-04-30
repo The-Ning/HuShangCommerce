@@ -1,0 +1,27 @@
+<!-- 商品详细页面 在这里实现查看商品详细1信息，以及购买功能 -->
+
+<swiper>
+  <block wx:for="{{2}}" wx:key='item.id'>
+    <swiper-item>
+      <image src="{{shopspecify.imgsrc}}"  bindtap="previewImage"></image>
+    </swiper-item>
+  </block>
+</swiper>
+<scroll-view scroll-y="true">
+  <view class="detail">
+    <text class="title">{{shopspecify.title}}</text>
+    <text class="price">{{shopspecify.price}}</text>
+  </view>
+  <view class="separate"></view>
+  <!-- sku选择 -->
+  <text>商品详情</text>
+ {{shopspecify.detailed}}
+</scroll-view>
+<!-- 底部悬浮栏 -->
+<view class="detail-nav">
+  <image bindtap="toCar" src="" />
+  <view class="line_nav"></view>
+ 
+  <button class="button-green" bindtap="addCar" formType="submit">加入购物车</button>
+  <button class="button-red" bindtap="immeBuy" formType="submit">立即购买</button>
+</view>

@@ -1,12 +1,14 @@
 {
-  "pages": [
+  "pages": [ 
+    
     "pages/addshop/addshop",
+    "pages/specify/specify",
     "pages/index/index",
     "pages/message/message",
     "pages/shopcart/shopcart",
     "pages/mine/mine",
     "pages/shoplist/shoplist"
-    
+   
   ],
   "window": {
     "backgroundTextStyle": "light",
