@@ -3,8 +3,7 @@ import { createStoreBindings } from'mobx-miniprogram-bindings'
 import { store } from '../../store/store'
 
 
-const db = wx.cloud.database();
-const _ = db.command;
+
 Page({
 
   
@@ -12,9 +11,46 @@ Page({
    * 页面的初始数据//
    */
   data: {
-   list: []
-  },
+   // tab切换
+ 
+currentTab: 0,
 
+  },
+  swichNav: function (e) {
+ 
+    console.log(e);
+     
+    var that = this;
+     
+    if (this.data.currentTab === e.target.dataset.current) {
+     
+    return false;
+     
+    } else {
+     
+    that.setData({
+     
+    currentTab: e.target.dataset.current,
+     
+    })
+     
+    }
+     
+    },
+     
+    swiperChange: function (e) {
+     
+     
+    this.setData({
+     
+    currentTab: e.detail.current,
+     
+    })
+     
+     
+    },
+    
+    
    /**
    * 生命周期函数--监听页面加载
    */
@@ -25,15 +61,7 @@ Page({
       actions: ['updateNum']
     });
 
-    wx.cloud.callFunction({
-      name:'indexshop'
-    }).then(res=>{
-      this.setData({
-        list:res.result.data
-      });
-      console.log(this.data.list);
-   
-    })
+    
   },
 
   

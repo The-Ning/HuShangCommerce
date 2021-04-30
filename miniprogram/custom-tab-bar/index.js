@@ -45,24 +45,16 @@ Component({
   data: {
     "list": [{
       "pagePath": "/pages/index/index",
-      "text": "首页",
+      "text": "畅所欲言",
       "iconPath": "../imgs/tabbar/home.png",
       "selectedIconPath": "../imgs/tabbar/home-active.png",
       
     },
     {
-      "pagePath": "/pages/message/message",
-      "text": "消息",
+      "pagePath": "/pages/add/add",
+      "text": "毛遂自荐",
       "iconPath": "../imgs/tabbar/message.png",
       "selectedIconPath": "../imgs/tabbar/message-active.png",
-      info: 2
-    },
-    
-    {
-      "pagePath": "/pages/shopcart/shopcart",
-      "text": "购物车",
-      "iconPath": "../imgs/tabbar/shopcart.png",
-      "selectedIconPath": "../imgs/tabbar/shopcart-active.png"
     },
     {
       "pagePath": "/pages/mine/mine",

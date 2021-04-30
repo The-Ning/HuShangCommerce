@@ -1,104 +1,45 @@
 <!--pages/index/index.wxml-->
-<!-- 搜索框 -->
-<view id='body'>
-<van-search
-  placeholder="请输入搜索关键词"
-  show-action
-  bind:search="onSearch"
-  bind:cancel="onCancel"
-/>
+<view class="page">
+ 
+ 
+ <!--顶部导航栏-->
+  
+ <view class="swiper-tab">
+  
+ <view class="tab-item {{currentTab==0 ? 'on' : ''}}" data-current="0" bindtap="swichNav">大胆表白</view>
+  
+ <view class="tab-item {{currentTab==1 ? 'on' : ''}}" data-current="1" bindtap="swichNav">二手交易</view>
+  
+ <view class="tab-item {{currentTab==2 ? 'on' : ''}}" data-current="2" bindtap="swichNav">校园生活</view>
+  
+ </view>
+  
+  
+ <!--内容主体-->
+  
+ <swiper class="swiper" current="{{currentTab}}" duration="200" bindchange="swiperChange">
+  
+ <swiper-item>
+  
+ <view>我是tab1</view>
 
-<!-- swiper轮播图 -->
-<swiper class="swiper-container" indicator-dots indicator-color="white" indicator-active-color="gray" autoplay interval="1800" circular>
-  <swiper-item>
-    <image src='../../imgs/swipers/src=http___5b0988e595225.cdn.sohucs.com_images_20180906_842fb0b73a3940a3b567cf22431539e4.jpeg&refer=http___5b0988e595225.cdn.sohucs.jpg' class='image-item'></image>
-  </swiper-item>
-  <swiper-item>
-    <image src='../../imgs/swipers/src=http___img.51miz.com_Templet_00_19_52_19_195219_c3e8071348f03e0b00338825d8d4992d.jpg-0.jpg&refer=http___img.51miz.jpg' class='image-item'></image>
-  </swiper-item>
-  <swiper-item>
-    <image src='../../imgs/swipers/u=456458569,3687964588&fm=26&gp=0.jpg' class='image-item'></image>
-  </swiper-item>
-</swiper>
-
-<!-- 正方形格子 -->
-<van-grid clickable column-num="4">
-  <van-grid-item 
-      icon="/imgs/index/book.png" 
-      text="学习资料" 
-      link-type="navigateTo"
-      url="/pages/shoplist/shoplist?class=shoptableone&title=学习资料"
-      bindtap="getBookShop"
-  />
-  <van-grid-item 
-      icon="/imgs/index/clothe.png" 
-      text="服装运动"
-      link-type="navigateTo"
-      url="/pages/shoplist/shoplist?class=shoptabletwo&title=服装运动" 
-      bindtap="getClotheShop"
-  />
-  <van-grid-item 
-      icon="/imgs/index/food.png" 
-      text="带饭取件"
-      link-type="navigateTo"
-      url="/pages/shoplist/shoplist?class=shoptablethree&title=带饭取件" 
-      bindtap="getItemShop"
-  />
-  <van-grid-item 
-      icon="/imgs/index/other.png" 
-      text="其他服务"
-      link-type="navigateTo"
-      url="/pages/shoplist/shoplist?class=shoptablefour&title=其他服务" 
-      bindtap="getOtherShop"
-  />
-</van-grid>
-<view  class='hs'>校内热点商品</view>
-
-<!---->
-
-<view class='footlist'>
-  <view class="foot-left">
-    <block wx:for="{{list}}" wx:key="item._id">
-      <view class='footbox' catchtap='jumpdetail' catchlongtap="deletefoot" bindtouchend="touchend" id="{{item.id}}" wx:if="{{index%2==0}}" data-cover="{{item.imgsrc}}" data-title="{{item.title}}">
-        <image class='cover' src="{{item.imgsrc}}" mode="widthFix"></image>
-        <view class="box-shadow">
-          <text class='t1'>{{item.title}}</text>
-          <view class='bot'>
-            <view class='personbox' data-userid="{{item.userid}}" catchtap="toProfile">
-              <image src="{{item.avatarurl}}"></image>
-              <text class="username">{{item.username}} </text>
-            </view>
-            <view class='thump' data-fid='{{item.id}}' catchtap='thumptap'>
-              <image class='un' data-fid='{{item.id}}' wx:if="{{item.islike=='1'}}" catchtap='unthumptap' ></image>
-              <view style="color:red;">❤ </view>
-              <view class='thumpnum'>{{item.clickload}}</view>
-            </view>
-          </view>
-        </view>
-      </view>
-    </block>
-  </view>
-
-  <view class="foot-right">
-    <block wx:for="{{list}}" wx:key="item._id">
-      <view class='footbox' catchtap='jumpdetail' catchlongtap="deletefoot" bindtouchend="touchend" id="{{item.id}}" wx:if="{{index%2==1}}" data-cover="{{item.imgsrc}}" data-title="{{item.title}}">
-        <image class='cover' src="{{item.imgsrc}}" mode="widthFix"></image>
-        <view class="box-shadow">
-          <text class='t1'>{{item.title}}</text>
-          <view class='bot'>
-            <view class='personbox' data-userid="{{item.userid}}" catchtap="toProfile">
-              <image src="{{item.userinfo.avatarurl}}"></image>
-              <text class="username">{{item.username}}</text>
-            </view>
-            <view class='thump' data-fid='{{item.id}}' catchtap='thumptap'>
-              <image class='un' data-fid='{{item.id}}' wx:if="{{item.islike=='1'}}" catchtap='unthumptap' src="../../images/thumph.png"></image>
-              <view style="color:red;">❤</view>
-              <view class='thumpnum'>{{item.clickload}}</view>
-            </view>
-          </view>
-        </view>
-      </view>
-    </block>
-  </view>
-</view>
-</view>
+  
+ </swiper-item>
+  
+ <swiper-item>
+  
+ <view>我是tab2</view>
+  
+ </swiper-item>
+  
+ <swiper-item>
+  
+ <view>我是tab3</view>
+  
+ </swiper-item>
+  
+ </swiper>
+  
+ </view>
+ 
+ 

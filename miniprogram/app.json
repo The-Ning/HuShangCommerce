@@ -1,19 +1,13 @@
 {
-  "pages": [ 
-    
-    "pages/addshop/addshop",
-    "pages/specify/specify",
+  "pages": [
     "pages/index/index",
-    "pages/message/message",
-    "pages/shopcart/shopcart",
     "pages/mine/mine",
-    "pages/shoplist/shoplist"
-   
+    "pages/add/add"
   ],
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#F5F5F5",
-    "navigationBarTitleText": "湖商二手交易小程序",
+    "navigationBarTitleText": "畅所欲言在湖商",
     "navigationBarTextStyle": "black"
   },
   "tabBar": {
@@ -21,33 +15,21 @@
     "list": [
       {
         "pagePath": "pages/index/index",
-        "text": "首页",
-        "iconPath": "/tabs/home.png",
-        "selectedIconPath": "/tabs/home-active.png"
+        "text": "展示区",
+        "iconPath": "/imgs/tabbar/home.png",
+        "selectedIconPath": "/imgs/tabbar/home-active.png"
       },
       {
-        "pagePath": "pages/message/message",
-        "text": "消息",
-        "iconPath": "/tabs/message.png",
-        "selectedIconPath": "/tabs/message-active.png"
-      },
-      {
-        "pagePath": "pages/addshop/addshop",
-        "text": "添加",
-        "iconPath": "/tabs/message.png",
-        "selectedIconPath": "/tabs/message-active.png"
-      },
-      {
-        "pagePath": "pages/shopcart/shopcart",
-        "text": "购物车",
-        "iconPath": "/tabs/message.png",
-        "selectedIconPath": "/tabs/message-active.png"
+        "pagePath": "pages/add/add",
+        "text": "说心事",
+        "iconPath": "/imgs/tabbar/message.png",
+        "selectedIconPath": "/imgs/tabbar/message-active.png"
       },
       {
         "pagePath": "pages/mine/mine",
         "text": "我的",
-        "iconPath": "/tabs/message.png",
-        "selectedIconPath": "/tabs/message-active.png"
+        "iconPath": "/imgs/tabbar/message.png",
+        "selectedIconPath": "/imgs/tabbar/message-active.png"
       }
     ]
   },
