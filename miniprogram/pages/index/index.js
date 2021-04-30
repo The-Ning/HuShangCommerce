@@ -12,14 +12,13 @@ Page({
    */
   data: {
    // tab切换
- 
 currentTab: 0,
-
+list:[
+  {_id:'1',clickload:20,imgsrc:'../../imgs/index/book.png',title:'我要表白邓子豪',content:'豪，你知道吗，我喜欢你很久了，从第一眼见到你就无法自拔',userInfo:{openid:'123456',nickname:'ning'}}
+]
   },
   swichNav: function (e) {
  
-    console.log(e);
-     
     var that = this;
      
     if (this.data.currentTab === e.target.dataset.current) {

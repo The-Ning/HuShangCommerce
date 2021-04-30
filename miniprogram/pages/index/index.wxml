@@ -3,10 +3,9 @@
  
  
  <!--顶部导航栏-->
-  
  <view class="swiper-tab">
   
- <view class="tab-item {{currentTab==0 ? 'on' : ''}}" data-current="0" bindtap="swichNav">大胆表白</view>
+ <view class="tab-item {{currentTab==0 ? 'on' : ''}}" data-current="0" bindtap="swichNav">我要表白</view>
   
  <view class="tab-item {{currentTab==1 ? 'on' : ''}}" data-current="1" bindtap="swichNav">二手交易</view>
   
@@ -21,7 +20,10 @@
   
  <swiper-item>
   
- <view>我是tab1</view>
+ <view wx:for='{{list}}' wx:key='index' class='box'>
+  <block>{{item._id}}</block>
+  <image src='{{item.imgsrc}}'></image>
+ </view>
 
   
  </swiper-item>
