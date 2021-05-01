@@ -5,7 +5,7 @@
  <!--顶部导航栏-->
  <view class="swiper-tab">
   
- <view class="tab-item {{currentTab==0 ? 'on' : ''}}" data-current="0" bindtap="swichNav">我要表白</view>
+ <view class="tab-item {{currentTab==0 ? 'on' : ''}}" data-current="0" bindtap="swichNav">表白捞人</view>
   
  <view class="tab-item {{currentTab==1 ? 'on' : ''}}" data-current="1" bindtap="swichNav">二手交易</view>
   
@@ -15,28 +15,73 @@
   
   
  <!--内容主体-->
-  
- <swiper class="swiper" current="{{currentTab}}" duration="200" bindchange="swiperChange">
-  
- <swiper-item>
-  
- <view wx:for='{{list}}' wx:key='index' class='box'>
-  <block>{{item._id}}</block>
-  <image src='{{item.imgsrc}}'></image>
- </view>
 
+ <swiper class="swiper" current="{{currentTab}}" duration="200" bindchange="swiperChange" style='height:{{sumHeight}}'>
+  
+  <!--表白捞人-->
+ <swiper-item>
+  <scroll-view scroll-y="true" class="scroll">
+ <view wx:for='{{list}}' wx:key='index' class='box-0'>
+   <view class='item-header'>
+     <image src='{{item.avatar}}' class='avatar'></image>
+     <view class='profile'>
+     <text class='nickname'>{{item.userInfo.nickname}}</text>
+     <text class='item-date'>{{item.date}}</text>
+    </view>
+   </view>
+  <view class='item-content'>
+
+    <text class='content-text'>{{item.content}}</text>
+
+    <view class='content-img'>
+      <view wx:for="{{item.imgsrc}}" wx:for-item='itemimg' class='imgs' wx:key='index'>
+        <van-image
+        width='100%'
+    height='100%'
+  class='item-img'
+ bindtap='imgYulan'
+   data-list='{{item.imgsrc}}'
+    data-src='{{itemimg}}'
+  src="{{itemimg}}"
+   rel="external nofollow"   
+        />
+    </view>
+    </view>
+    
+  
+</view>
+<!-- 点赞和评论区域-->
+<view class='item-footer'>
+
+  <image src='../../imgs/评论.png' class='remark'></image>
+
+  <image src='../../imgs/点赞 (1).png' class='like'></image>
+</view>
+ </view>
+</scroll-view>
+ </swiper-item>
+
+
+   <!--二手交易-->
+ <swiper-item>
+  
+ <view>
+   
+  
+  
+  我是tab2</view>
   
  </swiper-item>
   
+
+  <!--校园生活-->
  <swiper-item>
   
- <view>我是tab2</view>
+ <view>
+   
   
- </swiper-item>
   
- <swiper-item>
-  
- <view>我是tab3</view>
+  我是tab3</view>
   
  </swiper-item>
   

@@ -3,23 +3,26 @@
   margin-left: 10rpx;
    
   margin-right: 10rpx;
-   
   }
    
    
   .swiper-tab {
    
   display: flex;
-   
+   width:100%;
   flex-direction: row;
    
   line-height: 80rpx;
    
   border-bottom: 2rpx solid #777;
-   
+   position:fixed;
+   top:0;
+   left:0;
+   z-index: 5;
+   background-color: cornsilk;
   }
    
-   
+ 
   .tab-item {
    
   width: 33.3%;
@@ -35,22 +38,98 @@
    
   .swiper {
    
-  height: 1100px;
-   
   background: #dfdfdf;
-   
+  height: calc(100vh - 50px);
   }
-   
-   
+  .scroll{
+    height:100%;
+  }
   .on {
    
-  color: blue;
+  color: #07c160;
    
-  border-bottom: 5rpx solid blue;
+  border-bottom: 5rpx solid #07c160;
    
   }
 
 
 
+  .box-0{
+    width:100%;
+   margin-top: 100rpx;
+    display:flex;
+    flex-direction: column;
+  }
+  .item-header{
+   
+    display:flex;
+    padding:15rpx;
+  }
+  .avatar{
+    width:100rpx;
+    height:100rpx;
+    border-radius: 50%;
+    margin-left: 10rpx;
+  }
+  .profile{
+    height:100%;
+    margin-left:20rpx;
+    display:flex;
+    flex-direction: column;
+  }
+  .nickname{
+    font-size:50rpx;
+    height:40rpx;
+    line-height: 40rpx;
+   margin-left:30rpx;
+   color:	#FF7F50;
+  }
+  .item-date{
+    font-size:30rpx;
+   margin-top: 20rpx;
+   margin-left:30rpx;
+  }
+  .item-content{
+    display:flex;
+    flex-direction: column;
+    padding:10rpx;
+  }
+  .content-text{
+    width:100%;
+ min-height: 35rpx;
+   line-height: 1.5;
+   font-size:35rpx;
+   height:auto;
+  }
+
+  .content-img{
+    width:100%;
+    min-height:10rpx;
+  }
+  .item-img{
+    width:32%;
+    height:250rpx;
+    float:left;
+    margin-top:10rpx;
+    margin-left:5rpx;
+  }
+  .item-footer{
+    height:70rpx;
+    margin-top:5rpx;
+    display:flex;
+    background-color:pink;
+    padding:5px;
+    border-top:solid 2rpx #FFF0F5;
+  }
+/* 评论和点赞的样式 */
+  .remark{
+    width:80rpx;
+    height:70rpx;
+  }
+  .like{
+    width:80rpx;
+    height:70rpx;
+  }
+  
   
   

@@ -13,9 +13,44 @@ Page({
   data: {
    // tab切换
 currentTab: 0,
+dates:'',
+
 list:[
-  {_id:'1',clickload:20,imgsrc:'../../imgs/index/book.png',title:'我要表白邓子豪',content:'豪，你知道吗，我喜欢你很久了，从第一眼见到你就无法自拔',userInfo:{openid:'123456',nickname:'ning'}}
+  {_id:'1',date:'2021-5-1',clickload:20,imgsrc:['https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=3401709509,766202338&fm=26&gp=0.jpg',
+  'https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=3401709509,766202338&fm=26&gp=0.jpg',
+  'https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=3401709509,766202338&fm=26&gp=0.jpg',
+  'https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=3401709509,766202338&fm=26&gp=0.jpg',
+  'https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=3401709509,766202338&fm=26&gp=0.jpg',
+  'https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=3401709509,766202338&fm=26&gp=0.jpg'],
+  avatar:'https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=2401160306,2584571540&fm=26&gp=0.jpg',content:'小迪，你知道吗，我喜欢你很久了，从第一眼见到你就无法自拔是多少'
+  +'实打实大苏打飒飒的飒飒实打实大苏打',userInfo:{openid:'123456',nickname:'ning'}
+},
+  {_id:'1',date:'2021-5-1',clickload:20,imgsrc:['https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=3401709509,766202338&fm=26&gp=0.jpg',
+  'https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=3401709509,766202338&fm=26&gp=0.jpg'],
+  avatar:'https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=2401160306,2584571540&fm=26&gp=0.jpg',content:'小迪，你知道吗，我喜欢你很久了，从第一眼见到你就无法自拔是多少'
+  +'实打实大苏打飒飒的飒飒实打实大苏打',userInfo:{openid:'123456',nickname:'ning'}
+},
+{_id:'1',date:'2021-5-1',clickload:20,imgsrc:['https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=3401709509,766202338&fm=26&gp=0.jpg',
+'https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=3401709509,766202338&fm=26&gp=0.jpg'],
+avatar:'https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=2401160306,2584571540&fm=26&gp=0.jpg',content:'小迪，你知道吗，我喜欢你很久了，从第一眼见到你就无法自拔是多少'
++'实打实大苏打飒飒的飒飒实打实大苏打',userInfo:{openid:'123456',nickname:'ning'}
+},
+{_id:'1',date:'2021-5-1',clickload:20,imgsrc:[
+'https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=3401709509,766202338&fm=26&gp=0.jpg'],
+avatar:'https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=2401160306,2584571540&fm=26&gp=0.jpg',content:'小迪，你知道吗，我喜欢你很久了，从第一眼见到你就无法自拔是多少'
++'实打实大苏打飒飒的飒飒实打实大苏打',userInfo:{openid:'123456',nickname:'ning'}
+}
 ]
+  },
+
+  getNow(){
+    var date = new Date();
+    var year = date.getFullYear();
+    var month = date.getMonth()>9?date.getMonth():'0'+date.getMonth();
+    var day = date.getDay()>9?date.getDay() : '0' + date.getDay();
+    var hour = date.getHours()>9?date.getHours():'0'+date.getHours();
+    var minute = date.getMinutes()>9?date.getMinutes():'0'+date.getMinutes();
+    return year +'-'+month+'-'+day+' '+hour+'-'+minute;
   },
   swichNav: function (e) {
  
@@ -49,6 +84,15 @@ list:[
      
     },
     
+    // 预览图片事件函数
+    imgYulan:function(event){
+      var currency = event.currentTarget.dataset.src;
+      var imgs = event.currentTarget.dataset.list;
+      wx.previewImage({
+        current: currency, // 当前显示图片的http链接
+        urls:imgs  // 需要预览的图片http链接列表
+      })
+    },
     
    /**
    * 生命周期函数--监听页面加载
@@ -59,7 +103,10 @@ list:[
       fields: ['size'],
       actions: ['updateNum']
     });
-
+   this.setData({
+     dates:this.getNow()
+   })
+   
     
   },
 
@@ -115,7 +162,7 @@ list:[
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-
+   
   },
 
   /**
