@@ -15,7 +15,7 @@ Page({
 currentTab: 0,
 dates:'',
 
-list:[
+list1:[
   {_id:'1',date:'2021-5-1',clickload:20,imgsrc:['https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=3401709509,766202338&fm=26&gp=0.jpg',
   'https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=3401709509,766202338&fm=26&gp=0.jpg',
   'https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=3401709509,766202338&fm=26&gp=0.jpg',
@@ -58,6 +58,10 @@ avatar:'https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=2401160306,258
     avatar:'https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=2401160306,2584571540&fm=26&gp=0.jpg',content:'小迪，你知道吗，我喜欢你很久了，从第一眼见到你就无法自拔是多少'
     +'实打实大苏打飒飒的飒飒实打实大苏打',userInfo:{openid:'123456',nickname:'ning'}
   },
+  {_id:'1',date:'2021-5-1',clickload:20,
+  avatar:'https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=2401160306,2584571540&fm=26&gp=0.jpg',content:'小迪，你知道吗，我喜欢你很久了，从第一眼见到你就无法自拔是多少'
+  +'实打实大苏打飒飒的飒飒实打实大苏打',userInfo:{openid:'123456',nickname:'ning'}
+  },
   {_id:'1',date:'2021-5-1',clickload:20,imgsrc:['https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=3401709509,766202338&fm=26&gp=0.jpg',
   'https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=3401709509,766202338&fm=26&gp=0.jpg',
   'https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=3401709509,766202338&fm=26&gp=0.jpg',
@@ -70,11 +74,15 @@ avatar:'https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=2401160306,258
 {_id:'1',date:'2021-5-1',clickload:20,
   avatar:'https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=2401160306,2584571540&fm=26&gp=0.jpg',content:'小迪，你知道吗，我喜欢你很久了，从第一眼见到你就无法自拔是多少'
   +'实打实大苏打飒飒的飒飒实打实大苏打',userInfo:{openid:'123456',nickname:'ning'}
-  },
+  }
+  
+],
+list2:[
   {_id:'1',date:'2021-5-1',clickload:20,
   avatar:'https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=2401160306,2584571540&fm=26&gp=0.jpg',content:'小迪，你知道吗，我喜欢你很久了，从第一眼见到你就无法自拔是多少'
   +'实打实大苏打飒飒的飒飒实打实大苏打',userInfo:{openid:'123456',nickname:'ning'}
-  },
+  }
+ 
 ]
   },
 
@@ -106,7 +114,9 @@ avatar:'https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=2401160306,258
     }
      
     },
-     
+     remark:function(e){
+       console.log(e.target.dataset.remark);
+     },
     swiperChange: function (e) {
      
      
