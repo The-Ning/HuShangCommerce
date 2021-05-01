@@ -1,7 +1,6 @@
 .page {
  
   margin-left: 10rpx;
-   
   margin-right: 10rpx;
   }
    
@@ -12,13 +11,11 @@
    width:100%;
   flex-direction: row;
    
-  line-height: 80rpx;
+  line-height:10vh;
    
   border-bottom: 2rpx solid #777;
-   position:fixed;
-   top:0;
-   left:0;
-   z-index: 5;
+   height:10vh;
+  
    background-color: cornsilk;
   }
    
@@ -30,25 +27,24 @@
   text-align: center;
    
   font-size: 15px;
-   
+
   color: #777;
    
   }
    
    
   .swiper {
-   
   background: #dfdfdf;
   height: calc(100vh - 50px);
   }
   .scroll{
-    height:100%;
+    height: 80vh;
   }
   .on {
    
   color: #07c160;
    
-  border-bottom: 5rpx solid #07c160;
+  border-bottom: 8rpx solid #07c160;
    
   }
 
@@ -56,9 +52,10 @@
 
   .box-0{
     width:100%;
-   margin-top: 100rpx;
+   margin-top: 15rpx;
     display:flex;
     flex-direction: column;
+    background-color:white;
   }
   .item-header{
    
@@ -99,7 +96,6 @@
  min-height: 35rpx;
    line-height: 1.5;
    font-size:35rpx;
-   height:auto;
   }
 
   .content-img{
@@ -120,15 +116,20 @@
     background-color:pink;
     padding:5px;
     border-top:solid 2rpx #FFF0F5;
+    justify-items: center;
   }
 /* 评论和点赞的样式 */
   .remark{
-    width:80rpx;
+    width:70rpx;
     height:70rpx;
+    position: absolute;
+    left:200rpx;
   }
   .like{
-    width:80rpx;
-    height:70rpx;
+    width:70rpx;
+    height:60rpx;
+    position: absolute;
+    right:200rpx;
   }
   
   

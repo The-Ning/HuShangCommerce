@@ -58,7 +58,9 @@
   <image src='../../imgs/点赞 (1).png' class='like'></image>
 </view>
  </view>
+
 </scroll-view>
+
  </swiper-item>
 
 
