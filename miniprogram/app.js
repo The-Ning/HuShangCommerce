@@ -12,7 +12,7 @@ App({
     wx.login({
         // 发送 res.code 到后台换取 openId, sessionKey, unionId 
           
-    }).then(res=>{
+    })/*.then(res=>{
  wx.cloud.callFunction({
    name:'getOpenId'
  }).then(res=>{
@@ -20,6 +20,7 @@ App({
    this.globalData.userInfo=res.result
  })
     })
+    */
   },
   getOpenid: async function(){
 

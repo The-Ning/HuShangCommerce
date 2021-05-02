@@ -110,7 +110,7 @@
     margin-left:5rpx;
   }
   .item-footer{
-    height:70rpx;
+    height:60rpx;
     margin-top:5rpx;
     display:flex;
     padding:5px;
@@ -118,19 +118,31 @@
     justify-items: center;
   }
 /* 评论和点赞的样式 */
+.item-footer-left{
+ width:50%;
+ display:flex;
+justify-content: center;
+}
+.item-footer-right{
+  width:50%;
+  display:flex;
+  justify-content: center;
+}
   .remark{
     width:70rpx;
-    height:70rpx;
-    position: absolute;
-    left:200rpx;
-    z-index: 4;
+    height:60rpx;
+  
   }
   .like{
-    width:70rpx;
-    height:60rpx;
-    position: absolute;
-    right:200rpx;
-    z-index: 4;
+    width:60rpx;
+    height:50rpx;
+    line-height: 60rpx;
+  }
+
+  .clickload1{
+    line-height:60rpx;
+  margin-left:5rpx;
+   font-size:40rpx;
   }
   
   

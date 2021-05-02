@@ -12,76 +12,15 @@ Page({
   data: {
    // tab切换
 currentTab: 0,
-dates:'',
-list1:[
-  {_id:'1',date:'2021-5-1',clickload:20,imgsrc:['https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=3401709509,766202338&fm=26&gp=0.jpg',
-  'https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=3401709509,766202338&fm=26&gp=0.jpg',
-  'https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=3401709509,766202338&fm=26&gp=0.jpg',
-  'https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=3401709509,766202338&fm=26&gp=0.jpg',
-  'https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=3401709509,766202338&fm=26&gp=0.jpg',
-  'https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=2401160306,2584571540&fm=26&gp=0.jpg'],
-  avatar:'https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=2401160306,2584571540&fm=26&gp=0.jpg',content:'小迪，你知道吗，我喜欢你很久了，从第一眼见到你就无法自拔是多少'
-  +'实打实大苏打飒飒的飒飒实打实大苏打',userInfo:{openid:'123456',nickname:'ning'}
-},
-  {_id:'1',date:'2021-5-1',clickload:20,imgsrc:['https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=3401709509,766202338&fm=26&gp=0.jpg',
-  'https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=3401709509,766202338&fm=26&gp=0.jpg'],
-  avatar:'https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=2401160306,2584571540&fm=26&gp=0.jpg',content:'小迪，你知道吗，我喜欢你很久了，从第一眼见到你就无法自拔是多少'
-  +'实打实大苏打飒飒的飒飒实打实大苏打',userInfo:{openid:'123456',nickname:'ning'}
-},
-{_id:'1',date:'2021-5-1',clickload:20,imgsrc:['https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=3401709509,766202338&fm=26&gp=0.jpg',
-'https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=3401709509,766202338&fm=26&gp=0.jpg'],
-avatar:'https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=2401160306,2584571540&fm=26&gp=0.jpg',content:'小迪，你知道吗，我喜欢你很久了，从第一眼见到你就无法自拔是多少'
-+'实打实大苏打飒飒的飒飒实打实大苏打',userInfo:{openid:'123456',nickname:'ning'}
-},
-{_id:'1',date:'2021-5-1',clickload:20,imgsrc:[
-'https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=3401709509,766202338&fm=26&gp=0.jpg'],
-avatar:'https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=2401160306,2584571540&fm=26&gp=0.jpg',content:'小迪，你知道吗，我喜欢你很久了，从第一眼见到你就无法自拔是多少'
-+'实打实大苏打飒飒的飒飒实打实大苏打',userInfo:{openid:'123456',nickname:'ning'}
-},
-{_id:'1',date:'2021-5-1',clickload:20,
-  avatar:'https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=2401160306,2584571540&fm=26&gp=0.jpg',content:'小迪，你知道吗，我喜欢你很久了，从第一眼见到你就无法自拔是多少'
-  +'实打实大苏打飒飒的飒飒实打实大苏打',userInfo:{openid:'123456',nickname:'ning'}
-  },
-  {_id:'1',date:'2021-5-1',clickload:20,imgsrc:[
-    'https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=3401709509,766202338&fm=26&gp=0.jpg'],
-    avatar:'https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=2401160306,2584571540&fm=26&gp=0.jpg',content:'小迪，你知道吗，我喜欢你很久了，从第一眼见到你就无法自拔是多少'
-    +'实打实大苏打飒飒的飒飒实打实大苏打',userInfo:{openid:'123456',nickname:'ning'}
-    },
-    {_id:'1',date:'2021-5-1',clickload:20,imgsrc:['https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=3401709509,766202338&fm=26&gp=0.jpg',
-    'https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=3401709509,766202338&fm=26&gp=0.jpg',
-    'https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=3401709509,766202338&fm=26&gp=0.jpg',
-    'https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=3401709509,766202338&fm=26&gp=0.jpg',
-    'https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=3401709509,766202338&fm=26&gp=0.jpg',
-    'https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=2401160306,2584571540&fm=26&gp=0.jpg'],
-    avatar:'https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=2401160306,2584571540&fm=26&gp=0.jpg',content:'小迪，你知道吗，我喜欢你很久了，从第一眼见到你就无法自拔是多少'
-    +'实打实大苏打飒飒的飒飒实打实大苏打',userInfo:{openid:'123456',nickname:'ning'}
-  },
-  {_id:'1',date:'2021-5-1',clickload:20,
-  avatar:'https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=2401160306,2584571540&fm=26&gp=0.jpg',content:'小迪，你知道吗，我喜欢你很久了，从第一眼见到你就无法自拔是多少'
-  +'实打实大苏打飒飒的飒飒实打实大苏打',userInfo:{openid:'123456',nickname:'ning'}
-  },
-  {_id:'1',date:'2021-5-1',clickload:20,imgsrc:['https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=3401709509,766202338&fm=26&gp=0.jpg',
-  'https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=3401709509,766202338&fm=26&gp=0.jpg',
-  'https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=3401709509,766202338&fm=26&gp=0.jpg',
-  'https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=3401709509,766202338&fm=26&gp=0.jpg',
-  'https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=3401709509,766202338&fm=26&gp=0.jpg',
-  'https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=2401160306,2584571540&fm=26&gp=0.jpg'],
-  avatar:'https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=2401160306,2584571540&fm=26&gp=0.jpg',content:'小迪，你知道吗，我喜欢你很久了，从第一眼见到你就无法自拔是多少'
-  +'实打实大苏打飒飒的飒飒实打实大苏打',userInfo:{openid:'123456',nickname:'ning'}
-},
-{_id:'1',date:'2021-5-1',clickload:20,
-  avatar:'https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=2401160306,2584571540&fm=26&gp=0.jpg',content:'小迪，你知道吗，我喜欢你很久了，从第一眼见到你就无法自拔是多少'
-  +'实打实大苏打飒飒的飒飒实打实大苏打',userInfo:{openid:'123456',nickname:'ning'}
-  }
-  
-],
-list2:[
-  {_id:'1',date:'2021-5-1',clickload:20,
-  avatar:'https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=2401160306,2584571540&fm=26&gp=0.jpg',content:'小迪，你知道吗，我喜欢你很久了，从第一眼见到你就无法自拔是多少'
-  +'实打实大苏打飒飒的飒飒实打实大苏打',userInfo:{openid:'123456',nickname:'ning'}
-  }
- 
-]
+list1:[],
+list2:[],
+list3:[],
+like:0,
+hasChange: false,
+show:false,
+favor_img: "../../imgs/like.png",
+favor_img2: "../../imgs/like1.png",
+dates:''
   },
 
   getNow(){
@@ -148,19 +87,75 @@ list2:[
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.storeBindings = createStoreBindings(this, {
-      store,
-      fields: ['size'],
-      actions: ['updateNum']
-    });
-   this.setData({
-     dates:this.getNow()
-   })
+    
+   let value =   wx.getStorageSync('openid')
+     
+  
+   
+  wx.cloud.callFunction({
+    name:'getLoves'
+  }).then(res=>{
+    this.setData({
+      list1:res.result
+    })
+  }).catch(reason=>{
+    console.log(reason)
+  })
    
     
   },
 
   
+  // 点赞函数
+  praiseThis(e){
+    var that = this;
+    var hasChange = that.data.hasChange;
+    let index = e.currentTarget.dataset.index;
+    if (hasChange !== undefined) {
+      var onum = parseInt(that.data.like);
+      console.log(hasChange);
+      if (hasChange == 'true') {
+        that.data.like = (onum - 1);
+        that.data.hasChange = 'false';
+        that.data.show = false;
+      } else {
+        that.data.like = (onum + 1);
+        that.data.hasChange = 'true';
+        that.data.show = true;
+      }
+      this.setData({
+        like: that.data.like,
+        hasChange: that.data.hasChange,
+        show:that.data.show
+      })
+    };
+    wx.cloud.callFunction({
+      name:'pariseThis',
+      data:{
+        openid: wx.getStorageSync('openid'),//我的ID
+        _id:e.currentTarget.dataset._id  //文章id
+      }
+    }).then(res=>{
+      console.log(res.result)
+      console.log(this.data.list1[index].clickload+=1)
+      this.setData({
+        list1:this.data.list1
+      })
+     // 动态更新赞量
+      /*
+     const currencyLike = SelectorQuery.selectAll('.clickload1')[index];
+     currencyLike.value += 1;
+     */
+    });
+   
+
+    
+    var pages = getCurrentPages();//当前页面栈
+    if (pages.length > 1) {
+      var beforePage = pages[pages.length - 2];//获取上一个页面实例对象
+      beforePage.changeData();//触发父页面中的方法
+    }
+  },
   
   
   // 给数据库插入信息
@@ -182,19 +177,6 @@ list2:[
   },
 
  
-  
-
-  // 修改数据
-  
-
-  //删除数据
-  delData(){
-    db.collection('test').where({
-      account:'NingZhu'
-    }).remove().then(res =>{
-      console.log(res);
-    })
-  },
   
   btnHandler(e) {
    

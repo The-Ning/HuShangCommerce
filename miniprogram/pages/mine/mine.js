@@ -29,6 +29,8 @@ Page({
           },
           success(result){
            console.log(result)
+           wx.setStorageSync('openid', result.data.openid)
+         
           }
         })
       }else{
