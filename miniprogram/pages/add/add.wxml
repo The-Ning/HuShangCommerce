@@ -1,2 +1,6 @@
-<!--miniprogram/pages/add/add.wxml-->
-<text>miniprogram/pages/add/add.wxml</text>
+
+<form bindsubmit="formSubmit">
+  <input type='text' name='title' placeholder="输入内容"/>
+  <input type='text' name='password' placeholder="输入密码"/>
+  <button formType="submit">提交</button>
+</form>

@@ -1,7 +1,6 @@
 // pages/index/index.js
 import { createStoreBindings } from'mobx-miniprogram-bindings'
-import { store } from '../../store/store'
-
+const app = require('../../app')
 
 
 Page({
@@ -14,7 +13,6 @@ Page({
    // tab切换
 currentTab: 0,
 dates:'',
-
 list1:[
   {_id:'1',date:'2021-5-1',clickload:20,imgsrc:['https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=3401709509,766202338&fm=26&gp=0.jpg',
   'https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=3401709509,766202338&fm=26&gp=0.jpg',

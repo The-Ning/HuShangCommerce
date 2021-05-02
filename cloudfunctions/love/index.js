@@ -4,15 +4,10 @@ cloud.init()
 const db = cloud.database()
 // 云函数入口函数
 exports.main = async (event, context) => {
-  var condition = event.condition;
-  if(condition){
-    
-  }
-
-  return {
-    event,
-    openid: wxContext.OPENID,
-    appid: wxContext.APPID,
-    unionid: wxContext.UNIONID,
-  }
+ // var condition = event.condition;
+ return await  db.collection('love').add({
+     data:event
+   }).then(res=>{
+     return res;
+   })
 }

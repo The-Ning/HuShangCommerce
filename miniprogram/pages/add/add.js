@@ -15,6 +15,25 @@ Page({
 
   },
 
+
+  formSubmit(e){
+    wx.showLoading({
+      title: '发表中',
+    })
+    console.log(e.detail.value);
+    wx.cloud.callFunction({
+      name:'love',
+      data:e.detail.value
+    }).then(res=>{
+      console.log(res);
+      wx.hideLoading().then(res1=>{
+         wx.showToast({
+           title: '发布成功',
+           icon:'success'
+         })
+      })
+    })
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

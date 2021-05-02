@@ -1,3 +1,15 @@
-<image src='{{userInfo.avatarUrl}}'></image>
-<text>{{userInfo.nickName}}</text>
-<button type='' bindtap='getUserProfile'>获取登录</button>
+<!--pages/mine/mine.wxml-->
+<view class="user_info_wrap">
+  <view wx:if="{{userInfo.nickName}}" class="user_img_wrap">
+     <image class="user_bg" src="cloud://one-ev4od.6f6e-one-ev4od-1302814385/imgs/mine/bg.jpg"></image>
+     <view class="user_info">
+      <image class="user_icon" src="{{userInfo.avatarUrl}}"></image>
+      <view class="user_name">{{userInfo.nickName}}</view>
+     </view>
+  </view>
+  <view wx:else class="user_btn">
+     <button bindtap='getUserProfile'>登录</button>
+  </view>
+</view>
+
+                                                                                                                                                                                                 

@@ -1,1 +1,40 @@
 /* pages/mine/mine.wxss */
+.user_info_wrap{
+  height:45vh;
+  overflow: hidden;
+  background-color:rgba(250, 154, 11, 0.884);
+  
+}
+  .user_bg{
+   height:50vh;
+   filter:blur(10rpx);
+  }
+
+  .user_info{
+   position:absolute;
+   left:50%;
+   transform:translateX(-50%);
+   top:15%;
+   text-align:center;
+  }
+  .user_icon{
+    width:150rpx;
+    height:150rpx;
+    border-radius: 50%;
+  }
+  .user_name{
+    color:white;
+    margin-top:30rpx;
+    font-size:40rpx;
+  }
+.user_btn{
+  position: absolute;
+  left:50%;
+  transform:translateX(-50%);
+  top:20%;
+  border:1rpx solid rgb(90, 74, 5);
+  color:rgb(128, 73, 0);
+  font-size:35rpx;
+  padding:30rpx;
+  border-radius: 40%;
+}
