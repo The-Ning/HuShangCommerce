@@ -60,7 +60,8 @@ Component({
       "pagePath": "/pages/mine/mine",
       "text": "我的",
       "iconPath": "../imgs/tabbar/user.png",
-      "selectedIconPath": "../imgs/tabbar/user-active.png"
+      "selectedIconPath": "../imgs/tabbar/user-active.png",
+
     }
   ]
   },

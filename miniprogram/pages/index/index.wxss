@@ -113,7 +113,6 @@
     height:70rpx;
     margin-top:5rpx;
     display:flex;
-    background-color:pink;
     padding:5px;
     border-top:solid 2rpx #FFF0F5;
     justify-items: center;
@@ -124,12 +123,14 @@
     height:70rpx;
     position: absolute;
     left:200rpx;
+    z-index: 4;
   }
   .like{
     width:70rpx;
     height:60rpx;
     position: absolute;
     right:200rpx;
+    z-index: 4;
   }
   
   

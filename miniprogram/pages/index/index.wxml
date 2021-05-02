@@ -53,7 +53,7 @@
 <!-- 点赞和评论区域-->
 <view class='item-footer'>
 
-  <image src='../../imgs/评论.png' class='remark'></image>
+  <image src='../../imgs/评论.png' class='remark' bindtap='remark' data-remark='xixi'></image>
 
   <image src='../../imgs/点赞 (1).png' class='like'></image>
 </view>

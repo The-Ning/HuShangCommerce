@@ -40,7 +40,7 @@ avatar:'https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=2401160306,258
 avatar:'https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=2401160306,2584571540&fm=26&gp=0.jpg',content:'小迪，你知道吗，我喜欢你很久了，从第一眼见到你就无法自拔是多少'
 +'实打实大苏打飒飒的飒飒实打实大苏打',userInfo:{openid:'123456',nickname:'ning'}
 },
-{_id:'1',date:'2021-5-1',clickload:20,imgsrc:[''],
+{_id:'1',date:'2021-5-1',clickload:20,
   avatar:'https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=2401160306,2584571540&fm=26&gp=0.jpg',content:'小迪，你知道吗，我喜欢你很久了，从第一眼见到你就无法自拔是多少'
   +'实打实大苏打飒飒的飒飒实打实大苏打',userInfo:{openid:'123456',nickname:'ning'}
   },
@@ -114,8 +114,15 @@ list2:[
     }
      
     },
-     remark:function(e){
+     remark(e){
        console.log(e.target.dataset.remark);
+       wx.navigateTo({
+         url: '../remark/remark',
+       }).then(res=>{
+         console.log(res);
+       }).catch(reason=>{
+         console.log(reason)
+       })
      },
     swiperChange: function (e) {
      

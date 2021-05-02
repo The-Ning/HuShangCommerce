@@ -5,27 +5,36 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+  userInfo:{}
   },
 
-  login(){
- wx.login({
+  getUserProfile(){
+    wx.getUserProfile({
+      desc: '用于完善会员资料', // 声明获取用户个人信息后的用途，后续会展示在弹窗中，请谨慎填写
+    }).then(res=>{
+      this.setData({
+        userInfo: res.userInfo,
+        hasUserInfo: true
+      })
+      console.log(res)
+    });
 
- }).then(res=>{
-   console.log(res);
- })
-  
-  },
-  uppic(){
-    wx.chooseImage({
-      count: 1,
-      sizeType: ['original', 'compressed'],
-      sourceType: ['album', 'camera'],
-      success (res) {
-        // tempFilePath可以作为img标签的src属性显示图片
-        const tempFilePaths = res.tempFilePaths
+    wx.login().then(res=>{
+      if(res.code){
+        wx.request({
+          url:'https://api.weixin.qq.com/sns/jscode2session?'+
+          'appid=wxba4ca0d1f2046721&secret=6a67ac618bfefe4e2001d685610f8851&js_code='+res.code+'&grant_type=authorization_code',
+          data:{
+            code:res.code
+          },
+          success(result){
+           console.log(result)
+          }
+        })
+      }else{
+        console.log('登陆失败');
       }
-    })
+    });
   },
   /**
    * 生命周期函数--监听页面加载
