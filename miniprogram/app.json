@@ -2,7 +2,7 @@
   "pages": [
        "pages/index/index",
        "pages/mine/mine",
-    "pages/add/add",
+       "pages/add/add",
     "pages/remark/remark"
   ],
   "window": {

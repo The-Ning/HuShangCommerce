@@ -5,17 +5,28 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    userInfo:null,
+    openid:null
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    const userInfo = wx.getStorageSync('userInfo')
+    const openid = wx.getStorageSync('openid')
+    console.log(userInfo instanceof Object)
+    console.log(typeof openid == "string")
+    if(userInfo instanceof Object && openid !==null){
+      this.setData({
+        userInfo,
+        openid
+      })
+    }
   },
 
 
+  // 表单提交函数
   formSubmit(e){
     wx.showLoading({
       title: '发表中',

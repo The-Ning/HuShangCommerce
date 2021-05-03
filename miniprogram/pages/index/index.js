@@ -1,6 +1,6 @@
 // pages/index/index.js
 import { createStoreBindings } from'mobx-miniprogram-bindings'
-const app = require('../../app')
+const userInfo = wx.getStorageSync('userInfo')
 
 
 Page({

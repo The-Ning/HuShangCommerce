@@ -12,9 +12,9 @@ Page({
     wx.getUserProfile({
       desc: '用于完善会员资料', // 声明获取用户个人信息后的用途，后续会展示在弹窗中，请谨慎填写
     }).then(res=>{
+      wx.setStorageSync('userInfo', res.userInfo)
       this.setData({
-        userInfo: res.userInfo,
-        hasUserInfo: true
+        userInfo:res.userInfo
       })
       console.log(res)
     });
@@ -42,7 +42,14 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    // 先从本地缓存找用户登录信息
+    let userInfo = wx.getStorageSync('userInfo')
+    if(userInfo){
+      this.setData({
+        userInfo:userInfo
+      })
+      console.log(userInfo)
+    }
   },
 
   /**
