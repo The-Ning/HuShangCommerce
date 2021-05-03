@@ -17,7 +17,6 @@ list2:[],
 list3:[],
 index:null,
 likeStatus:{},
-isLike: false,
 favor_img: "../../imgs/like.png",
 favor: "../../imgs/like1.png",
 dates:''
@@ -103,11 +102,12 @@ dates:''
     this.setData({
       list1:res.result
     })
+    console.log(this.data.list1)
     this.data.list1.forEach((item,index)=>{
       item['hasChange']=likeCollection['list1-'+index];
-      this.setData({
-        list1:this.data.list1
-      })
+    })
+    this.setData({
+      list1:this.data.list1
     })
   }).catch(reason=>{
     console.log(reason)
@@ -118,45 +118,49 @@ dates:''
   // 点赞函数
   praiseThis(e){
     var that = this;
-   
+    
+  
     let list = e.currentTarget.dataset.list;
-    that.setData({
-      isLike
-    })
     let index = e.currentTarget.dataset.index;
+    let hasChange = !this.data.list1[index].hasChange;
+      // 当前点击的赞的情况取反
+      console.log('当前点击的赞'+hasChange)
     this.setData({
       index
     })
-   wx.getStorage({
-     key: 'likeCollection',
-     success:datas=>{
-       let obj = datas.data;
-       obj[list+'-'+index] = isLike
-       wx.setStorage({
-         data: obj,
-         key: 'likeCollection',
-         success:res=>{
-           
-           console.log('缓存成功')
-         }
-       })
-     }
-   })
+  
    // 判断本地用户是否点赞了该文章
    let details = wx.getStorageSync('likeCollection')
-   let hasChange = this.data[list][index].hasChange;
-   console.log(hasChange)
- 
+   let isLike = this.data[list][index].hasChange;
+   console.log('缓存里的值:'+details[list+'-'+index])
+   var onum = parseInt(that.data[list][index].clickload);
    if(details[list+'-'+index]){  // 如果点赞过
-    var onum = parseInt(that.data[list][index].clickload);
-    if (hasChange === true) {
+    
+   
       that.data[list][index].clickload = (onum - 1);
       that.data[list][index].hasChange = false;
-    } else {
+   }
+     else {
       that.data[list][index].clickload = (onum + 1);
       that.data[list][index].hasChange = true;
-    }
-    
+    } 
+    this.data[list][index].hasChange = hasChange;
+    wx.getStorage({
+      key: 'likeCollection',
+      success:datas=>{
+        let obj = datas.data;
+        obj[list+'-'+index] = hasChange
+        wx.setStorage({
+          data: obj,
+          key: 'likeCollection',
+          success:res=>{
+            
+            console.log('缓存成功')
+          },
+          fail:reason=>console.log(reason)
+        })
+      }
+    })
    // wx.setStorageSync('likeCollection', data)
     if(list === 'list1'){
     this.setData({
@@ -167,8 +171,10 @@ dates:''
       this.setData({
         list2: that.data[list],
        })
-   }
+  
     };
+    console.log(this.data[list][index])
+    console.log(this.data[list][index].hasChange)
     wx.cloud.callFunction({
       name:'pariseThis',
       data:{
@@ -183,6 +189,8 @@ dates:''
      const currencyLike = SelectorQuery.selectAll('.clickload1')[index];
      currencyLike.value += 1;
      */
+    }).catch(reason=>{
+      console.log(reason)
     });
    
 
@@ -232,20 +240,6 @@ dates:''
    */
   onReady: function () {
    
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
   },
 
   /**

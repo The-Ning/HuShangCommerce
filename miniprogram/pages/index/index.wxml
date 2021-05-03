@@ -59,7 +59,8 @@
     <image src='../../imgs/remark.png' class='remark' bindtap='remark' data-remark='xixi'></image>
   </view>
  <view class='item-footer-right'>
-  <image src='{{item.hasChange?favor_img:favor}}' class='like' bindtap='praiseThis' data-_id='{{item._id}}' data-index='{{index}}' data-list='list1'></image>
+  <image src='{{item.hasChange?favor_img:favor}}' class='like' bindtap='praiseThis' 
+  data-_id='{{item._id}}' data-index='{{index}}' data-list='list1' data-hasChange='{{item.hasChange}}'></image>
   <text class='clickload1'>{{item.clickload}}</text>
  </view>
  
