@@ -25,6 +25,9 @@
   <scroll-view scroll-y="true" class="scroll">
  <view wx:for='{{list1}}' wx:key='index' class='box-0'>
    <view class='item-header'>
+    <!-- 删除图标 -->
+    <image src='../../imgs/index/删除.png' wx:if="{{item.openid == openid}}"
+     class='delete' bindtap='deleteLove' data-_id="{{item._id}}"></image>
      <image src='{{item.userInfo.avatarUrl}}' class='avatar'></image>
      <view class='profile'>
      <text class='nickname'>{{item.userInfo.nickname}}</text>

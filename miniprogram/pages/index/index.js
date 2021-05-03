@@ -16,7 +16,8 @@ list1:[],
 list2:[],
 list3:[],
 index:null,
-likeStatus:{},
+userInfo:null,
+openid:null,
 favor_img: "../../imgs/like.png",
 favor: "../../imgs/like1.png",
 dates:''
@@ -87,8 +88,16 @@ dates:''
    */
   onLoad: function (options) {
     
-   let value =   wx.getStorageSync('openid')
-     
+   let openid =   wx.getStorageSync('openid')
+   const userInfo = wx.getStorageSync('userInfo')
+   console.log(openid)
+   console.log(typeof userInfo)
+   if(openid != '' && userInfo != ''){
+     this.setData({
+       openid:openid,
+       userInfo:userInfo
+     })
+   }
    // 初始化 本地点赞判断 对象
    // 保存点赞状态
     let likeCollection = wx.getStorageSync('likeCollection');
@@ -221,7 +230,30 @@ dates:''
   })
   },
 
- 
+ // 删除自己文章事件
+ deleteLove(e){
+   const _id = e.currentTarget.dataset._id;
+   wx.cloud.callFunction({
+     name:'deleteLove',
+     data:{
+       _id:_id
+     }
+   }).then(res=>{
+    wx.cloud.callFunction({
+      name:'getLoves'
+    }).then(res=>{
+      this.setData({
+        list1:res.result
+      })
+    })
+    wx.showToast({
+      title: '删除成功',
+    });
+    console.log(res)
+   })
+   
+
+ },
   
   btnHandler(e) {
    

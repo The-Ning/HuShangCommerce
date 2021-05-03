@@ -144,6 +144,14 @@ justify-content: center;
   margin-left:5rpx;
    font-size:40rpx;
   }
+
+  .delete{
+    width:60rpx;
+    height:60rpx;
+    position: absolute;
+    right:20rpx;
+    top:40rpx;
+  }
   
   
   
