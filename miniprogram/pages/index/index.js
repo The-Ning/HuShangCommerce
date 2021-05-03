@@ -17,9 +17,8 @@ list2:[],
 list3:[],
 like:0,
 hasChange: false,
-show:false,
 favor_img: "../../imgs/like.png",
-favor_img2: "../../imgs/like1.png",
+favor: "../../imgs/like1.png",
 dates:''
   },
 
@@ -109,38 +108,31 @@ dates:''
   // 点赞函数
   praiseThis(e){
     var that = this;
-    var hasChange = that.data.hasChange;
     let index = e.currentTarget.dataset.index;
+    var hasChange = that.data.list1[index].hasChange;
     if (hasChange !== undefined) {
-      var onum = parseInt(that.data.like);
+      var onum = parseInt(that.data.list1[index].clickload);
       console.log(hasChange);
-      if (hasChange == 'true') {
-        that.data.like = (onum - 1);
-        that.data.hasChange = 'false';
-        that.data.show = false;
+      if (hasChange === true) {
+        that.data.list1[index].clickload = (onum - 1);
+        that.data.list1[index].hasChange = false;
       } else {
-        that.data.like = (onum + 1);
-        that.data.hasChange = 'true';
-        that.data.show = true;
+        that.data.list1[index].clickload = (onum + 1);
+        that.data.list1[index].hasChange = true;
       }
       this.setData({
-        like: that.data.like,
-        hasChange: that.data.hasChange,
-        show:that.data.show
+       list1: that.data.list1,
       })
     };
     wx.cloud.callFunction({
       name:'pariseThis',
       data:{
         openid: wx.getStorageSync('openid'),//我的ID
-        _id:e.currentTarget.dataset._id  //文章id
+        _id:e.currentTarget.dataset._id,  //文章id
+        likeOr:this.data.list1[index].hasChange
       }
     }).then(res=>{
       console.log(res.result)
-      console.log(this.data.list1[index].clickload+=1)
-      this.setData({
-        list1:this.data.list1
-      })
      // 动态更新赞量
       /*
      const currencyLike = SelectorQuery.selectAll('.clickload1')[index];
