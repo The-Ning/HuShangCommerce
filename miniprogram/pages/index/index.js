@@ -273,7 +273,19 @@ dates:''
   onReady: function () {
    
   },
-
+/**
+   * 生命周期函数--监听页面显示
+   */
+  onShow: function () {
+    const userInfo = wx.getStorageSync('userInfo')
+    const openid = wx.getStorageSync('openid')
+    if(userInfo instanceof Object && openid !==null){
+      this.setData({
+        userInfo,
+        openid
+      })
+    }
+  },
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */

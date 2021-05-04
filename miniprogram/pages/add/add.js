@@ -15,8 +15,6 @@ Page({
   onLoad: function (options) {
     const userInfo = wx.getStorageSync('userInfo')
     const openid = wx.getStorageSync('openid')
-    console.log(userInfo instanceof Object)
-    console.log(typeof openid == "string")
     if(userInfo instanceof Object && openid !==null){
       this.setData({
         userInfo,
@@ -26,6 +24,14 @@ Page({
   },
 
 
+  tologin(){
+      wx.switchTab({
+        url: '../mine/mine',
+      }).then(res=>{console.log(res)})
+      .catch(reason=>{
+        console.log(reason)
+      })
+  },
   // 表单提交函数
   formSubmit(e){
     wx.showLoading({
@@ -58,7 +64,14 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    const userInfo = wx.getStorageSync('userInfo')
+    const openid = wx.getStorageSync('openid')
+    if(userInfo instanceof Object && openid !==null){
+      this.setData({
+        userInfo,
+        openid
+      })
+    }
   },
 
   /**
