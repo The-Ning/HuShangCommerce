@@ -100,14 +100,19 @@
 
   .content-img{
     width:100%;
-    min-height:10rpx;
+    display:flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .content-img:after{
+    content:'';
+    width:230rpx;
   }
   .item-img{
-    width:32%;
-    height:250rpx;
-    float:left;
+    width:230rpx;
+    height:230rpx;
     margin-top:10rpx;
-    margin-left:5rpx;
   }
   .item-footer{
     height:60rpx;

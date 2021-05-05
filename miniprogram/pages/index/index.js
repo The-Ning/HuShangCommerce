@@ -127,8 +127,6 @@ dates:''
   // 点赞函数
   praiseThis(e){
     var that = this;
-    
-  
     let list = e.currentTarget.dataset.list;
     let index = e.currentTarget.dataset.index;
     let hasChange = !this.data.list1[index].hasChange;
@@ -201,33 +199,13 @@ dates:''
     }).catch(reason=>{
       console.log(reason)
     });
-   
-
-    
+    /*
     var pages = getCurrentPages();//当前页面栈
     if (pages.length > 1) {
       var beforePage = pages[pages.length - 2];//获取上一个页面实例对象
       beforePage.changeData();//触发父页面中的方法
     }
-  },
-  
-  
-  // 给数据库插入信息
-  addData(){
-    wx.showLoading({
-      title:'数据正在插入中。。',
-      mask:true
-    })
-  db.collection('test').add({
-    data:{
-    _id:'5',
-    name:'still-Ning',
-    age:22,
-    boy:true
-    }
-  }).then(res=>{
-    wx.hideLoading();
-  })
+    */
   },
 
  // 删除自己文章事件

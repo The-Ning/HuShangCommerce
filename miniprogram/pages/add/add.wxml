@@ -15,13 +15,16 @@
  <view class='imgs-box' wx:for="{{images}}" wx-item='item' wx-index='index' wx:key='index'>
    <van-image
    width='100%'
-    height='80%'
+    height='85%'
     radius='10%'
     class='item-img' 
    src='{{item}}' 
    fit='cover'
+   catchtap='imgYulan'
+   data-src='{{item}}'
+   data-list='{{images}}'
    />
-   <view class='deleteImg'>×</view>
+   <view class='deleteImg' catchtap='removeImg' data-index='{{index}}'>×</view>
  </view>
 </view>
 

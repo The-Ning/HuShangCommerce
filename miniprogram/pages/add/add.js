@@ -10,7 +10,7 @@ Page({
     //字数限制
     maxWord:300,
     currentWord:0,
-    images:["http://tmp/hkZ4XUHMUPaB2cf916004753f38ecd8b9557689e949a.jpg", "http://tmp/Yu9sE1TZ23XV855da5a1c1620d6bd065bc406563d70a.jpg", "http://tmp/4urN2QMPOU1se25112f376712a4791dca15fdacc5c71.jpg", "http://tmp/sfsW9dF9mcT62cf916004753f38ecd8b9557689e949a.jpg"]
+    images:[]
   },
 
   /**
@@ -98,8 +98,23 @@ Page({
       })
     })
   },
-
-  
+// 预览图片事件函数
+imgYulan:function(event){
+  var currency = event.currentTarget.dataset.src;
+  var imgs = event.currentTarget.dataset.list;
+  wx.previewImage({
+    current: currency, // 当前显示图片的http链接
+    urls:imgs  // 需要预览的图片http链接列表
+  })
+},
+  // 删除选中图片函数
+  removeImg(e){
+   let index = e.currentTarget.dataset.index;
+   this.data.images.splice(index,1);
+   this.setData({
+     images:this.data.images
+   })
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
