@@ -42,13 +42,14 @@
       <view wx:for="{{item.imgsrc}}" wx:for-item='itemimg' class='imgs' wx:key='index'>
         <van-image
         width='100%'
-    height='100%'
+        height='100%'
   class='item-img'
  bindtap='imgYulan'
    data-list='{{item.imgsrc}}'
     data-src='{{itemimg}}'
   src="{{itemimg}}"
-   rel="external nofollow"   
+   rel="external nofollow"  
+   fit='cover' 
         />
     </view>
     </view>

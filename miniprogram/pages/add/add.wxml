@@ -2,10 +2,31 @@
 <view class='page'>
 <view class='box' wx:if='{{userInfo}}'>
   <form bindsubmit="formSubmit">
-
- <input type='text'/>
+<input type='text' maxlength="25" placeholder="输入标题(不超过25个字)" maxlength="20" placeholder-style="color:#5F5F5F;font-size:28rpx;" bindinput='limitWord' class='title' name='title'/>
+<textarea maxlength='300' placeholder-style="color:#5F5F5F;font-size:28rpx;"  
+ bindinput='limitWord' value="{{content}}" placeholder='畅所欲言！' name="content" class='content'>
+ <view class="clear1">
+       <text style="float: right">{{currentWord}}/{{maxWord}}</text>
+</view>
+</textarea>
+ 
+<view class='imgs-content'>
+ <view class='imgs-box' wx:for="{{images}}" wx-item='item' wx-index='index' wx:key='index'>
+   <van-image
+   width='100%'
+    height='80%'
+    radius='10%'
+    class='item-img' 
+   src='{{item}}' 
+   fit='cover'
+   />
+   <view class='deleteImg'>×</view>
+ </view>
+</view>
+ <view class='picture'>
+   <image src='../../imgs/相机.png' class='imgicon'></image>
+ </view>
   <button formType="submit">提交</button>
-  <button formType='reset'>重置</button>
   </form> 
 </view>
 

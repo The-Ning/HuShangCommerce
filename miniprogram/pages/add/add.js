@@ -6,7 +6,11 @@ Page({
    */
   data: {
     userInfo:null,
-    openid:null
+    openid:null,
+    //字数限制
+    maxWord:300,
+    currentWord:0,
+    images:['https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=2378700784,3679012689&fm=26&gp=0.jpg','https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=2378700784,3679012689&fm=26&gp=0.jpg','https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=3952362355,1034887644&fm=26&gp=0.jpg']
   },
 
   /**
@@ -21,6 +25,18 @@ Page({
         openid
       })
     }
+  },
+
+  limitWord:function(e){
+    var that = this;
+    var value = e.detail.value;
+    var wordLength = parseInt(value.length); //解析字符串长度转换成整数。
+    if (that.data.maxWord < wordLength) {
+      return ;
+    }
+    that.setData({
+      currentWord: wordLength 
+    });
   },
 
 
