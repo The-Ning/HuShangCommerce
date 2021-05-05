@@ -10,7 +10,7 @@ Page({
     //字数限制
     maxWord:300,
     currentWord:0,
-    images:['https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=2378700784,3679012689&fm=26&gp=0.jpg','https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=2378700784,3679012689&fm=26&gp=0.jpg','https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=3952362355,1034887644&fm=26&gp=0.jpg']
+    images:["http://tmp/hkZ4XUHMUPaB2cf916004753f38ecd8b9557689e949a.jpg", "http://tmp/Yu9sE1TZ23XV855da5a1c1620d6bd065bc406563d70a.jpg", "http://tmp/4urN2QMPOU1se25112f376712a4791dca15fdacc5c71.jpg", "http://tmp/sfsW9dF9mcT62cf916004753f38ecd8b9557689e949a.jpg"]
   },
 
   /**
@@ -47,6 +47,37 @@ Page({
       .catch(reason=>{
         console.log(reason)
       })
+  },
+
+  addImg(e){
+    let length = this.data.images.length;
+    if(length<9){
+      let remain = parseInt(9-length);
+      wx.chooseImage({
+        count: remain,
+        sizeType: ['original', 'compressed'],
+        sourceType: ['album', 'camera'],
+      }).then(res=>{
+        // tempFilePath可以作为img标签的src属性显示图片
+        const tempFilePaths = res.tempFilePaths;
+        const resultarr = this.data.images.concat(tempFilePaths)
+        console.log(resultarr)
+
+        this.setData({
+          images:resultarr
+        })
+      }).catch(reason=>{
+        console.log(reason)
+      })
+    }
+    
+    // 已经选择了九张图片
+    else{
+      wx.showToast({
+        title: '最多9张',
+        icon:'success'
+      })
+    }
   },
   // 表单提交函数
   formSubmit(e){
