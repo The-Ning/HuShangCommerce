@@ -31,7 +31,7 @@ component_1.VantComponent({
         beforeRead: null,
         previewSize: {
           type: null,
-          value: 80,
+          value: '200rpx',
         },
         name: {
           type: null,

@@ -12,26 +12,20 @@
 </textarea>
  
 <view class='imgs-content'>
- <view class='imgs-box' wx:for="{{images}}" wx-item='item' wx-index='index' wx:key='index'>
-   <van-image
-   width='100%'
-    height='85%'
-    radius='10%'
-    class='item-img' 
-   src='{{item}}' 
-   fit='cover'
-   catchtap='imgYulan'
-   data-src='{{item}}'
-   data-list='{{images}}'
-   />
-   <view class='deleteImg' catchtap='removeImg' data-index='{{index}}'>×</view>
- </view>
+  <van-uploader 
+      file-list="{{ fileList }}" 
+      multiple="true" 
+      image-fit ='cover'
+      bind:after-read="afterRead"
+      max-count="9"
+      class='imgs-item'
+      bind:delete="deleteImage"
+      />
+
+  
 </view>
 
-  <!-- 绑定点击事件-->
- <view class='picture' catchtap='addImg'>
-   <image src='../../imgs/相机.png' class='imgicon'></image>
- </view>
+  
   <button formType="submit">提交</button>
   </form> 
 </scroll-view>

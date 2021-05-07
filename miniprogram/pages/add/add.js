@@ -10,7 +10,8 @@ Page({
     //字数限制
     maxWord:300,
     currentWord:0,
-    images:[]
+    fileList:[],
+    imgCloudPaths:[]  // 图片上传到云端后的路径存储数组
   },
 
   /**
@@ -48,43 +49,42 @@ Page({
         console.log(reason)
       })
   },
-
-  addImg(e){
-    let length = this.data.images.length;
-    if(length<9){
-      let remain = parseInt(9-length);
-      wx.chooseImage({
-        count: remain,
-        sizeType: ['original', 'compressed'],
-        sourceType: ['album', 'camera'],
-      }).then(res=>{
-        // tempFilePath可以作为img标签的src属性显示图片
-        const tempFilePaths = res.tempFilePaths;
-        const resultarr = this.data.images.concat(tempFilePaths)
-        console.log(resultarr)
-
-        this.setData({
-          images:resultarr
-        })
-      }).catch(reason=>{
-        console.log(reason)
-      })
-    }
-    
-    // 已经选择了九张图片
-    else{
-      wx.showToast({
-        title: '最多9张',
-        icon:'success'
-      })
-    }
+  afterRead(event) {
+    const { file } = event.detail;
+    // 当设置 mutiple 为 true 时, file 为数组格式，否则为对象格式
+        // 上传完成需要更新 fileList
+        const { fileList = [] } = this.data;
+        file.forEach(function(e){  
+          fileList.push({ ...file,url:e.url });
+        });
+      
+        this.setData({ fileList});
+        console.log(this.data.fileList[0]);
   },
+  
+  deleteImage(event){
+    console.log(event);
+    let that=this;
+          const { fileList = [] } = that.data;
+          fileList.splice(event.detail.index, 1)
+          that.setData({ fileList });
+  },
+  
   // 表单提交函数
   formSubmit(e){
+    /*
     wx.showLoading({
       title: '发表中',
     })
-    console.log(e.detail.value);
+    */
+    e.detail.value.userInfo = wx.getStorageSync('userInfo')
+    // 获取上传图片的临时url数组
+    const temUrls = [];
+    this.data.fileList.forEach(item=>{
+      temUrls.push(item.url)
+    })
+   this.uploadImgtoCloud(temUrls);
+   /*
     wx.cloud.callFunction({
       name:'love',
       data:e.detail.value
@@ -97,24 +97,31 @@ Page({
          })
       })
     })
+    */
   },
-// 预览图片事件函数
-imgYulan:function(event){
-  var currency = event.currentTarget.dataset.src;
-  var imgs = event.currentTarget.dataset.list;
-  wx.previewImage({
-    current: currency, // 当前显示图片的http链接
-    urls:imgs  // 需要预览的图片http链接列表
-  })
-},
-  // 删除选中图片函数
-  removeImg(e){
-   let index = e.currentTarget.dataset.index;
-   this.data.images.splice(index,1);
-   this.setData({
-     images:this.data.images
+
+  
+  // 根据临时图片路径数组，将图片上传到云端，并返回云端图片url
+  uploadImgtoCloud(arr){
+    const cloudPaths = this.data.imgCloudPaths;
+   arr.forEach(item=>{
+    wx.cloud.uploadFile({
+      filePath:item,
+      name: 'test',
+      cloudPath: 'imgs/' + Date.now()+item.match(/\.[^.]+?$/)[0],
+      success (res){
+          console.log(res)
+          cloudPaths.push(res.fileID) //云存储图片路径,可以把这个路径存到集合，要用的时候再取出来
+      }
+    })
    })
-  },
+   this.setData({
+    imgCloudPaths:cloudPaths
+   })
+   console.log(this.data.imgCloudPaths)
+},
+  
+  
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

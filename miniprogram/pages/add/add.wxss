@@ -57,24 +57,17 @@
   height:90rpx;
 }
 .imgs-content{
-  width:100%;
+  width:96%;
+  margin-left:2%;
   padding:5rpx;
   margin-top:10rpx;
-  display:flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
- 
 }
-.imgs-content:after{
-  content:'';
-  width:220rpx;
+
+  .imgs-item{
+ padding-left:25rpx;
+ margin-top:10rpx;
 }
-.imgs-box{
- width:220rpx;
- height:240rpx;
-  margin-top:15rpx;
-  
-}
+
 
 .deleteImg{
   height:15%;
