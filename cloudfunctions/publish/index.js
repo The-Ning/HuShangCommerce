@@ -5,9 +5,11 @@ const db = cloud.database()
 // 云函数入口函数
 exports.main = async (event, context) => {
  // var condition = event.condition;
- return await  db.collection('love').add({
+ let category = event.category;
+ delete event,category;
+ return await  db.collection(category).add({
      data:event
    }).then(res=>{
-     return res;
+     return event;
    })
 }

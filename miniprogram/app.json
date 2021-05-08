@@ -1,11 +1,8 @@
 {
   "pages": [
-    "pages/add/add",
     "pages/index/index",
-   
-      
-       "pages/mine/mine",
-      
+    "pages/add/add",
+    "pages/mine/mine",
     "pages/remark/remark"
   ],
   "window": {

@@ -5,7 +5,8 @@ const db = cloud.database()
 // 云函数入口函数
 exports.main = async (event, context) => {
   const _id = event._id;
-  return await  db.collection('love').doc(_id)
+  let category = event.category;
+  return await  db.collection(category).doc(_id)
   .remove().then(res=>{
     return  '删除成功'
   }).catch(reason=>{

@@ -90,8 +90,6 @@ dates:''
     
    let openid =   wx.getStorageSync('openid')
    const userInfo = wx.getStorageSync('userInfo')
-   console.log(openid)
-   console.log(typeof userInfo)
    if(openid != '' && userInfo != ''){
      this.setData({
        openid:openid,
@@ -104,14 +102,18 @@ dates:''
     if(!likeCollection){
       wx.setStorageSync('likeCollection', {})
     }
-     
+ // 获取表白墙数据并渲染
   wx.cloud.callFunction({
-    name:'getLoves'
+    name:'getLists',
+    data:{
+      category:'love'
+    }
   }).then(res=>{
     this.setData({
       list1:res.result
     })
     console.log(this.data.list1)
+   
     this.data.list1.forEach((item,index)=>{
       item['hasChange']=likeCollection['list1-'+index];
     })
@@ -122,14 +124,56 @@ dates:''
     console.log(reason)
   })
  
+  // 获取二手交易数据并渲染到list2
+  wx.cloud.callFunction({
+    name:'getLists',
+    data:{
+      category:'findItem'
+    }
+  }).then(res=>{
+    this.setData({
+      list2:res.result
+    })
+    console.log(this.data.list2)
    
+    this.data.list2.forEach((item,index)=>{
+      item['hasChange']=likeCollection['list2-'+index];
+    })
+    this.setData({
+      list2:this.data.list2
+    })
+  }).catch(reason=>{
+    console.log(reason)
+  })
+
+// 获取校园生活数据并渲染到list3
+wx.cloud.callFunction({
+  name:'getLists',
+  data:{
+    category:'campus'
+  }
+}).then(res=>{
+  this.setData({
+    list3:res.result
+  })
+  console.log(this.data.list3)
+ 
+  this.data.list3.forEach((item,index)=>{
+    item['hasChange']=likeCollection['list3-'+index];
+  })
+  this.setData({
+    list3:this.data.list3
+  })
+}).catch(reason=>{
+  console.log(reason)
+})
   },
   // 点赞函数
   praiseThis(e){
     var that = this;
     let list = e.currentTarget.dataset.list;
     let index = e.currentTarget.dataset.index;
-    let hasChange = !this.data.list1[index].hasChange;
+    let hasChange = !this.data[list][index].hasChange;
       // 当前点击的赞的情况取反
       console.log('当前点击的赞'+hasChange)
     this.setData({
@@ -138,12 +182,9 @@ dates:''
   
    // 判断本地用户是否点赞了该文章
    let details = wx.getStorageSync('likeCollection')
-   let isLike = this.data[list][index].hasChange;
    console.log('缓存里的值:'+details[list+'-'+index])
    var onum = parseInt(that.data[list][index].clickload);
    if(details[list+'-'+index]){  // 如果点赞过
-    
-   
       that.data[list][index].clickload = (onum - 1);
       that.data[list][index].hasChange = false;
    }
@@ -179,7 +220,12 @@ dates:''
         list2: that.data[list],
        })
   
-    };
+    }
+    else if(list === 'list3'){
+      this.setData({
+        list3: that.data[list],
+       })
+    }
     console.log(this.data[list][index])
     console.log(this.data[list][index].hasChange)
     wx.cloud.callFunction({
@@ -192,10 +238,7 @@ dates:''
     }).then(res=>{
       console.log(res.result)
      // 动态更新赞量
-      /*
-     const currencyLike = SelectorQuery.selectAll('.clickload1')[index];
-     currencyLike.value += 1;
-     */
+
     }).catch(reason=>{
       console.log(reason)
     });
@@ -208,30 +251,7 @@ dates:''
     */
   },
 
- // 删除自己文章事件
- deleteLove(e){
-   const _id = e.currentTarget.dataset._id;
-   wx.cloud.callFunction({
-     name:'deleteLove',
-     data:{
-       _id:_id
-     }
-   }).then(res=>{
-    wx.cloud.callFunction({
-      name:'getLoves'
-    }).then(res=>{
-      this.setData({
-        list1:res.result
-      })
-    })
-    wx.showToast({
-      title: '删除成功',
-    });
-    console.log(res)
-   })
-   
-
- },
+ 
   
   btnHandler(e) {
    
@@ -263,12 +283,81 @@ dates:''
         openid
       })
     }
+
+let likeCollection = wx.getStorageSync('likeCollection');
+// 获取表白墙数据并渲染
+
+wx.cloud.callFunction({
+  name:'getLists',
+  data:{
+    category:'love'
+  }
+}).then(res=>{
+  this.setData({
+    list1:res.result
+  })
+  console.log(this.data.list1)
+ 
+  this.data.list1.forEach((item,index)=>{
+    item['hasChange']=likeCollection['list1-'+index];
+  })
+  this.setData({
+    list1:this.data.list1
+  })
+}).catch(reason=>{
+  console.log(reason)
+})
+
+// 获取二手交易数据并渲染到list2
+wx.cloud.callFunction({
+  name:'getLists',
+  data:{
+    category:'findItem'
+  }
+}).then(res=>{
+  this.setData({
+    list2:res.result
+  })
+  console.log(this.data.list2)
+ 
+  this.data.list2.forEach((item,index)=>{
+    item['hasChange']=likeCollection['list2-'+index];
+  })
+  this.setData({
+    list2:this.data.list2
+  })
+}).catch(reason=>{
+  console.log(reason)
+})
+
+// 获取校园生活数据并渲染到list3
+wx.cloud.callFunction({
+name:'getLists',
+data:{
+  category:'campus'
+}
+}).then(res=>{
+this.setData({
+  list3:res.result
+})
+console.log(this.data.list3)
+
+this.data.list3.forEach((item,index)=>{
+  item['hasChange']=likeCollection['list3-'+index];
+})
+this.setData({
+  list3:this.data.list3
+})
+}).catch(reason=>{
+console.log(reason)
+})
+
   },
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-
+    
   },
 
   /**

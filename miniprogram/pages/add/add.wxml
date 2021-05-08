@@ -2,7 +2,7 @@
 <view class='page'>
 <view class='box' wx:if='{{userInfo}}'>
   <scroll-view class='scroll' scroll-y="true">
-  <form bindsubmit="formSubmit">
+  <form bindsubmit="formSubmit" bindreset='formReset'>
 <input type='text' maxlength="25" placeholder="输入标题(不超过25个字)" maxlength="20" placeholder-style="color:#5F5F5F;font-size:28rpx;" bindinput='limitWord' class='title' name='title'/>
 <textarea maxlength='300' placeholder-style="color:#5F5F5F;font-size:28rpx;"  
  bindinput='limitWord' value="{{content}}" placeholder='畅所欲言！' name="content" class='content'>
@@ -17,15 +17,23 @@
       multiple="true" 
       image-fit ='cover'
       bind:after-read="afterRead"
+      bind:oversize='oversize'
       max-count="9"
       class='imgs-item'
       bind:delete="deleteImage"
+      max-size='2097152'
       />
 
   
 </view>
 
-  
+
+<lable>您想？</lable>
+<radio-group name='category'>
+  <radio value='love' checked="true">表白捞人</radio>
+  <radio value='findItem'>失物招领</radio>
+  <radio value='campus'>校园趣事</radio>
+</radio-group>
   <button formType="submit">提交</button>
   </form> 
 </scroll-view>

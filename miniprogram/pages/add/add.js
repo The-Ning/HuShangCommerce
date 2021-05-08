@@ -11,6 +11,7 @@ Page({
     maxWord:300,
     currentWord:0,
     fileList:[],
+       // 传到数据库的图片云端路径数组
     imgCloudPaths:[]  // 图片上传到云端后的路径存储数组
   },
 
@@ -27,7 +28,7 @@ Page({
       })
     }
   },
-
+ 
   limitWord:function(e){
     var that = this;
     var value = e.detail.value;
@@ -59,7 +60,6 @@ Page({
         });
       
         this.setData({ fileList});
-        console.log(this.data.fileList[0]);
   },
   
   deleteImage(event){
@@ -72,53 +72,94 @@ Page({
   
   // 表单提交函数
   formSubmit(e){
-    /*
+    
     wx.showLoading({
       title: '发表中',
     })
-    */
+    
     e.detail.value.userInfo = wx.getStorageSync('userInfo')
+    e.detail.value.openid = wx.getStorageSync('openid')
     // 获取上传图片的临时url数组
+    if(this.data.fileList.length){
     const temUrls = [];
     this.data.fileList.forEach(item=>{
       temUrls.push(item.url)
     })
-   this.uploadImgtoCloud(temUrls);
-   /*
-    wx.cloud.callFunction({
-      name:'love',
-      data:e.detail.value
-    }).then(res=>{
-      console.log(res);
-      wx.hideLoading().then(res1=>{
-         wx.showToast({
-           title: '发布成功',
-           icon:'success'
-         })
-      })
+    e.detail.value.imgsrc = [];
+    //
+    temUrls.forEach(item=>{
+    wx.cloud.uploadFile({
+      filePath:item,
+      cloudPath: 'imgs/' + e.detail.value.category + '/' + Date.now()+item.match(/\.[^.]+?$/)[0],
+      success (res){
+        e.detail.value.imgsrc.push(res.fileID) //云存储图片路径,可以把这个路径存到集合，要用的时候再取出来
+      }
     })
-    */
+   })
+   setTimeout((event)=>{
+    event.detail.value.clickload = 1;
+    console.log(event.detail.value)
+      wx.cloud.callFunction({
+        name:'publish',
+        data:event.detail.value
+      }).then(res=>{
+        console.log('插入成功',res)
+        console.log(event.detail.value)
+        wx.hideLoading().then(res1=>{
+           wx.showToast({
+             title: '发布成功',
+             icon:'success'
+           })
+           // 清除发布页面的数据
+           this.setData({
+            fileList:[]
+           })
+           this.onLoad();
+        })
+       
+      })
+  },3000,e)
+  }
+  else{
+ // 用户没有选择图片时
+ e.detail.value.clickload = 1;
+ console.log(e.detail.value)
+   wx.cloud.callFunction({
+     name:'publish',
+     data:e.detail.value
+   }).then(res=>{
+     console.log('插入成功',res)
+     wx.hideLoading().then(res1=>{
+        wx.showToast({
+          title: '发布成功',
+          icon:'success'
+        })
+        // 清除发布页面的数据
+      this.onLoad();
+     })
+   
+   })
+  }
   },
 
-  
+  oversize(){
+    wx.showToast({
+      title: '文件不能超过2M',
+    })
+  },
   // 根据临时图片路径数组，将图片上传到云端，并返回云端图片url
-  uploadImgtoCloud(arr){
-    const cloudPaths = this.data.imgCloudPaths;
+  uploadImgtoCloud(arr,category){
+    const cloudPaths = [];
    arr.forEach(item=>{
     wx.cloud.uploadFile({
       filePath:item,
-      name: 'test',
-      cloudPath: 'imgs/' + Date.now()+item.match(/\.[^.]+?$/)[0],
+      cloudPath: 'imgs/' + category + '/' + Date.now()+item.match(/\.[^.]+?$/)[0],
       success (res){
-          console.log(res)
           cloudPaths.push(res.fileID) //云存储图片路径,可以把这个路径存到集合，要用的时候再取出来
       }
     })
    })
-   this.setData({
-    imgCloudPaths:cloudPaths
-   })
-   console.log(this.data.imgCloudPaths)
+   return cloudPaths;
 },
   
   

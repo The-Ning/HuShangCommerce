@@ -5,7 +5,9 @@ const db = cloud.database()
 
 // 云函数入口函数
 exports.main = async (event, context) => {
- return await db.collection('love').get()
+  let category = event.category;
+  delete event.category;
+ return await db.collection(category).get()
    .then(res=>{
      return res.data
    }).catch(reason=>{

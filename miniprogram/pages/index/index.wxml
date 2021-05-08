@@ -25,9 +25,7 @@
   <scroll-view scroll-y="true" class="scroll">
  <view wx:for='{{list1}}' wx:key='index' class='box-0'>
    <view class='item-header'>
-    <!-- 删除图标 -->
-    <image src='../../imgs/index/删除.png' wx:if="{{item.openid == openid}}"
-     class='delete' bindtap='deleteLove' data-_id="{{item._id}}"></image>
+    
      <image src='{{item.userInfo.avatarUrl}}' class='avatar'></image>
      <view class='profile'>
      <text class='nickname'>{{item.userInfo.nickName}}</text>
@@ -84,10 +82,10 @@
   <scroll-view scroll-y="true" class="scroll">
  <view wx:for='{{list2}}' wx:key='index' class='box-0'>
    <view class='item-header'>
-     <image src='{{item.avatar}}' class='avatar'></image>
+     <image src='{{item.userInfo.avatarUrl}}' class='avatar'></image>
      <view class='profile'>
-     <text class='nickname'>{{item.userInfo.nickname}}</text>
-     <text class='item-date'>{{item.date}}</text>
+     <text class='nickname'>{{item.userInfo.nickName}}</text>
+     <text class='item-date'>{{item.date }}</text>
     </view>
    </view>
   <view class='item-content'>
@@ -95,18 +93,21 @@
     <text class='content-text'>{{item.content}}</text>
 
     <view class='content-img'>
-      <view wx:for="{{item.imgsrc}}" wx:for-item='itemimg' class='imgs' wx:key='index'>
         <van-image
+        wx:for="{{item.imgsrc}}"
+         wx:for-item='itemimg'
+        wx:key='index'
         width='100%'
-    height='100%'
+        height='100%'
   class='item-img'
- bindtap='imgYulan'
+ catchtap='imgYulan'
    data-list='{{item.imgsrc}}'
     data-src='{{itemimg}}'
   src="{{itemimg}}"
-   rel="external nofollow"   
+   rel="external nofollow"  
+   fit='cover' 
         />
-    </view>
+   
     </view>
     
   
@@ -114,9 +115,15 @@
 <!-- 点赞和评论区域-->
 <view class='item-footer'>
 
-  <image src='../../imgs/评论.png' class='remark' bindtap='remark' data-remark='haha'></image>
-
-  <image src='../../imgs/点赞 (1).png' class='like'></image>
+  <view class='item-footer-left'>
+    <image src='../../imgs/remark.png' class='remark' bindtap='remark' data-remark='xixi'></image>
+  </view>
+ <view class='item-footer-right'>
+  <image src='{{item.hasChange?favor_img:favor}}' class='like' bindtap='praiseThis' 
+  data-_id='{{item._id}}' data-index='{{index}}' data-list='list2' data-hasChange='{{item.hasChange}}'></image>
+  <text class='clickload1'>{{item.clickload}}</text>
+ </view>
+ 
 </view>
  </view>
 
