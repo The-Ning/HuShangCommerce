@@ -190,6 +190,7 @@
 
 <view class='item-footer-left'>
   <image src='../../imgs/remark.png' class='remark' bindtap='remark' data-remark='xixi'></image>
+  <text class='remarkload'>{{item.remarks.length+1}}</text>
 </view>
 <view class='item-footer-right'>
 <image src='{{item.hasChange?favor_img:favor}}' class='like' bindtap='praiseThis' 

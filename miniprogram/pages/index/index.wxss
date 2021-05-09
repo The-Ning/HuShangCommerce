@@ -116,7 +116,6 @@
   }
   .item-footer{
     height:60rpx;
-    margin-top:5rpx;
     display:flex;
     padding:5px;
     border-top:solid 2rpx #FFF0F5;
@@ -162,6 +161,7 @@ justify-content: center;
     width:80%;
     height:45rpx;
     display:flex;
+    margin-top:15rpx;
   }
 
   .location-img{

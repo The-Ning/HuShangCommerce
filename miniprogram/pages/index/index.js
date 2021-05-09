@@ -100,8 +100,9 @@ favor: "../../imgs/like1.png"
     }
   }).then(res=>{
     this.setData({
-      list1:res.result
+      list1:res.result.data
     })
+console.log(this.data.list1)
     this.data.list1.forEach((item,index)=>{
       item['hasChange']=likeCollection['list1-'+index];
     })
@@ -119,10 +120,11 @@ favor: "../../imgs/like1.png"
       category:'findItem'
     }
   }).then(res=>{
+    console.log('云函数结果',res)
     this.setData({
-      list2:res.result
+      list2:res.result.data
     })
-   
+    console.log(this.data.list2)
     this.data.list2.forEach((item,index)=>{
       item['hasChange']=likeCollection['list2-'+index];
     })
@@ -141,9 +143,9 @@ wx.cloud.callFunction({
   }
 }).then(res=>{
   this.setData({
-    list3:res.result
+    list3:res.result.data
   })
- 
+  console.log(this.data.list3)
  
   this.data.list3.forEach((item,index)=>{
     item['hasChange']=likeCollection['list3-'+index];
@@ -272,7 +274,7 @@ wx.cloud.callFunction({
   }
 }).then(res=>{
   this.setData({
-    list1:res.result
+    list1:res.result.data
   })
   this.data.list1.forEach((item,index)=>{
     item['hasChange']=likeCollection['list1-'+index];
@@ -292,7 +294,7 @@ wx.cloud.callFunction({
   }
 }).then(res=>{
   this.setData({
-    list2:res.result
+    list2:res.result.data
   })
   this.data.list2.forEach((item,index)=>{
     item['hasChange']=likeCollection['list2-'+index];
@@ -312,7 +314,7 @@ data:{
 }
 }).then(res=>{
 this.setData({
-  list3:res.result
+  list3:res.result.data
 })
 this.data.list3.forEach((item,index)=>{
   item['hasChange']=likeCollection['list3-'+index];
