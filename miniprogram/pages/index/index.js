@@ -19,19 +19,9 @@ index:null,
 userInfo:null,
 openid:null,
 favor_img: "../../imgs/like.png",
-favor: "../../imgs/like1.png",
-dates:''
+favor: "../../imgs/like1.png"
   },
 
-  getNow(){
-    var date = new Date();
-    var year = date.getFullYear();
-    var month = date.getMonth()>9?date.getMonth():'0'+date.getMonth();
-    var day = date.getDay()>9?date.getDay() : '0' + date.getDay();
-    var hour = date.getHours()>9?date.getHours():'0'+date.getHours();
-    var minute = date.getMinutes()>9?date.getMinutes():'0'+date.getMinutes();
-    return year +'-'+month+'-'+day+' '+hour+'-'+minute;
-  },
   swichNav: function (e) {
  
     var that = this;
@@ -112,8 +102,6 @@ dates:''
     this.setData({
       list1:res.result
     })
-    console.log(this.data.list1)
-   
     this.data.list1.forEach((item,index)=>{
       item['hasChange']=likeCollection['list1-'+index];
     })
@@ -134,7 +122,6 @@ dates:''
     this.setData({
       list2:res.result
     })
-    console.log(this.data.list2)
    
     this.data.list2.forEach((item,index)=>{
       item['hasChange']=likeCollection['list2-'+index];
@@ -156,7 +143,7 @@ wx.cloud.callFunction({
   this.setData({
     list3:res.result
   })
-  console.log(this.data.list3)
+ 
  
   this.data.list3.forEach((item,index)=>{
     item['hasChange']=likeCollection['list3-'+index];
@@ -226,8 +213,6 @@ wx.cloud.callFunction({
         list3: that.data[list],
        })
     }
-    console.log(this.data[list][index])
-    console.log(this.data[list][index].hasChange)
     wx.cloud.callFunction({
       name:'pariseThis',
       data:{
@@ -242,13 +227,6 @@ wx.cloud.callFunction({
     }).catch(reason=>{
       console.log(reason)
     });
-    /*
-    var pages = getCurrentPages();//当前页面栈
-    if (pages.length > 1) {
-      var beforePage = pages[pages.length - 2];//获取上一个页面实例对象
-      beforePage.changeData();//触发父页面中的方法
-    }
-    */
   },
 
  
@@ -296,8 +274,6 @@ wx.cloud.callFunction({
   this.setData({
     list1:res.result
   })
-  console.log(this.data.list1)
- 
   this.data.list1.forEach((item,index)=>{
     item['hasChange']=likeCollection['list1-'+index];
   })
@@ -318,8 +294,6 @@ wx.cloud.callFunction({
   this.setData({
     list2:res.result
   })
-  console.log(this.data.list2)
- 
   this.data.list2.forEach((item,index)=>{
     item['hasChange']=likeCollection['list2-'+index];
   })
@@ -340,8 +314,6 @@ data:{
 this.setData({
   list3:res.result
 })
-console.log(this.data.list3)
-
 this.data.list3.forEach((item,index)=>{
   item['hasChange']=likeCollection['list3-'+index];
 })
@@ -357,16 +329,16 @@ console.log(reason)
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-    
+   
   },
+  
 
   /**
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-
+    
   },
-
   /**
    * 用户点击右上角分享
    */

@@ -7,10 +7,13 @@ Page({
   data: {
     userInfo:null,
     openid:null,
+    checked:false,
     //字数限制
     maxWord:300,
     currentWord:0,
     fileList:[],
+    location:null,
+    private:false,
        // 传到数据库的图片云端路径数组
     imgCloudPaths:[]  // 图片上传到云端后的路径存储数组
   },
@@ -21,7 +24,7 @@ Page({
   onLoad: function (options) {
     const userInfo = wx.getStorageSync('userInfo')
     const openid = wx.getStorageSync('openid')
-    if(userInfo instanceof Object && openid !==null){
+    if(userInfo instanceof Object && openid !=null){
       this.setData({
         userInfo,
         openid
@@ -73,11 +76,24 @@ Page({
   // 表单提交函数
   formSubmit(e){
     
+    if(!e.detail.value.title){
+       wx.showToast({
+         title: '标题不能为空',
+       })
+       return;
+    }
     wx.showLoading({
       title: '发表中',
     })
-    
+    if(this.data.checked){
+      e.detail.value.location = this.data.location;
+    }
+    e.detail.value.remarks = [];  // 存储评论的数组
     e.detail.value.userInfo = wx.getStorageSync('userInfo')
+    if(this.data.private){
+      e.detail.value.userInfo.avatarUrl = e.detail.value.userInfo.gender == 0 ? 'cloud://one-ev4od.6f6e-one-ev4od-1302814385/imgs/userAvatar/girl.jpg' : 'cloud://one-ev4od.6f6e-one-ev4od-1302814385/imgs/userAvatar/boy.jpg';
+      e.detail.value.userInfo.nickName = '无名氏'
+    }
     e.detail.value.openid = wx.getStorageSync('openid')
     // 获取上传图片的临时url数组
     if(this.data.fileList.length){
@@ -98,6 +114,7 @@ Page({
    })
    setTimeout((event)=>{
     event.detail.value.clickload = 1;
+    event.detail.value.date = this.getNow();
     console.log(event.detail.value)
       wx.cloud.callFunction({
         name:'publish',
@@ -123,6 +140,7 @@ Page({
   else{
  // 用户没有选择图片时
  e.detail.value.clickload = 1;
+ e.detail.value.date = this.getNow();
  console.log(e.detail.value)
    wx.cloud.callFunction({
      name:'publish',
@@ -141,28 +159,54 @@ Page({
    })
   }
   },
+  getNow(){
+    var date = new Date();
+    var year = date.getFullYear();
+    var month = parseInt(date.getMonth()+1)>9?parseInt(date.getMonth()+1):'0'+ parseInt(date.getMonth()+1);
+    var day = date.getDate()>9?date.getDate() : '0' + date.getDate();
+    var hour = date.getHours()>9?date.getHours():'0'+date.getHours();
+    var minute = date.getMinutes()>9?date.getMinutes():'0'+date.getMinutes();
+    return year +'-'+month+'-'+day+' '+hour+':'+minute;
+  },
 
   oversize(){
     wx.showToast({
       title: '文件不能超过2M',
     })
   },
-  // 根据临时图片路径数组，将图片上传到云端，并返回云端图片url
-  uploadImgtoCloud(arr,category){
-    const cloudPaths = [];
-   arr.forEach(item=>{
-    wx.cloud.uploadFile({
-      filePath:item,
-      cloudPath: 'imgs/' + category + '/' + Date.now()+item.match(/\.[^.]+?$/)[0],
-      success (res){
-          cloudPaths.push(res.fileID) //云存储图片路径,可以把这个路径存到集合，要用的时候再取出来
-      }
+ 
+
+// 地址处理函数
+onInputLocation(e){
+ this.setData({
+   checked:!this.data.checked
+ })
+ if(this.data.checked){
+  wx.chooseLocation({})
+  .then(res=>{
+    console.log(res)
+    this.setData({
+      location:res.name
     })
+  }).catch(reason=>{
+    console.log(reason)
+  })
+ }
+ 
+ // 取消了勾选位置
+ else{
+   this.setData({
+     location:null
    })
-   return cloudPaths;
+ }
 },
-  
-  
+
+// 匿名发布函数
+onInputPrivate(e){
+  this.setData({
+    private:!this.data.private
+  })
+},
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

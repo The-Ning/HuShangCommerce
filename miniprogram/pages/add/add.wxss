@@ -76,3 +76,9 @@
   line-height: 30rpx;
 }
 
+radio-group{
+  margin-top: 10rpx;
+  display:flex;
+  justify-content: space-around;
+}
+

@@ -157,6 +157,23 @@ justify-content: center;
     right:20rpx;
     top:40rpx;
   }
+
+  .item-location{
+    width:80%;
+    height:45rpx;
+    display:flex;
+  }
+
+  .location-img{
+    width:50rpx;
+    height:45rpx;
+  }
+
+  .location-text{
+    line-height: 45rpx;
+    font-size:27rpx;
+    color:rgb(129, 127, 127);
+  }
   
   
   

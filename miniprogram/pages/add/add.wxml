@@ -28,13 +28,20 @@
 </view>
 
 
-<lable>您想？</lable>
+<lable style="margin-top:20rpx;margin-left:30rpx;">您想发布到？</lable>
 <radio-group name='category'>
   <radio value='love' checked="true">表白捞人</radio>
   <radio value='findItem'>失物招领</radio>
   <radio value='campus'>校园趣事</radio>
 </radio-group>
-  <button formType="submit">提交</button>
+<van-cell center title="{{location||'位置'}}">
+  <switch  slot="right-icon" size="24" checked="{{checked}}" bindchange="onInputLocation"/>
+</van-cell>
+
+<van-cell center title="匿名（隐藏昵称和头像）">
+  <switch  slot="right-icon" size="24" checked="{{private}}" bindchange="onInputPrivate"/>
+</van-cell>
+  <button formType="submit" type='primary'>提交</button>
   </form> 
 </scroll-view>
 </view>
