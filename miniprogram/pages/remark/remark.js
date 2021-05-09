@@ -5,16 +5,36 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    information:{},
+    remarkArr:[],
+    openid:null,
+    userInfo:{}
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    this.setData({
+      information:JSON.parse(options.item)
+    })
+    this.setData({
+      remarkArr:this.data.information.remarks
+    })
+    this.setData({
+      userInfo:this.data.information.userInfo
+    })
   },
 
+// 预览图片事件函数
+imgYulan:function(event){
+  var currency = event.currentTarget.dataset.src;
+  var imgs = event.currentTarget.dataset.list;
+  wx.previewImage({
+    current: currency, // 当前显示图片的http链接
+    urls:imgs  // 需要预览的图片http链接列表
+  })
+},
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

@@ -42,9 +42,9 @@ favor: "../../imgs/like1.png"
      
     },
      remark(e){
-       console.log(e.target.dataset.remark);
+       let item = JSON.stringify(e.target.dataset.item)
        wx.navigateTo({
-         url: '../remark/remark',
+         url: '../remark/remark?item='+item,
        }).then(res=>{
          console.log(res);
        }).catch(reason=>{

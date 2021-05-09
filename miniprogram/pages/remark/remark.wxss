@@ -1,1 +1,87 @@
-/* miniprogram/pages/remark/remark.wxss */
+
+#page{
+  width:100%;
+  height:100vh;
+  padding:5rpx;
+}
+.title{
+  display:block;
+  width:100%;
+  height:50rpx;
+  font-size:40rpx;
+  font-weight: bold;
+  line-height: 50rpx;
+  padding-left:30rpx;
+  margin-top:10rpx;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.item-header{
+  padding:15rpx;
+  display:flex;
+  margin-top:15rpx;
+}
+
+.avatar{
+  width:100rpx;
+  height:100rpx;
+  margin-left: 10rpx;
+}
+.profile{
+  height:100%;
+  margin-left:20rpx;
+  display:flex;
+  flex-direction: column;
+}
+.nickname{
+  font-size:30rpx;
+  height:40rpx;
+  line-height: 40rpx;
+ margin-left:30rpx;
+}
+.item-date{
+  font-size:30rpx;
+ margin-top: 20rpx;
+ margin-left:30rpx;
+}
+.item-content{
+  padding:30rpx;
+}
+.content-text{
+  line-height: 60rpx;
+}
+
+.content-img{
+  box-shadow:10rpx 10rpx 5rpx #888;
+  display:flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+}
+.content-img:after{
+  content:'';
+  width:220rpx;
+}
+.item-img{
+  width:220rpx;
+  height:220rpx;
+  margin-top:10rpx;
+}
+
+.item-location{
+  width:80%;
+  height:45rpx;
+  display:flex;
+  margin-top:25rpx;
+}
+
+.location-img{
+  width:50rpx;
+  height:45rpx;
+}
+
+.location-text{
+  line-height: 45rpx;
+  font-size:27rpx;
+  color:rgb(129, 127, 127);
+}

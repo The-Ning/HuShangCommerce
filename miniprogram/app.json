@@ -1,9 +1,10 @@
 {
   "pages": [
     "pages/index/index",
+    "pages/remark/remark",
+    
     "pages/add/add",
     "pages/mine/mine",
-    "pages/remark/remark",
     "pages/specify/specify"
   ],
   "window": {

@@ -4,10 +4,13 @@ cloud.init()
 const db = cloud.database()
 // 云函数入口函数
 exports.main = async (event, context) => {
- // var condition = event.condition;
- let category = event.category;
- delete event,category;
- return await  db.collection(category).add({
+ event.createTime = db.serverDate()
+ event.remarks[0] = {
+   openid:event.openid,
+   avatarUrl:event.userInfo.avatarUrl,
+   nickName:event.userInfo.nickName
+}
+ return await  db.collection(event.category).add({
      data:event
    }).then(res=>{
      return event;

@@ -1,0 +1,45 @@
+<view id='page'>
+  <text class='title'>{{information.title}}</text>
+  <view class='item-header'>
+    <van-image src='{{information.userInfo.avatarUrl}}'
+    fit='cover'
+    width='100%'
+    height='100%'
+    round='true'
+    class='avatar' />
+    <view class='profile'>
+    <text class='nickname'>{{information.userInfo.nickName}}</text>
+    <text class='item-date'>{{information.date }}</text>
+   </view>
+  </view>
+
+  <view class='item-content'>
+
+<text class='content-text'>{{information.content}}</text>
+
+<view class='content-img'>
+    <van-image
+    wx:for="{{information.imgsrc}}"
+     wx:for-item='itemimg'
+    wx:key='index'
+    width='100%'
+    height='100%'
+class='item-img'
+catchtap='imgYulan'
+data-list='{{information.imgsrc}}'
+data-src='{{itemimg}}'
+src="{{itemimg}}"
+rel="external nofollow"  
+fit='cover' 
+    />
+
+</view>
+
+<!-- 地址显示区域 -->
+<view class='item-location' wx:if="{{information.location}}">
+<image src='../../imgs/地址.png' class='location-img'></image>
+<text class='location-text'>{{information.location}}</text>
+</view>
+
+</view>
+</view>

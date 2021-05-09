@@ -189,7 +189,9 @@ onInputLocation(e){
       location:res.name
     })
   }).catch(reason=>{
-    console.log(reason)
+    this.setData({
+      checked:false
+    })
   })
  }
  
