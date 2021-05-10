@@ -23,6 +23,7 @@
      wx:for-item='itemimg'
     wx:key='index'
     width='100%'
+    lazy-load
     height='100%'
 class='item-img'
 catchtap='imgYulan'

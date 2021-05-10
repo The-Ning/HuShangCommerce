@@ -15,9 +15,9 @@ currentTab: 0,
 list1:[],
 list2:[],
 list3:[],
-index:null,
 userInfo:null,
 openid:null,
+category:null,
 favor_img: "../../imgs/like.png",
 favor: "../../imgs/like1.png"
   },
@@ -102,9 +102,8 @@ favor: "../../imgs/like1.png"
     this.setData({
       list1:res.result.data
     })
-console.log(this.data.list1)
     this.data.list1.forEach((item,index)=>{
-      item['hasChange']=likeCollection['list1-'+index];
+      item['hasChange']=likeCollection['list1-'+item._id];
     })
     this.setData({
       list1:this.data.list1
@@ -124,9 +123,8 @@ console.log(this.data.list1)
     this.setData({
       list2:res.result.data
     })
-    console.log(this.data.list2)
     this.data.list2.forEach((item,index)=>{
-      item['hasChange']=likeCollection['list2-'+index];
+      item['hasChange']=likeCollection['list2-'+item._id];
     })
     this.setData({
       list2:this.data.list2
@@ -145,10 +143,8 @@ wx.cloud.callFunction({
   this.setData({
     list3:res.result.data
   })
-  console.log(this.data.list3)
- 
-  this.data.list3.forEach((item,index)=>{
-    item['hasChange']=likeCollection['list3-'+index];
+  this.data.list3.forEach((item)=>{
+    item['hasChange']=likeCollection['list3-'+item._id];
   })
   this.setData({
     list3:this.data.list3
@@ -162,73 +158,77 @@ wx.cloud.callFunction({
     var that = this;
     let list = e.currentTarget.dataset.list;
     let index = e.currentTarget.dataset.index;
-    let hasChange = !this.data[list][index].hasChange;
+    let _id = e.currentTarget.dataset._id;
+    let hasChange = !(this.data[list][index].hasChange);
       // 当前点击的赞的情况取反
       console.log('当前点击的赞'+hasChange)
-    this.setData({
-      index
-    })
-  
    // 判断本地用户是否点赞了该文章
-   let details = wx.getStorageSync('likeCollection')
-   console.log('缓存里的值:'+details[list+'-'+index])
-   var onum = parseInt(that.data[list][index].clickload);
-   if(details[list+'-'+index]){  // 如果点赞过
-      that.data[list][index].clickload = (onum - 1);
-      that.data[list][index].hasChange = false;
-   }
-     else {
-      that.data[list][index].clickload = (onum + 1);
-      that.data[list][index].hasChange = true;
-    } 
-    this.data[list][index].hasChange = hasChange;
     wx.getStorage({
-      key: 'likeCollection',
-      success:datas=>{
-        let obj = datas.data;
-        obj[list+'-'+index] = hasChange
-        wx.setStorage({
-          data: obj,
-          key: 'likeCollection',
-          success:res=>{
-            
-            console.log('缓存成功')
-          },
-          fail:reason=>console.log(reason)
-        })
+     key: 'likeCollection',
+     success:(res)=>{
+      let details = res.data;
+      console.log('缓存里的值:'+details[list+'-'+_id])
+      var onum = parseInt(that.data[list][index].clickload);
+      if(details[list+'-'+_id]){  // 如果点赞过
+         that.data[list][index].clickload = (onum - 1);
+         that.data[list][index].hasChange = false;
       }
-    })
-   // wx.setStorageSync('likeCollection', data)
-    if(list === 'list1'){
-    this.setData({
-     list1: that.data[list],
-    })
-    }
-    else if(list === 'list2'){
-      this.setData({
-        list2: that.data[list],
+        else {
+         that.data[list][index].clickload = (onum + 1);
+         that.data[list][index].hasChange = true;
+       } 
+       wx.getStorage({
+         key: 'likeCollection',
+         success:datas=>{
+           let obj = datas.data;
+           obj[list+'-'+_id] = that.data[list][index].hasChange
+           wx.setStorage({
+             data: obj,
+             key: 'likeCollection',
+             success:res=>{
+               
+               console.log('缓存成功')
+             },
+             fail:reason=>console.log(reason)
+           })
+         }
        })
-  
-    }
-    else if(list === 'list3'){
-      this.setData({
-        list3: that.data[list],
+       if(list === 'list1'){
+       this.setData({
+        list1: that.data[list],
+        category:'love'
        })
-    }
-    wx.cloud.callFunction({
-      name:'pariseThis',
-      data:{
-        openid: wx.getStorageSync('openid'),//我的ID
-        _id:e.currentTarget.dataset._id,  //文章id
-        likeOr:this.data[list][index].hasChange
-      }
-    }).then(res=>{
-      console.log(res.result)
-     // 动态更新赞量
-
-    }).catch(reason=>{
-      console.log(reason)
-    });
+       }
+       else if(list === 'list2'){
+         this.setData({
+           list2: that.data[list],
+           category:'findItem'
+          })
+     
+       }
+       else if(list === 'list3'){
+         this.setData({
+           list3: that.data[list],
+           category:'campus'
+          })
+       }
+       wx.cloud.callFunction({
+         name:'pariseThis',
+         data:{
+           _id:_id,  //文章id
+           likeOr:that.data[list][index].hasChange,
+           category:this.data.category
+         }
+       }).then(res=>{
+         console.log(res.result)
+        // 动态更新赞量
+   
+       }).catch(reason=>{
+         console.log(reason)
+       });
+     }
+   })
+   
   },
 
  
@@ -277,7 +277,7 @@ wx.cloud.callFunction({
     list1:res.result.data
   })
   this.data.list1.forEach((item,index)=>{
-    item['hasChange']=likeCollection['list1-'+index];
+    item['hasChange']=likeCollection['list1-'+item._id];
   })
   this.setData({
     list1:this.data.list1
@@ -297,7 +297,7 @@ wx.cloud.callFunction({
     list2:res.result.data
   })
   this.data.list2.forEach((item,index)=>{
-    item['hasChange']=likeCollection['list2-'+index];
+    item['hasChange']=likeCollection['list2-'+item._id];
   })
   this.setData({
     list2:this.data.list2
@@ -317,7 +317,7 @@ this.setData({
   list3:res.result.data
 })
 this.data.list3.forEach((item,index)=>{
-  item['hasChange']=likeCollection['list3-'+index];
+  item['hasChange']=likeCollection['list3-'+item._id];
 })
 this.setData({
   list3:this.data.list3

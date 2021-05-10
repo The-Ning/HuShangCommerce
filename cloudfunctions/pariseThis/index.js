@@ -7,11 +7,11 @@ const _ = db.command
 // 云函数入口函数
 exports.main = async (event, context) => {
   // 点赞数量增加
-  const openid = event.openid;
   const _id = event._id;
   let likeOr = event.likeOr;
-  if(!likeOr){
- return await db.collection('love').doc(_id).update({
+  let category = event.category;
+  if(likeOr){
+ return await db.collection(category).doc(_id).update({
    data:{
     clickload:_.inc(1)
    }
@@ -19,7 +19,7 @@ exports.main = async (event, context) => {
     return '点赞成功'
   })
 }
-return await db.collection('love').doc(_id).update({
+return await db.collection(category).doc(_id).update({
   data:{
    clickload:_.inc(-1)
   }

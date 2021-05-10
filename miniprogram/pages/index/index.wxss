@@ -100,7 +100,7 @@
     flex-wrap: wrap;
     justify-content: space-between;
     align-items: center;
-    box-shadow: 10rpx 10rpx 5rpx rgb(230, 224, 224);
+    box-shadow: 10rpx 10rpx 5rpx rgb(248, 246, 246);
   }
   .content-img:after{
     content:'';

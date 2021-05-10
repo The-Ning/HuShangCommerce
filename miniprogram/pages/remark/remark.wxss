@@ -52,7 +52,7 @@
 }
 
 .content-img{
-  box-shadow:10rpx 10rpx 5rpx #888;
+  box-shadow: 10rpx 10rpx 5rpx rgb(248, 246, 246);
   display:flex;
   flex-wrap: wrap;
   justify-content: space-between;
