@@ -16,7 +16,7 @@ Page({
    */
   onLoad: function (options) {
     this.setData({
-      information:JSON.parse(options.item)
+      information:wx.getStorageSync('specify')
     })
     this.setData({
       remarkArr:this.data.information.remarks

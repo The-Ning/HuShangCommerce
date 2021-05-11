@@ -13,7 +13,6 @@ Page({
     currentWord:0,
     fileList:[],
     location:null,
-    private:false,
        // 传到数据库的图片云端路径数组
     imgCloudPaths:[]  // 图片上传到云端后的路径存储数组
   },
@@ -203,12 +202,7 @@ onInputLocation(e){
  }
 },
 
-// 匿名发布函数
-onInputPrivate(e){
-  this.setData({
-    private:!this.data.private
-  })
-},
+
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

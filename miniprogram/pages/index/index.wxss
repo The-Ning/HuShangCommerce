@@ -71,11 +71,14 @@
     flex-direction: column;
   }
   .nickname{
-    font-size:50rpx;
+    font: size 40rpx;
     height:40rpx;
     line-height: 40rpx;
    margin-left:30rpx;
    color:	#FF7F50;
+   overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
   }
   .item-date{
     font-size:30rpx;

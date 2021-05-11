@@ -85,3 +85,59 @@
   font-size:27rpx;
   color:rgb(129, 127, 127);
 }
+
+.remark-item{
+  width:90%;
+  margin-left:5%;
+  box-sizing: border-box;
+  padding:5rpx;
+  display:flex;
+  margin-top:10rpx;
+  position: relative;
+}
+.remark-lou{
+  position: absolute;
+  right:10rpx;
+  font-size:30rpx;
+}
+.louzhu{
+  position: absolute;
+  left:300rpx;
+  font-size:30rpx;
+}
+.remark-text{
+  display:flex;
+  flex-direction: column;
+  margin-left:20rpx;
+}
+.remark-nickName{
+  display:block;
+  width:200rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size:30rpx;
+}
+.remarkTime{
+  font-size:30rpx;
+}
+.remark-content{
+  margin-top:10rpx;
+  font-size:33rpx;
+  line-height: 1.2;
+  color:rgb(8, 8, 8);
+}
+#remark-box{
+  display:flex;
+  flex-direction: column;
+  margin-top:50rpx;
+  padding:20rpx;
+  background-color:rgb(250, 245, 245);
+}
+
+.remark-avatar{
+  width:70rpx;
+  height:70rpx;
+  border-radius: 50%;
+  
+}

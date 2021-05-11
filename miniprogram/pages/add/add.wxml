@@ -38,9 +38,7 @@
   <switch  slot="right-icon" size="24" checked="{{checked}}" bindchange="onInputLocation"/>
 </van-cell>
 
-<van-cell center title="匿名（隐藏昵称和头像）">
-  <switch  slot="right-icon" size="24" checked="{{private}}" bindchange="onInputPrivate"/>
-</van-cell>
+
   <button formType="submit" type='primary'>提交</button>
   </form> 
 </scroll-view>

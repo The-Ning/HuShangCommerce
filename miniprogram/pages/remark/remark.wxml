@@ -43,4 +43,25 @@ fit='cover'
 </view>
 
 </view>
+
+
+<!-- 评论展示区 -->
+<view id='remark-box'>
+  <view wx:for="{{information.remarks}}" wx:key='index' class='remark-item'>
+    <image src='{{item.avatarUrl}}' class='remark-avatar'></image>
+    <text class='remark-lou'>第{{index}}楼</text>
+    <text class='louzhu' wx:if="{{information.openid == item.openid}}">楼主</text>
+<view class='remark-text'>
+    <text class='remark-nickName'>{{item.nickName}}</text>
+    <text class='remarkTime'>{{item.remarkTime}}</text>
+    <text class='remark-content'>{{item.content}}</text>
+  </view>
+  
+</view>
+</view>
+
+<!-- 评论输入区域 -->
+<view id='remark-add'>
+
+</view>
 </view>
