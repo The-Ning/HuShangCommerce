@@ -16,14 +16,15 @@ Page({
    */
   onLoad: function (options) {
     this.setData({
-      information:wx.getStorageSync('specify')
+      information:JSON.parse(options.item)
     })
+    
     this.setData({
-      remarkArr:this.data.information.remarks
+      remarkArr:this.data.information.remarks,
+      userInfo:this.data.information.userInfo,
+      openid:wx.getStorageSync('openid')
     })
-    this.setData({
-      userInfo:this.data.information.userInfo
-    })
+   
   },
 
 // 预览图片事件函数
@@ -35,13 +36,36 @@ imgYulan:function(event){
     urls:imgs  // 需要预览的图片http链接列表
   })
 },
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
+addRemark(e){
+ console.log(e.detail)
+ if(this.data.information.category == 'love'){
+  wx.cloud.callFunction({
+    name:'addLoveRemark',
+    data:{
+      remark:{
+        openid:this.data.openid,
+        content:e.detail,
+        remarkTime:this.getNow(),
+        nickName:this.data.information.nickName,
+        avatarUrl:this.data.information.avatarUrl
+      },
+      _id:this.data.information._id
+    }
+  }).then(res=>{
+    console.log(res)
+  }).catch(reason=>{
+    console.log(reason)
+  })
+ }
+ 
+},
+getNow(){
+    var date = new Date();
+    var year = date.getFullYear();
+    var month = parseInt(date.getMonth()+1)>9?parseInt(date.getMonth()+1):'0'+ parseInt(date.getMonth()+1);
+    var day = date.getDate()>9?date.getDate() : '0' + date.getDate();
+    return year +' '+month+'-'+day;
   },
-
   /**
    * 生命周期函数--监听页面显示
    */

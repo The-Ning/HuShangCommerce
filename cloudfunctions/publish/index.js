@@ -8,7 +8,8 @@ exports.main = async (event, context) => {
  event.remarks[0] = {
    openid:event.openid,
    avatarUrl:event.userInfo.avatarUrl,
-   nickName:event.userInfo.nickName
+   nickName:event.userInfo.nickName,
+   content:'楼主镇楼！！！'
 }
  return await  db.collection(event.category).add({
      data:event

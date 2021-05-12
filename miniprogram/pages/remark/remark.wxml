@@ -61,7 +61,16 @@ fit='cover'
 </view>
 
 <!-- 评论输入区域 -->
-<view id='remark-add'>
-
-</view>
+<van-cell-group>
+  <van-field
+    value="{{ username }}"
+    required
+    clearable
+    type='textarea'
+    autoisze
+    label="吐槽"
+    placeholder="说点什么吧"
+    bind:confirm='addRemark'
+  />
+  </van-cell-group>
 </view>
