@@ -107,11 +107,11 @@
   }
   .content-img:after{
     content:'';
-    width:220rpx;
+    width:230rpx;
   }
   .item-img{
-    width:220rpx;
-    height:220rpx;
+    width:230rpx;
+    height:225rpx;
     margin-top:10rpx;
   }
   .item-footer{

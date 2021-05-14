@@ -15,16 +15,14 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    const information = JSON.parse(options.item);
     this.setData({
-      information:JSON.parse(options.item)
-    })
-    
-    this.setData({
-      remarkArr:this.data.information.remarks,
-      userInfo:this.data.information.userInfo,
+      information:information,
+      remarkArr:information.remarks,
+      userInfo:information.userInfo,
       openid:wx.getStorageSync('openid')
     })
-   
+    console.log(this.data.openid);
   },
 
 // 预览图片事件函数
@@ -37,19 +35,17 @@ imgYulan:function(event){
   })
 },
 addRemark(e){
- console.log(e.detail)
  if(this.data.information.category == 'love'){
+console.log('文章id',typeof this.data.information._id);
   wx.cloud.callFunction({
     name:'addLoveRemark',
     data:{
-      remark:{
+        id:this.data.information._id,
         openid:this.data.openid,
         content:e.detail,
         remarkTime:this.getNow(),
-        nickName:this.data.information.nickName,
-        avatarUrl:this.data.information.avatarUrl
-      },
-      _id:this.data.information._id
+        nickName:this.data.userInfo.nickName,
+        avatarUrl:this.data.userInfo.avatarUrl    
     }
   }).then(res=>{
     console.log(res)

@@ -88,12 +88,8 @@ Page({
       e.detail.value.location = this.data.location;
     }
     e.detail.value.remarks = [];  // 存储评论的数组
-    e.detail.value.userInfo = wx.getStorageSync('userInfo')
-    if(this.data.private){
-      e.detail.value.userInfo.avatarUrl = e.detail.value.userInfo.gender == 0 ? 'cloud://one-ev4od.6f6e-one-ev4od-1302814385/imgs/userAvatar/girl.jpg' : 'cloud://one-ev4od.6f6e-one-ev4od-1302814385/imgs/userAvatar/boy.jpg';
-      e.detail.value.userInfo.nickName = '无名氏'
-    }
-    e.detail.value.openid = wx.getStorageSync('openid')
+    e.detail.value.userInfo = this.data.userInfo;
+    e.detail.value.openid = this.data.openid
     // 获取上传图片的临时url数组
     if(this.data.fileList.length){
     const temUrls = [];

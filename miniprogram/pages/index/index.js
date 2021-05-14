@@ -41,6 +41,7 @@ favor: "../../imgs/like1.png"
     }
      
     },
+    // 增加评论函数
      remark(e){
        let item = JSON.stringify(e.target.dataset.item)
        wx.navigateTo({
