@@ -47,9 +47,10 @@ fit='cover'
 
 <!-- 评论展示区 -->
 <view id='remark-box'>
-  <view wx:for="{{information.remarks}}" wx:key='index' class='remark-item'>
+  <scroll-view scroll-y="true">
+    <view wx:for="{{information.remarks}}" wx:key='index' class='remark-item'>
     <image src='{{item.avatarUrl}}' class='remark-avatar'></image>
-    <text class='remark-lou'>第{{index}}楼</text>
+    <text class='remark-lou'>第{{index+1}}楼</text>
     <text class='louzhu' wx:if="{{information.openid == item.openid}}">楼主</text>
 <view class='remark-text'>
     <text class='remark-nickName'>{{item.nickName}}</text>
@@ -58,18 +59,23 @@ fit='cover'
   </view>
   
 </view>
+  </scroll-view>
+  
 </view>
 
 <!-- 评论输入区域 -->
 <van-cell-group>
   <van-field
-    value="{{ username }}"
+  bind:click-icon='addRemark'
+    value="{{ remarkContent }}"
     required
     clearable
+    right-icon='/imgs/提交.png'
     type='textarea'
     autoisze
     label="吐槽"
     placeholder="说点什么吧"
+    bind:change='remarkContent'
     bind:confirm='addRemark'
   />
   </van-cell-group>

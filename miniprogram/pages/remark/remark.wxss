@@ -89,6 +89,7 @@
   width:90%;
   margin-left:5%;
   box-sizing: border-box;
+  border-bottom:solid 5rpx rgb(218, 216, 216);
   padding:5rpx;
   display:flex;
   margin-top:10rpx;
@@ -129,8 +130,8 @@
 #remark-box{
   display:flex;
   flex-direction: column;
-  margin-top:50rpx;
-  padding:20rpx;
+  margin-top:10rpx;
+  padding:0 20rpx 0 20rpx;
   background-color:rgb(250, 245, 245);
 }
 
@@ -146,5 +147,9 @@ van-cell-group{
   height:100rpx;
   position: absolute;
   bottom: 0;
+}
+
+scroll-view{
+  max-height:500rpx;
 }
 

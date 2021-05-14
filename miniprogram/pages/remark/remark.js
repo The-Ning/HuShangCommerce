@@ -8,7 +8,8 @@ Page({
     information:{},
     remarkArr:[],
     openid:null,
-    userInfo:{}
+    userInfo:{},
+    remarkContent:''
   },
 
   /**
@@ -24,7 +25,11 @@ Page({
     })
     console.log(this.data.openid);
   },
-
+  remarkContent(e){
+    this.setData({
+      remarkContent:e.detail
+    })
+  },
 // 预览图片事件函数
 imgYulan:function(event){
   var currency = event.currentTarget.dataset.src;
@@ -35,26 +40,39 @@ imgYulan:function(event){
   })
 },
 addRemark(e){
- if(this.data.information.category == 'love'){
-console.log('文章id',typeof this.data.information._id);
+  if(this.data.remarkContent == ''){
+    wx.showToast({
+      title: '不能为空',
+    })
+    return
+  }
+  this.handleRemarkResult(this.data.information.category)
+},
+
+handleRemarkResult(category){
   wx.cloud.callFunction({
-    name:'addLoveRemark',
+    name:'addRemark',
     data:{
+        category:category,
         id:this.data.information._id,
         openid:this.data.openid,
-        content:e.detail,
+        content:this.data.remarkContent,
         remarkTime:this.getNow(),
         nickName:this.data.userInfo.nickName,
         avatarUrl:this.data.userInfo.avatarUrl    
     }
   }).then(res=>{
     console.log(res)
+    this.data.information.remarks = res.result
+    this.setData({
+      information:this.data.information
+    })
   }).catch(reason=>{
     console.log(reason)
   })
- }
- 
 },
+
+
 getNow(){
     var date = new Date();
     var year = date.getFullYear();

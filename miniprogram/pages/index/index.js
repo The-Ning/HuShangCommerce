@@ -94,65 +94,37 @@ favor: "../../imgs/like1.png"
       wx.setStorageSync('likeCollection', {})
     }
  // 获取表白墙数据并渲染
-  wx.cloud.callFunction({
-    name:'getLists',
-    data:{
-      category:'love'
-    }
-  }).then(res=>{
+  let list1 = wx.getStorageSync('list1');
+  if(list1){
     this.setData({
-      list1:res.result.data
+      list1:list1
     })
-    this.data.list1.forEach((item,index)=>{
-      item['hasChange']=likeCollection['list1-'+item._id];
-    })
-    this.setData({
-      list1:this.data.list1
-    })
-  }).catch(reason=>{
-    console.log(reason)
-  })
- 
-  // 获取二手交易数据并渲染到list2
-  wx.cloud.callFunction({
-    name:'getLists',
-    data:{
-      category:'findItem'
-    }
-  }).then(res=>{
-    console.log('云函数结果',res)
-    this.setData({
-      list2:res.result.data
-    })
-    this.data.list2.forEach((item,index)=>{
-      item['hasChange']=likeCollection['list2-'+item._id];
-    })
-    this.setData({
-      list2:this.data.list2
-    })
-  }).catch(reason=>{
-    console.log(reason)
-  })
-
-// 获取校园生活数据并渲染到list3
-wx.cloud.callFunction({
-  name:'getLists',
-  data:{
-    category:'campus'
+  }else{
+    this.uploadList(0,'list1')
   }
-}).then(res=>{
-  this.setData({
-    list3:res.result.data
-  })
-  this.data.list3.forEach((item)=>{
-    item['hasChange']=likeCollection['list3-'+item._id];
-  })
-  this.setData({
-    list3:this.data.list3
-  })
-}).catch(reason=>{
-  console.log(reason)
-})
+
+  let list2 = wx.getStorageSync('list2');
+  if(list2){
+    this.setData({
+      list2:list2
+    })
+  }else{
+// 获取二手交易数据并渲染到list2
+this.uploadList(1,'list2')
+  }
+  
+
+  let list3 = wx.getStorageSync('list3')
+  if(list3){
+    this.setData({
+      list3:list3
+    })
+  }
+  else{
+// 获取校园生活数据并渲染到list3
+this.uploadList(2,'list3')
+  }
+
   },
   // 点赞函数
   praiseThis(e){
@@ -232,8 +204,57 @@ wx.cloud.callFunction({
    
   },
 
- 
-  
+ // 数据加载函数
+ // list 需要渲染的列表
+ // index 索引
+  uploadList(index,list){
+    let likeCollection = wx.getStorageSync('likeCollection');
+    console.log(index,list)
+    let category = '';
+    if(index == 0){
+      category = 'love'
+    }
+    else if(index == 1){
+      category = 'findItem'
+    }
+    else if(index == 2){
+      category = 'campus'
+    }
+    // 调用云函数
+    wx.cloud.callFunction({
+      name:'getLists',
+      data:{
+        category:category
+      }
+    }).then(res=>{
+      res.result.data.forEach((item)=>{
+        item['hasChange']=likeCollection[list+item._id];
+      })
+      if(list == 'list1'){
+        this.setData({
+          list1:res.result.data
+        })
+        wx.setStorageSync('list1', res.result.data)
+      } 
+      else if(list == 'list2'){
+        this.setData({
+          list2:res.result.data
+        })
+        wx.setStorageSync('list2', res.result.data)
+      }
+      else{
+        this.setData({
+          list3:res.result.data
+        })
+        wx.setStorageSync('list3', res.result.data)
+      }
+     
+    }).catch(reason=>{
+      console.log(reason)
+    })
+  },
+
+
   btnHandler(e) {
    
     this.updateNum(e.target.dataset.step)
