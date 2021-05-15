@@ -17,26 +17,27 @@ Page({
         userInfo:res.userInfo
       })
       console.log(res)
+      wx.login().then(res=>{
+        if(res.code){
+          wx.request({
+            url:'https://api.weixin.qq.com/sns/jscode2session?'+
+            'appid=wxba4ca0d1f2046721&secret=6a67ac618bfefe4e2001d685610f8851&js_code='+res.code+'&grant_type=authorization_code',
+            data:{
+              code:res.code
+            },
+            success(result){
+             console.log(result)
+             wx.setStorageSync('openid', result.data.openid)
+           
+            }
+          })
+        }else{
+          console.log('登陆失败');
+        }
+      });
     });
 
-    wx.login().then(res=>{
-      if(res.code){
-        wx.request({
-          url:'https://api.weixin.qq.com/sns/jscode2session?'+
-          'appid=wxba4ca0d1f2046721&secret=6a67ac618bfefe4e2001d685610f8851&js_code='+res.code+'&grant_type=authorization_code',
-          data:{
-            code:res.code
-          },
-          success(result){
-           console.log(result)
-           wx.setStorageSync('openid', result.data.openid)
-         
-          }
-        })
-      }else{
-        console.log('登陆失败');
-      }
-    });
+    
   },
   /**
    * 生命周期函数--监听页面加载

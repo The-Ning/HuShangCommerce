@@ -9,7 +9,8 @@ Page({
     remarkArr:[],
     openid:null,
     userInfo:{},
-    remarkContent:''
+    remarkContent:'',
+    myUserInfo:null
   },
 
   /**
@@ -21,7 +22,8 @@ Page({
       information:information,
       remarkArr:information.remarks,
       userInfo:information.userInfo,
-      openid:wx.getStorageSync('openid')
+      openid:wx.getStorageSync('openid'),
+      myUserInfo:wx.getStorageSync('userInfo')
     })
     console.log(this.data.openid);
   },
@@ -58,8 +60,8 @@ handleRemarkResult(category){
         openid:this.data.openid,
         content:this.data.remarkContent,
         remarkTime:this.getNow(),
-        nickName:this.data.userInfo.nickName,
-        avatarUrl:this.data.userInfo.avatarUrl    
+        nickName:this.data.myUserInfo.nickName,
+        avatarUrl:this.data.myUserInfo.avatarUrl    
     }
   }).then(res=>{
     console.log(res)
