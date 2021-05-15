@@ -3,17 +3,18 @@
   height:45vh;
   overflow: hidden;
   background-color:rgba(250, 154, 11, 0.884);
-  position: relative;
+  
 }
   .user_bg{
+   height:50vh;
    filter:blur(10rpx);
   }
 
   .user_info{
    position:absolute;
-   right:0;
+   left:50%;
    transform:translateX(-50%);
-   bottom:0;
+   top:15%;
    text-align:center;
   }
   .user_icon{
