@@ -5,6 +5,7 @@
      <view class="user_info">
       <image class="user_icon" src="{{userInfo.avatarUrl}}"></image>
       <view class="user_name">{{userInfo.nickName}}</view>
+      李婷婷
      </view>
   </view>
   <view wx:else class="user_btn">
