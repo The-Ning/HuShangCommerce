@@ -38,3 +38,51 @@
   padding:30rpx;
   border-radius: 40%;
 }
+.user_content{
+  position:relative;
+}
+.user_main{
+  position:absolute;
+  width:80%;
+  left:10%;
+  transform:translateY(-50%);
+  top:20%;
+}
+.history_wrap{
+  background-color: rgb(255, 255, 255);
+  display:flex;
+}
+.navigator{
+  flex:1;
+  text-align: center;
+}
+.his_num{
+  color:#000;
+  text-align: center;
+  padding-left:5px;
+}
+.his_name{
+font-size:12px;
+text-align: center;
+padding-left:5px;
+}
+.app_info_wrap{
+  margin-top:30px;
+  background-color: #fff;
+  position: absolute;
+  width:80%;
+  left:10%;
+  transform:translateY(-50%);
+  top:65%;
+}
+.app_info_item{
+  padding:20rpx;
+  border-bottom:1rpx solid #ccc;
+  font-size: 12px;
+  
+}
+.app_small{
+    float: right;
+    font-size: 10px;
+    color:rgb(119, 115, 115);
+  }
