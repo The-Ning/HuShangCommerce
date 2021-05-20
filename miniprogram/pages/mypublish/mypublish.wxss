@@ -1,5 +1,6 @@
 .scroll{
-  height: 80vh;
+  height: 100vh;
+  padding:10rpx;
 }
 
 .box-0{
@@ -10,9 +11,14 @@
   background-color:white;
 }
 .item-header{
- 
+ position: relative;
   display:flex;
   padding:15rpx;
+}
+.delbtn{
+  position: absolute;
+  right:30rpx;
+  top:25rpx;
 }
 .avatar{
   width:100rpx;
@@ -22,7 +28,7 @@
 }
 .profile{
   height:100%;
-  margin-left:20rpx;
+  margin-left:15rpx;
   display:flex;
   flex-direction: column;
 }
@@ -44,7 +50,7 @@ white-space: nowrap;
 .item-content{
   display:flex;
   flex-direction: column;
-  padding:10rpx;
+  padding:15rpx;
 }
 .content-text{
   width:100%;

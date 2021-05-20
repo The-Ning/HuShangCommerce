@@ -8,14 +8,18 @@ Page({
     userInfo:null,
     openid:'',
     mypublishArr:[],
-    list:[{_id: "28ee4e3e60990466177d65e96bc14081", category: "campus", clickload: 2, content: "哈哈哈哈", date: "2021-05-10 18:01"}
-  ]
+    list:[],
+    favor_img: "https://z3.ax1x.com/2021/05/20/gT0Cd0.png",
+    favor: "https://z3.ax1x.com/2021/05/20/gT0kJU.png"
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    wx.setNavigationBarTitle({
+      title: '我的发布',
+    })
   console.log(options)
   this.setData({
     openid:options.openid,
@@ -43,7 +47,54 @@ Page({
    })
     
   },
-
+  deleteThis(e){
+    console.log(e)
+  wx.showModal({
+    title:'删除确认',
+    content:'确认删除？不可恢复',
+    cancelColor: 'cancelColor',
+    cancelText:'不了',
+    confirmText:'删了',
+    success:res=>{
+      if (res.confirm) {
+        wx.cloud.callFunction({
+          name:'deleteList',
+          data:{
+            _id:e.currentTarget.dataset._id,
+            category:e.currentTarget.dataset.category
+          }
+        }).then(res1=>{
+          this.data.mypublishArr.splice(e.currentTarget.dataset.index,1)
+          this.setData({
+            mypublishArr:this.data.mypublishArr
+          })
+        })
+      } else if (res.cancel) {
+        console.log('用户点击取消')
+      }
+    }
+  })
+  },
+// 预览图片事件函数
+imgYulan:function(event){
+  var currency = event.currentTarget.dataset.src;
+  var imgs = event.currentTarget.dataset.list;
+  wx.previewImage({
+    current: currency, // 当前显示图片的http链接
+    urls:imgs  // 需要预览的图片http链接列表
+  })
+},
+// 增加评论函数
+remark(e){
+  let item = JSON.stringify(e.target.dataset.item)
+  wx.navigateTo({
+    url: '../remark/remark?item='+item,
+  }).then(res=>{
+    console.log(res);
+  }).catch(reason=>{
+    console.log(reason)
+  })
+},
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

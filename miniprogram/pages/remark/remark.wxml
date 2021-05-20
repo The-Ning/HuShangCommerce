@@ -38,7 +38,7 @@ fit='cover'
 
 <!-- 地址显示区域 -->
 <view class='item-location' wx:if="{{information.location}}">
-<image src='../../imgs/地址.png' class='location-img'></image>
+<image src='https://z3.ax1x.com/2021/05/20/gT0lFK.png' class='location-img'></image>
 <text class='location-text'>{{information.location}}</text>
 </view>
 
@@ -49,6 +49,22 @@ fit='cover'
 <view id='remark-box'>
   <scroll-view scroll-y="true">
     <view wx:for="{{information.remarks}}" wx:key='index' class='remark-item'>
+      <van-icon name="delete-o"
+      wx:if='{{information.openid == item.openid}}'
+     class='delbtn' catchtap="deleteThis"
+     size='45rpx'
+      data-category='{{item.category}}'
+      data-_id='{{item._id}}'
+      data-index='{{index}}'
+      />
+      <van-icon name='delete-o'
+      wx:if="{{item.openid == openid}}"
+      class='delbtn' catchtap="deleteThis"
+     size='45rpx'
+      data-category='{{item.category}}'
+      data-_id='{{item._id}}'
+      data-index='{{index}}'
+      />
     <image src='{{item.avatarUrl}}' class='remark-avatar'></image>
     <text class='remark-lou'>第{{index+1}}楼</text>
     <text class='louzhu' wx:if="{{information.openid == item.openid}}">楼主</text>
@@ -70,7 +86,7 @@ fit='cover'
     value="{{ remarkContent }}"
     required
     clearable
-    right-icon='/imgs/提交.png'
+    right-icon='https://z3.ax1x.com/2021/05/20/gTHWY8.png'
     type='textarea'
     autoisze
     label="吐槽"

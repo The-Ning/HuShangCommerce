@@ -1,7 +1,7 @@
 {
   "pages": [
-    "pages/mine/mine",
     "pages/index/index",
+    "pages/mine/mine",
     "pages/remark/remark",
     "pages/add/add",
     "pages/author/author",
@@ -18,13 +18,13 @@
     "list": [
       {
         "pagePath": "pages/index/index",
-        "text": "展示区",
+        "text": "畅所欲言",
         "iconPath": "/imgs/tabbar/home.png",
         "selectedIconPath": "/imgs/tabbar/home-active.png"
       },
       {
         "pagePath": "pages/add/add",
-        "text": "说心事",
+        "text": "毛遂自荐",
         "iconPath": "/imgs/tabbar/message.png",
         "selectedIconPath": "/imgs/tabbar/message-active.png"
       },

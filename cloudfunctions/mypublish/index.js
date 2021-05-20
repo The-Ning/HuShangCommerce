@@ -10,7 +10,8 @@ exports.main = async (event) => {
   return await db.collection(category)
   .where({
     openid:openid
-  }).get().then(res=>{
+  }).orderBy('createTime','desc').
+  get().then(res=>{
     return res.data;
   })
 }

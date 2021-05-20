@@ -18,8 +18,8 @@ list3:[],
 userInfo:null,
 openid:null,
 category:null,
-favor_img: "../../imgs/like.png",
-favor: "../../imgs/like1.png"
+favor_img: "https://z3.ax1x.com/2021/05/20/gT0Cd0.png",
+favor: "https://z3.ax1x.com/2021/05/20/gT0kJU.png"
   },
 
   swichNav: function (e) {

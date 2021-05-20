@@ -86,8 +86,6 @@
 }
 
 .remark-item{
-  width:90%;
-  margin-left:5%;
   box-sizing: border-box;
   border-bottom:solid 5rpx rgb(218, 216, 216);
   padding:5rpx;
@@ -131,8 +129,10 @@
   display:flex;
   flex-direction: column;
   margin-top:10rpx;
-  padding:0 20rpx 0 20rpx;
   background-color:rgb(250, 245, 245);
+  width:90%;
+  margin-left:5%;
+  border-radius: 50rpx;
 }
 
 .remark-avatar{
@@ -151,5 +151,11 @@ van-cell-group{
 
 scroll-view{
   max-height:500rpx;
+}
+
+.delbtn{
+  position: absolute;
+  right:10rpx;
+  bottom:5rpx;
 }
 

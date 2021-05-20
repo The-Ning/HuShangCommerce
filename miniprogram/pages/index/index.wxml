@@ -57,7 +57,7 @@
     
   <!-- 地址显示区域 -->
  <view class='item-location' wx:if="{{item.location}}">
-    <image src='../../imgs/地址.png' class='location-img'></image>
+    <image src='https://z3.ax1x.com/2021/05/20/gT0lFK.png' class='location-img'></image>
     <text class='location-text'>{{item.location}}</text>
   </view>
 </view>
@@ -66,7 +66,7 @@
 <view class='item-footer'>
 
   <view class='item-footer-left'>
-    <image src='../../imgs/remark.png' class='remark' 
+    <image src='https://z3.ax1x.com/2021/05/20/gT0tOA.png' class='remark' 
     catchtap='remark' 
     data-item='{{item}}'
     ></image>
@@ -123,7 +123,7 @@
     
  <!-- 地址显示区域 -->
  <view class='item-location' wx:if="{{item.location}}">
-    <image src='../../imgs/地址.png' class='location-img'></image>
+    <image src='https://z3.ax1x.com/2021/05/20/gT0lFK.png' class='location-img'></image>
     <text class='location-text'>{{item.location}}</text>
   </view>
 </view>
@@ -134,7 +134,7 @@
 <view class='item-footer'>
 
   <view class='item-footer-left'>
-    <image src='../../imgs/remark.png' class='remark' 
+    <image src='https://z3.ax1x.com/2021/05/20/gT0tOA.png' class='remark' 
     catchtap='remark' 
     data-item='{{item}}'>
   </image>
@@ -191,7 +191,7 @@
     
   <!-- 地址显示区域 -->
   <view class='item-location' wx:if="{{item.location}}">
-    <image src='../../imgs/地址.png' class='location-img'></image>
+    <image src='https://z3.ax1x.com/2021/05/20/gT0lFK.png' class='location-img'></image>
     <text class='location-text'>{{item.location}}</text>
   </view>
 </view>
@@ -200,7 +200,7 @@
 <view class='item-footer'>
 
 <view class='item-footer-left'>
-  <image src='../../imgs/remark.png' class='remark' 
+  <image src='https://z3.ax1x.com/2021/05/20/gT0tOA.png' class='remark' 
   catchtap='remark' 
   data-item='{{item}}'>
   </image>

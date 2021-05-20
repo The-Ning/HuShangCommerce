@@ -2,7 +2,13 @@
   <view wx:if="{{mypublishArr}}">
     <view  wx:for='{{mypublishArr}}' wx:key='index' class='box-0' >
    <view class='item-header'>
-    
+    <van-icon name="delete-o"
+     class='delbtn' catchtap="deleteThis"
+     size='45rpx'
+      data-category='{{item.category}}'
+      data-_id='{{item._id}}'
+      data-index='{{index}}'
+      />
      <image src='{{item.userInfo.avatarUrl}}' class='avatar'></image>
      <view class='profile'>
      <text class='nickname'>{{item.userInfo.nickName}}</text>
@@ -34,7 +40,7 @@
     
   <!-- 地址显示区域 -->
  <view class='item-location' wx:if="{{item.location}}">
-    <image src='../../imgs/地址.png' class='location-img'></image>
+    <image src='https://z3.ax1x.com/2021/05/20/gT0lFK.png' class='location-img'></image>
     <text class='location-text'>{{item.location}}</text>
   </view>
 </view>
@@ -43,7 +49,7 @@
 <view class='item-footer'>
 
   <view class='item-footer-left'>
-    <image src='../../imgs/remark.png' class='remark' 
+    <image src='https://z3.ax1x.com/2021/05/20/gT0tOA.png' class='remark' 
     catchtap='remark' 
     data-item='{{item}}'
     ></image>
