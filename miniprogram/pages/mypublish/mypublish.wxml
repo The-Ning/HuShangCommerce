@@ -1,0 +1,64 @@
+<scroll-view scroll-y="true" class="scroll">
+  <view wx:if="{{mypublishArr}}">
+    <view  wx:for='{{mypublishArr}}' wx:key='index' class='box-0' >
+   <view class='item-header'>
+    
+     <image src='{{item.userInfo.avatarUrl}}' class='avatar'></image>
+     <view class='profile'>
+     <text class='nickname'>{{item.userInfo.nickName}}</text>
+     <text class='item-date'>{{item.date }}</text>
+    </view>
+   </view>
+  <view class='item-content'>
+
+    <text class='content-text'>{{item.title}}</text>
+
+    <view class='content-img'>
+        <van-image
+        wx:for="{{item.imgsrc}}"
+         wx:for-item='itemimg'
+        wx:key='index'
+        lazy-load
+        width='100%'
+        height='100%'
+  class='item-img'
+ catchtap='imgYulan'
+   data-list='{{item.imgsrc}}'
+    data-src='{{itemimg}}'
+  src="{{itemimg}}"
+   rel="external nofollow"  
+   fit='cover' 
+        />
+   
+    </view>
+    
+  <!-- 地址显示区域 -->
+ <view class='item-location' wx:if="{{item.location}}">
+    <image src='../../imgs/地址.png' class='location-img'></image>
+    <text class='location-text'>{{item.location}}</text>
+  </view>
+</view>
+ 
+<!-- 点赞和评论区域-->
+<view class='item-footer'>
+
+  <view class='item-footer-left'>
+    <image src='../../imgs/remark.png' class='remark' 
+    catchtap='remark' 
+    data-item='{{item}}'
+    ></image>
+    <text class='remarkload'>{{item.remarks.length}}</text>
+  </view>
+ <view class='item-footer-right'>
+  <image src='{{item.hasChange?favor_img:favor}}' class='like' bindtap='praiseThis' 
+  data-_id='{{item._id}}' data-index='{{index}}' data-list='list1' data-hasChange='{{item.hasChange}}'></image>
+  <text class='clickload1'>{{item.clickload}}</text>
+ </view>
+ 
+</view>
+ </view>
+  </view>
+ 
+
+ <view wx:else> 空空如也 </view>
+</scroll-view>

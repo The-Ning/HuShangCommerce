@@ -1,12 +1,15 @@
 /* pages/mine/mine.wxss */
-.user_info_wrap{
+#page{
+  padding:5rpx;
+}
+.user_img_wrap{
   height:45vh;
   overflow: hidden;
-  background-color:rgba(250, 154, 11, 0.884);
-  
+  position: relative;
 }
   .user_bg{
-   height:50vh;
+   height:45vh;
+   width:100%;
    filter:blur(10rpx);
   }
 
@@ -14,7 +17,7 @@
    position:absolute;
    left:50%;
    transform:translateX(-50%);
-   top:15%;
+   top:30%;
    text-align:center;
   }
   .user_icon{
@@ -24,65 +27,31 @@
   }
   .user_name{
     color:white;
-    margin-top:30rpx;
+    margin-top:10rpx;
     font-size:40rpx;
   }
+.user_login{
+ height:45vh;
+ position: relative;
+}
 .user_btn{
   position: absolute;
   left:50%;
   transform:translateX(-50%);
-  top:20%;
-  border:1rpx solid rgb(90, 74, 5);
-  color:rgb(128, 73, 0);
-  font-size:35rpx;
-  padding:30rpx;
-  border-radius: 40%;
+  top:40%;
+  text-align:center;
+  border-radius: 50%;
+  color:rgb(238, 216, 20);
+  background-color:rgb(240, 81, 18);
+  width:200rpx;
+  height:130rpx;
+  line-height: 130rpx;
 }
 .user_content{
   position:relative;
 }
-.user_main{
-  position:absolute;
-  width:80%;
-  left:10%;
-  transform:translateY(-50%);
-  top:20%;
-}
-.history_wrap{
-  background-color: rgb(255, 255, 255);
-  display:flex;
-}
-.navigator{
-  flex:1;
-  text-align: center;
-}
-.his_num{
-  color:#000;
-  text-align: center;
-  padding-left:5px;
-}
-.his_name{
-font-size:12px;
-text-align: center;
-padding-left:5px;
-}
+
 .app_info_wrap{
-  margin-top:30px;
-  background-color: #fff;
-  position: absolute;
-  width:80%;
-  left:10%;
+  margin-top:250rpx;
   transform:translateY(-50%);
-  top:65%;
 }
-.app_info_item{
-  padding:20rpx;
-  border-bottom:1rpx solid #ccc;
-  font-size: 12px;
-  
-}
-.app_small{
-    float: right;
-    font-size: 10px;
-    color:rgb(119, 115, 115);
-  }

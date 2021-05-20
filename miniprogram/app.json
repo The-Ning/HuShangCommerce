@@ -3,8 +3,9 @@
     "pages/mine/mine",
     "pages/index/index",
     "pages/remark/remark",
-    "pages/add/add"
-    
+    "pages/add/add",
+    "pages/author/author",
+    "pages/mypublish/mypublish"
   ],
   "window": {
     "backgroundTextStyle": "light",

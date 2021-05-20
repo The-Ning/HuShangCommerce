@@ -5,10 +5,12 @@ Page({
    * 页面的初始数据
    */
   data: {
-  userInfo:{}
+  userInfo:null,
+  openid:null
   },
 
   getUserProfile(){
+    let that = this;
     wx.getUserProfile({
       desc: '用于完善用户资料', // 声明获取用户个人信息后的用途，后续会展示在弹窗中，请谨慎填写
     }).then(res=>{
@@ -26,7 +28,10 @@ Page({
               code:res.code
             },
             success(result){
-             console.log(result)
+             console.log(that)
+             that.setData({
+               openid:result.data.openid
+             })
              wx.setStorageSync('openid', result.data.openid)
            
             }
@@ -45,14 +50,28 @@ Page({
   onLoad: function (options) {
     // 先从本地缓存找用户登录信息
     let userInfo = wx.getStorageSync('userInfo')
+    let openid = wx.getStorageSync('openid')
     if(userInfo){
       this.setData({
-        userInfo:userInfo
+        userInfo:userInfo,
+        openid:openid
       })
       console.log(userInfo)
     }
   },
-
+  mypublish(){
+    if(!this.data.userInfo ){
+      wx.showToast({
+        title: '请先登录',
+      })
+      return;
+    }
+    
+    // 已经登录
+    wx.navigateTo({
+      url: `../mypublish/mypublish?openid=${this.data.openid}`,
+    })
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

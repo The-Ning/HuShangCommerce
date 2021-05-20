@@ -1,5 +1,5 @@
 <!--pages/mine/mine.wxml-->
-
+<view id='page'> 
   <view wx:if="{{userInfo.nickName}}" class="user_img_wrap">
      <image class="user_bg" src="../../imgs/mine/bg.jpg"></image>
      <view class="user_info">
@@ -7,49 +7,19 @@
       <view class="user_name">{{userInfo.nickName}}</view>
      </view>
   </view>
-  <view wx:else class="user_btn">
-     <button bindtap='getUserProfile'>登录</button>
+  <view wx:else class="user_login">
+   <image class="user_bg" src="../../imgs/mine/bg.jpg"></image>
+     <button bindtap='getUserProfile' class='user_btn'>登录</button>
   </view>
-  <view class="user_content">
-     <view class="user_main">
-        <view class="history_wrap">
-            <navigator>
-               <view class="his_num">0</view>
-               <view class="his_name">收藏的文章</view>
-            </navigator>
-            <navigator>
-               <view class="his_num">0</view>
-               <view class="his_name">喜欢的人</view>
-            </navigator>
-            <navigator>
-               <view class="his_num">0</view>
-               <view class="his_name">关注的人</view>
-            </navigator>
-            <navigator>
-               <view class="his_num">0</view>
-               <view class="his_name">我的足迹</view>
-            </navigator>
-        </view>
-     </view>
-  </view>
+  
   <view class="app_info_wrap">
-     <view class="app_info_item">
-        <text>在线客服</text>
-        <text class="app_small">遇到问题了？马上联系我~></text>
-     </view>
-     <view class="app_info_item">
-      <text>意见反馈</text>
-      <text class="app_small">></text>
-     </view>
-     <view class="app_info_item">
-      <text>关于我们</text>
-      <text class="app_small">></text>
-   </view>
-     <view class="app_info_item">
-        <text>设置</text>
-      <text class="app_small">></text>
-     </view>
+   <van-cell title="我的发布" is-link icon="orders-o" bind:click='mypublish'/>
+   <van-cell title="我的收藏" is-link icon="star-o" bind:click='mycollect'/>
+   <van-cell title="在线客服" is-link icon="friends-o" url='../remark/remark'/>
+   <van-cell title="关于我们" is-link icon="fire-o" url='../author/author'/>
+    
   </view>
 
+</view>
 
                                                                                                                                                                                                  
