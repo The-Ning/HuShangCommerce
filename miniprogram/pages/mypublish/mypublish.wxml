@@ -67,5 +67,5 @@
   </view>
  
 
- <view wx:else> 空空如也 </view>
+ <view wx:else> <image src='https://z3.ax1x.com/2021/05/22/gLBtOS.jpg'></image> </view>
 </scroll-view>

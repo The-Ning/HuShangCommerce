@@ -16,6 +16,11 @@ Page({
     wx.setNavigationBarTitle({
       title:'美丽湖商'
     })
+    wx.setTabBarStyle({
+      color: 'black',
+      selectedColor: '#87CEFA',
+      borderStyle: 'white'
+    })
   },
 
   /**

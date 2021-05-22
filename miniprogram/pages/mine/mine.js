@@ -6,7 +6,9 @@ Page({
    */
   data: {
   userInfo:null,
-  openid:null
+  openid:null,
+  mypublishArr:[],
+  myclickload:0
   },
 
   getUserProfile(){
@@ -48,6 +50,11 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    wx.setTabBarStyle({
+      color: 'black',
+      selectedColor: '#87CEFA',
+      borderStyle: 'white'
+    })
     // 先从本地缓存找用户登录信息
     let userInfo = wx.getStorageSync('userInfo')
     let openid = wx.getStorageSync('openid')
@@ -58,7 +65,52 @@ Page({
       })
       console.log(userInfo)
     }
+    this.queryMypublish()
+    // 获取我的获赞量
+    setTimeout(()=>{
+      let myclickload = 0;
+      this.data.mypublishArr.forEach((item)=>{
+        myclickload += item.clickload;
+      })
+      this.setData({
+        myclickload:myclickload
+      })
+    },1200)
+    
   },
+
+  queryMypublish(){
+    // 若缓存里有
+    const mypublishArr = wx.getStorageSync('mypublish')
+    if(mypublishArr){
+      this.setData({
+        mypublishArr:mypublishArr
+      })
+      return
+    }
+// 查询用户自己的发布
+const arr = ['love','findItem','campus']
+const result = []
+ arr.forEach(item=>{
+  wx.cloud.callFunction({
+    name:'mypublish',
+    data:{
+      openid:this.data.openid, 
+      category:item
+    }
+  }).then(res=>{
+    result.push(...res.result)
+    this.setData({
+      mypublishArr:result
+    })
+    wx.setStorageSync('mypublish', result)
+  }).catch(reason=>{
+    console.log(reason)
+  })
+ })
+  },
+
+
   mypublish(){
     if(!this.data.userInfo ){
       wx.showToast({
@@ -69,7 +121,7 @@ Page({
     
     // 已经登录
     wx.navigateTo({
-      url: `../mypublish/mypublish`,
+      url: `../mypublish/mypublish?mypublishArr=${JSON.stringify(this.data.mypublishArr)}`,
     })
   },
   /**

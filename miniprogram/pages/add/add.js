@@ -6,6 +6,8 @@ Page({
    */
   data: {
     userInfo:null,
+    content:'',
+    title:'',
     openid:null,
     checked:false,
     //字数限制
@@ -21,6 +23,11 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    wx.setTabBarStyle({
+      color: 'black',
+      selectedColor: '#87CEFA',
+      borderStyle: 'white'
+    })
     const userInfo = wx.getStorageSync('userInfo')
     const openid = wx.getStorageSync('openid')
     if(userInfo instanceof Object && openid !=null){
@@ -29,6 +36,7 @@ Page({
         openid
       })
     }
+
   },
  
   limitWord:function(e){
@@ -118,28 +126,16 @@ Page({
         console.log('插入成功',res)
         console.log(event.detail.value)
         wx.hideLoading().then(res1=>{
-          if(event.detail.value.category == 'love'){
-            let list1 = wx.getStorageSync('list1')
-            list1.unshift(res.result)
-            wx.setStorageSync('list1', list1)
-          }
-          else if(event.detail.value.category == 'findItem'){
-            let list2 = wx.getStorageSync('list2')
-            list2.unshift(res.result)
-            wx.setStorageSync('list2', list2)
-          }
-          else{
-            let list2 = wx.getStorageSync('list3')
-            list2.unshift(res.result)
-            wx.setStorageSync('list3', list3)
-          }
+          
            wx.showToast({
              title: '发布成功',
              icon:'success'
            })
            // 清除发布页面的数据
            this.setData({
-            fileList:[]
+            fileList:[],
+            title:'',
+            content:''
            })
            
         })
@@ -163,7 +159,10 @@ Page({
           icon:'success'
         })
         // 清除发布页面的数据
-      this.onLoad();
+      this.setData({
+        title:'',
+        content:''
+      })
      })
    
    })

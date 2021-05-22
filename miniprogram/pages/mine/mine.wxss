@@ -54,4 +54,39 @@
 .app_info_wrap{
   margin-top:250rpx;
   transform:translateY(-50%);
+  width:98%;
+  margin-left:1%;
+  border-radius: 10rpx;
+  box-shadow: 10rpx 10rpx 5rpx rgb(248, 246, 246);
+}
+
+.van-cell::before{
+  content:'';
+  display:block;
+  width:25rpx;
+}
+
+#numdisplay{
+  width:98%;
+  height:150rpx;
+  margin-left:1%;
+  position: relative;
+  top:10rpx;
+  display:flex;
+  justify-content: space-between;
+  box-shadow: 10rpx 10rpx 5rpx rgb(248, 246, 246);
+  border-radius: 10rpx;
+}
+
+#numdisplay>view{
+  flex:1;
+  box-sizing: border-box;
+  text-align: center;
+  display:flex;
+  flex-direction: column;
+  
+}
+#numdisplay>view text{
+  font-size:35rpx;
+  margin-top: 15rpx;
 }

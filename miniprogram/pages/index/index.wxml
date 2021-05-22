@@ -33,7 +33,7 @@
     </view>
    </view>
   <view class='item-content'>
-
+    
     <text class='content-text'>{{item.title}}</text>
 
     <view class='content-img'>
@@ -80,7 +80,7 @@
  
 </view>
  </view>
-
+<view class='deadline'>我也是有底线的~</view>
 </scroll-view>
 
  </swiper-item>
@@ -148,7 +148,7 @@
  
 </view>
  </view>
-
+ <view class='deadline'>我也是有底线的~</view>
 </scroll-view>
 
   
@@ -216,8 +216,9 @@ data-_id='{{item._id}}' data-index='{{index}}' data-list='list3' data-hasChange=
 </view>
 
 
-
+<view class='deadline'>我也是有底线的~</view>
 </scroll-view>
+
  </swiper-item>
   
  </swiper>

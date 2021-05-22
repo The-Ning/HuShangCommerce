@@ -27,6 +27,8 @@
   </swiper>
 
 <view id='profile'>
-  
+  <view class=''>
+    每位同学都可以在本小程序上发布自己的心事
+  </view>
 </view>
 </view>

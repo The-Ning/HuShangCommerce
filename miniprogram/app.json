@@ -1,20 +1,21 @@
 {
   "pages": [
-    "pages/index/index",
     "pages/mine/mine",
+    "pages/index/index",
+   
     "pages/remark/remark",
     "pages/add/add",
     "pages/author/author",
     "pages/mypublish/mypublish"
   ],
   "window": {
-    "backgroundTextStyle": "light",
+    "backgroundTextStyle": "dark",
     "navigationBarBackgroundColor": "#F5F5F5",
     "navigationBarTitleText": "畅所欲言在湖商",
-    "navigationBarTextStyle": "black"
+    "navigationBarTextStyle": "black",
+    "enablePullDownRefresh": true
   },
   "tabBar": {
-    "custom": true,
     "list": [
       {
         "pagePath": "pages/index/index",

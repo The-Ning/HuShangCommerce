@@ -44,29 +44,42 @@ favor: "https://z3.ax1x.com/2021/05/20/gT0kJU.png"
 
     // 登录信息判断函数
     isLogin(){
-     return this.data.openid != '' && this.data.userInfo != ''
+     return this.data.openid != null && this.data.userInfo != null
     },
     // 增加评论函数
      remark(e){
-       let item = JSON.stringify(e.target.dataset.item)
-       wx.navigateTo({
-         url: '../remark/remark?item='+item,
-       }).then(res=>{
-         console.log(res);
-       }).catch(reason=>{
-         console.log(reason)
-       })
-     },
-    swiperChange: function (e) {
-     
-     
-    this.setData({
-     
-    currentTab: e.detail.current,
-     
-    })
-     
-     
+       if(!this.isLogin()){
+        wx.showModal({
+          title:'登录提示',
+          content:'您还没登录哦~',
+          cancelText:'不了~',
+          confirmText:'登录~',
+          success:res=>{
+           if (res.confirm) {
+            wx.switchTab({
+              url: '../mine/mine',
+            })
+           }
+         }
+      })
+       }
+      else{
+        let item = JSON.stringify(e.target.dataset.item)
+        wx.navigateTo({
+          url: '../remark/remark?item='+item,
+        }).then(res=>{
+          console.log(res);
+        }).catch(reason=>{
+          console.log(reason)
+        })
+      }
+    },
+
+
+     swiperChange: function (e) {
+     this.setData({
+     currentTab: e.detail.current,
+     }) 
     },
     
     // 预览图片事件函数
@@ -92,6 +105,11 @@ favor: "https://z3.ax1x.com/2021/05/20/gT0kJU.png"
        userInfo:userInfo
      })
    }
+   wx.setTabBarStyle({
+    color: 'black',
+    selectedColor: '#87CEFA',
+    borderStyle: 'white'
+  })
    // 初始化 本地点赞判断 对象
    // 保存点赞状态
     let likeCollection = wx.getStorageSync('likeCollection');
@@ -133,7 +151,8 @@ this.uploadList(2,'list3')
   },
   // 点赞函数
   praiseThis(e){
-    if(this.isLogin()){
+    console.log(this.isLogin())
+   if(this.isLogin()){
       var that = this;
       let list = e.currentTarget.dataset.list;
       let index = e.currentTarget.dataset.index;
@@ -211,10 +230,21 @@ this.uploadList(2,'list3')
     }
     
     else{
-      
-    }
+      wx.showModal({
+        title:'登录提示',
+        content:'您还没登录哦~',
+        cancelText:'不了~',
+        confirmText:'登录~',
+        success:res=>{
+         if (res.confirm) {
+          wx.switchTab({
+            url: '../mine/mine',
+          })
+         }
+       }
+    })
+  }
   },
-
  // 数据加载函数
  // list 需要渲染的列表
  // index 索引
@@ -288,6 +318,7 @@ this.uploadList(2,'list3')
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
+   
     const userInfo = wx.getStorageSync('userInfo')
     const openid = wx.getStorageSync('openid')
     if(userInfo instanceof Object && openid !==null){
@@ -376,6 +407,16 @@ console.log(reason)
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
+   this.onShow();
+   setTimeout(()=>{
+    wx.stopPullDownRefresh({
+      success: (res) => {
+        wx.showToast({
+          title: '刷新成功',
+        })
+      },
+    })
+   },1000)
   
   },
   

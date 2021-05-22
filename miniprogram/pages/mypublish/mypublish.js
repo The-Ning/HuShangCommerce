@@ -17,41 +17,21 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    wx.setTabBarStyle({
+      color: 'black',
+      selectedColor: '#87CEFA',
+      borderStyle: 'white'
+    })
     wx.setNavigationBarTitle({
       title: '我的发布',
     })
-    Toast.loading({
-      message: '加载中...',
-      forbidClick: true,
-    });
   this.setData({
     openid:wx.getStorageSync('openid'),
-    userInfo:wx.getStorageSync('userInfo')
+    userInfo:wx.getStorageSync('userInfo'),
+    mypublishArr:JSON.parse(options.mypublishArr)
   })
-
-  // 查询用户自己的发布
-  const arr = ['love','findItem','campus']
-  const result = []
-   arr.forEach(item=>{
-    wx.cloud.callFunction({
-      name:'mypublish',
-      data:{
-        openid:this.data.openid, 
-        category:item
-      }
-    }).then(res=>{
-      Toast.clear
-      result.push(...res.result)
-      this.setData({
-        mypublishArr:result
-      })
-      
-    }).catch(reason=>{
-      console.log(reason)
-    })
-   })
-    
   },
+
   deleteThis(e){
     console.log(e)
   wx.showModal({
@@ -70,11 +50,26 @@ Page({
           }
         }).then(res1=>{
           this.data.mypublishArr.splice(e.currentTarget.dataset.index,1)
+          // 删除我的发布，缓存中对应值
+          let mypublish = wx.getStorageSync('mypublish')
+          mypublish.forEach((item,index)=>{
+            if(item._id == e.currentTarget.dataset._id){
+              mypublish.splice(index,1)
+              return
+            }
+          })
+          wx.setStorage({
+            data: mypublish,
+            key: 'mypublish',
+          })
+          // 获取点赞缓存，删除对应的点赞信息
+          let likeCollection = wx.getStorageSync('likeCollection')
           if(e.currentTarget.dataset.category == 'love'){
             let list1 = wx.getStorageSync('list1')
             list1.forEach((item,index)=>{
               if(item._id == e.currentTarget.dataset._id){
                 list1.splice(index,1)
+               delete likeCollection[`list1-${item._id}`]
                 wx.setStorage({
                   data: list1,
                   key: 'list1',
@@ -83,11 +78,12 @@ Page({
               }
             }) 
           }
-          if(e.currentTarget.dataset.category == 'findItem'){
+         else if(e.currentTarget.dataset.category == 'findItem'){
             let list2 = wx.getStorageSync('list2')
             list2.forEach((item,index)=>{
               if(item._id == e.currentTarget.dataset._id){
                 list2.splice(index,1)
+                delete likeCollection[`list1-${item._id}`]
                 wx.setStorage({
                   data: list2,
                   key: 'list2',
@@ -96,11 +92,12 @@ Page({
               }
             }) 
           }
-          if(e.currentTarget.dataset.category == 'campus'){
+        else  if(e.currentTarget.dataset.category == 'campus'){
             let list3 = wx.getStorageSync('list3')
             list3.forEach((item,index)=>{
               if(item._id == e.currentTarget.dataset._id){
                 list3.splice(index,1)
+                delete likeCollection[`list1-${item._id}`]
                 wx.setStorage({
                   data: list3,
                   key: 'list3',
@@ -109,6 +106,10 @@ Page({
               }
             }) 
           }
+          wx.setStorage({
+            data: likeCollection,
+            key: 'likeCollection',
+          })
           this.setData({
             mypublishArr:this.data.mypublishArr
           })

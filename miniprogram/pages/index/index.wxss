@@ -30,11 +30,12 @@
    
    
   .swiper {
-  background: #dfdfdf;
+  
   height: calc(100vh - 50px);
+  
   }
   .scroll{
-    height: 80vh;
+    height: 100%;
   }
   .on {
    
@@ -47,11 +48,14 @@
 
 
   .box-0{
-    width:100%;
+    width:98%;
+    margin-left:1%;
    margin-top: 15rpx;
     display:flex;
     flex-direction: column;
     background-color:white;
+    border-radius: 15rpx;
+    box-shadow: 10rpx 10rpx 5rpx rgb(248, 246, 246);
   }
   .item-header{
    
@@ -103,7 +107,7 @@
     flex-wrap: wrap;
     justify-content: space-between;
     align-items: center;
-    box-shadow: 10rpx 10rpx 5rpx rgb(248, 246, 246);
+    
   }
   .content-img:after{
     content:'';
@@ -178,6 +182,15 @@ justify-content: center;
     line-height: 45rpx;
     font-size:27rpx;
     color:rgb(129, 127, 127);
+  }
+
+  .deadline{
+    margin-bottom: 10rpx;
+    text-align: center;
+    height:50rpx;
+    font-size:30rpx;
+    line-height: 50rpx;
+    color:rgb(13, 191, 245);
   }
   
   
