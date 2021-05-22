@@ -1,6 +1,7 @@
 // miniprogram/pages/remark/remark.js
+import Notify from '../../miniprogram_npm/@vant/weapp/notify/notify';
 Page({
-
+  
   /**
    * 页面的初始数据
    */
@@ -25,7 +26,7 @@ Page({
       openid:wx.getStorageSync('openid'),
       myUserInfo:wx.getStorageSync('userInfo')
     })
-    console.log(this.data.openid);
+    console.log(this.data.information);
   },
   remarkContent(e){
     this.setData({
@@ -61,14 +62,42 @@ handleRemarkResult(category){
         content:this.data.remarkContent,
         remarkTime:this.getNow(),
         nickName:this.data.myUserInfo.nickName,
-        avatarUrl:this.data.myUserInfo.avatarUrl    
+        avatarUrl:this.data.myUserInfo.avatarUrl,
+        remarkId:this.data.openid + Date.now()
     }
   }).then(res=>{
     console.log(res)
     this.data.information.remarks = res.result
     this.setData({
+      information:this.data.information,
+      remarkContent:''
+    })
+    Notify({ type: 'success',
+     message: '吐槽成功！',
+     duration:1500
+    });
+  }).catch(reason=>{
+    console.log(reason)
+  })
+},
+
+// 删除评论函数
+deleteThis(e){
+  console.log(e)
+  console.log(e.currentTarget.dataset.remarkid)
+  wx.cloud.callFunction({
+    name:'deleteRemark',
+    data:{
+      category:e.currentTarget.dataset.category,
+      _id:e.currentTarget.dataset._id,
+      remarkId:e.currentTarget.dataset.remarkid
+    }
+  }).then(res=>{
+    this.data.information.remarks.splice(e.currentTarget.dataset.index,1)
+    this.setData({
       information:this.data.information
     })
+    console.log(res)
   }).catch(reason=>{
     console.log(reason)
   })

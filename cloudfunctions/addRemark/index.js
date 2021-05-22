@@ -12,11 +12,12 @@ exports.main = async (event) => {
     let avatarUrl = event.avatarUrl
     let id = event.id
     let category = event.category
+    let remarkId = event.remarkId
     return await db.collection(category).doc(id)
     .update({
         data:{
             remarks:_.push({
-                each:[{openid,content,remarkTime,nickName,avatarUrl}]
+                each:[{openid,content,remarkTime,nickName,avatarUrl,remarkId}]
         })
         }
     }).then(res=>{

@@ -1,4 +1,7 @@
 <view id='page'>
+  <van-notify id="van-notify"/>
+  
+  <scroll-view scroll-y="true">
   <text class='title'>{{information.title}}</text>
   <view class='item-header'>
     <van-image src='{{information.userInfo.avatarUrl}}'
@@ -47,23 +50,17 @@ fit='cover'
 
 <!-- 评论展示区 -->
 <view id='remark-box'>
-  <scroll-view scroll-y="true">
-    <view wx:for="{{information.remarks}}" wx:key='index' class='remark-item'>
-      <van-icon name="delete-o"
-      wx:if='{{information.openid == item.openid}}'
-     class='delbtn' catchtap="deleteThis"
-     size='40rpx'
-      data-category='{{item.category}}'
-      data-_id='{{item._id}}'
-      data-index='{{index}}'
-      />
+ 
+    <view wx:for="{{information.remarks}}" wx:key='index' class='remark-item' wx:for-item='item'>
+      
       <van-icon name='delete-o'
-      wx:else="{{item.openid == openid}}"
+      wx:if="{{item.openid == openid || information.openid == item.openid}}"
       class='delbtn' catchtap="deleteThis"
      size='40rpx'
-      data-category='{{item.category}}'
-      data-_id='{{item._id}}'
+      data-category='{{information.category}}'
+      data-_id='{{information._id}}'
       data-index='{{index}}'
+      data-remarkId='{{item.remarkId}}'
       />
     <image src='{{item.avatarUrl}}' class='remark-avatar'></image>
     <text class='remark-lou'>第{{index+1}}楼</text>
@@ -75,10 +72,10 @@ fit='cover'
   </view>
   
 </view>
-  </scroll-view>
+  
   
 </view>
-
+</scroll-view>
 <!-- 评论输入区域 -->
 <van-cell-group>
   <van-field

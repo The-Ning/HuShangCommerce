@@ -150,7 +150,7 @@ van-cell-group{
 }
 
 scroll-view{
-  max-height:500rpx;
+  height:calc(100vh - 100rpx);
 }
 
 .delbtn{

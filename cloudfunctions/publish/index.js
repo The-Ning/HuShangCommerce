@@ -9,7 +9,8 @@ exports.main = async (event, context) => {
    openid:event.openid,
    avatarUrl:event.userInfo.avatarUrl,
    nickName:event.userInfo.nickName,
-   content:'楼主镇楼！！！'
+   content:'楼主镇楼！！！',
+   remarkId:event.openid+ Date.now()
 }
  return await  db.collection(event.category).add({
      data:event
