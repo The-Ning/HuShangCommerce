@@ -1,4 +1,4 @@
-// miniprogram/pages/mypublish/mypublish.js
+import Toast from '../../miniprogram_npm/@vant/weapp//toast/toast';
 Page({
 
   /**
@@ -20,9 +20,12 @@ Page({
     wx.setNavigationBarTitle({
       title: '我的发布',
     })
-  console.log(options)
+    Toast.loading({
+      message: '加载中...',
+      forbidClick: true,
+    });
   this.setData({
-    openid:options.openid,
+    openid:wx.getStorageSync('openid'),
     userInfo:wx.getStorageSync('userInfo')
   })
 
@@ -37,10 +40,12 @@ Page({
         category:item
       }
     }).then(res=>{
+      Toast.clear
       result.push(...res.result)
       this.setData({
         mypublishArr:result
       })
+      
     }).catch(reason=>{
       console.log(reason)
     })
@@ -65,6 +70,45 @@ Page({
           }
         }).then(res1=>{
           this.data.mypublishArr.splice(e.currentTarget.dataset.index,1)
+          if(e.currentTarget.dataset.category == 'love'){
+            let list1 = wx.getStorageSync('list1')
+            list1.forEach((item,index)=>{
+              if(item._id == e.currentTarget.dataset._id){
+                list1.splice(index,1)
+                wx.setStorage({
+                  data: list1,
+                  key: 'list1',
+                })
+                return
+              }
+            }) 
+          }
+          if(e.currentTarget.dataset.category == 'findItem'){
+            let list2 = wx.getStorageSync('list2')
+            list2.forEach((item,index)=>{
+              if(item._id == e.currentTarget.dataset._id){
+                list2.splice(index,1)
+                wx.setStorage({
+                  data: list2,
+                  key: 'list2',
+                })
+                return
+              }
+            }) 
+          }
+          if(e.currentTarget.dataset.category == 'campus'){
+            let list3 = wx.getStorageSync('list3')
+            list3.forEach((item,index)=>{
+              if(item._id == e.currentTarget.dataset._id){
+                list3.splice(index,1)
+                wx.setStorage({
+                  data: list3,
+                  key: 'list3',
+                })
+                return
+              }
+            }) 
+          }
           this.setData({
             mypublishArr:this.data.mypublishArr
           })

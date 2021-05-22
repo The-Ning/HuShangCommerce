@@ -69,7 +69,7 @@ Page({
     
     // 已经登录
     wx.navigateTo({
-      url: `../mypublish/mypublish?openid=${this.data.openid}`,
+      url: `../mypublish/mypublish`,
     })
   },
   /**

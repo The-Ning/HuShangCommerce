@@ -41,6 +41,11 @@ favor: "https://z3.ax1x.com/2021/05/20/gT0kJU.png"
     }
      
     },
+
+    // 登录信息判断函数
+    isLogin(){
+     return this.data.openid != '' && this.data.userInfo != ''
+    },
     // 增加评论函数
      remark(e){
        let item = JSON.stringify(e.target.dataset.item)
@@ -128,80 +133,86 @@ this.uploadList(2,'list3')
   },
   // 点赞函数
   praiseThis(e){
-    var that = this;
-    let list = e.currentTarget.dataset.list;
-    let index = e.currentTarget.dataset.index;
-    let _id = e.currentTarget.dataset._id;
-    let hasChange = !(this.data[list][index].hasChange);
-      // 当前点击的赞的情况取反
-      console.log('当前点击的赞'+hasChange)
-   // 判断本地用户是否点赞了该文章
-    wx.getStorage({
-     key: 'likeCollection',
-     success:(res)=>{
-      let details = res.data;
-      console.log('缓存里的值:'+details[list+'-'+_id])
-      var onum = parseInt(that.data[list][index].clickload);
-      if(details[list+'-'+_id]){  // 如果点赞过
-         that.data[list][index].clickload = (onum - 1);
-         that.data[list][index].hasChange = false;
-      }
-        else {
-         that.data[list][index].clickload = (onum + 1);
-         that.data[list][index].hasChange = true;
-       } 
-       wx.getStorage({
-         key: 'likeCollection',
-         success:datas=>{
-           let obj = datas.data;
-           obj[list+'-'+_id] = that.data[list][index].hasChange
-           wx.setStorage({
-             data: obj,
-             key: 'likeCollection',
-             success:res=>{
-               
-               console.log('缓存成功')
-             },
-             fail:reason=>console.log(reason)
-           })
-         }
-       })
-       if(list === 'list1'){
-       this.setData({
-        list1: that.data[list],
-        category:'love'
-       })
-       }
-       else if(list === 'list2'){
+    if(this.isLogin()){
+      var that = this;
+      let list = e.currentTarget.dataset.list;
+      let index = e.currentTarget.dataset.index;
+      let _id = e.currentTarget.dataset._id;
+      let hasChange = !(this.data[list][index].hasChange);
+        // 当前点击的赞的情况取反
+        console.log('当前点击的赞'+hasChange)
+     // 判断本地用户是否点赞了该文章
+      wx.getStorage({
+       key: 'likeCollection',
+       success:(res)=>{
+        let details = res.data;
+        console.log('缓存里的值:'+details[list+'-'+_id])
+        var onum = parseInt(that.data[list][index].clickload);
+        if(details[list+'-'+_id]){  // 如果点赞过
+           that.data[list][index].clickload = (onum - 1);
+           that.data[list][index].hasChange = false;
+        }
+          else {
+           that.data[list][index].clickload = (onum + 1);
+           that.data[list][index].hasChange = true;
+         } 
+         wx.getStorage({
+           key: 'likeCollection',
+           success:datas=>{
+             let obj = datas.data;
+             obj[list+'-'+_id] = that.data[list][index].hasChange
+             wx.setStorage({
+               data: obj,
+               key: 'likeCollection',
+               success:res=>{
+                 
+                 console.log('缓存成功')
+               },
+               fail:reason=>console.log(reason)
+             })
+           }
+         })
+         if(list === 'list1'){
          this.setData({
-           list2: that.data[list],
-           category:'findItem'
-          })
+          list1: that.data[list],
+          category:'love'
+         })
+         }
+         else if(list === 'list2'){
+           this.setData({
+             list2: that.data[list],
+             category:'findItem'
+            })
+       
+         }
+         else if(list === 'list3'){
+           this.setData({
+             list3: that.data[list],
+             category:'campus'
+            })
+         }
+         wx.cloud.callFunction({
+           name:'pariseThis',
+           data:{
+             _id:_id,  //文章id
+             likeOr:that.data[list][index].hasChange,
+             category:this.data.category
+           }
+         }).then(res=>{
+           console.log(res.result)
+          // 动态更新赞量
      
+         }).catch(reason=>{
+           console.log(reason)
+         });
        }
-       else if(list === 'list3'){
-         this.setData({
-           list3: that.data[list],
-           category:'campus'
-          })
-       }
-       wx.cloud.callFunction({
-         name:'pariseThis',
-         data:{
-           _id:_id,  //文章id
-           likeOr:that.data[list][index].hasChange,
-           category:this.data.category
-         }
-       }).then(res=>{
-         console.log(res.result)
-        // 动态更新赞量
-   
-       }).catch(reason=>{
-         console.log(reason)
-       });
-     }
-   })
-   
+     })
+     
+    }
+    
+    else{
+      
+    }
   },
 
  // 数据加载函数
@@ -304,6 +315,10 @@ wx.cloud.callFunction({
   this.setData({
     list1:this.data.list1
   })
+  wx.setStorage({
+    data: res.result.data,
+    key: 'list1',
+  })
 }).catch(reason=>{
   console.log(reason)
 })
@@ -323,6 +338,10 @@ wx.cloud.callFunction({
   })
   this.setData({
     list2:this.data.list2
+  })
+  wx.setStorage({
+    data: res.result.data,
+    key: 'list2',
   })
 }).catch(reason=>{
   console.log(reason)
@@ -344,6 +363,10 @@ this.data.list3.forEach((item,index)=>{
 this.setData({
   list3:this.data.list3
 })
+wx.setStorage({
+  data: res.result.data,
+  key: 'list3',
+})
 }).catch(reason=>{
 console.log(reason)
 })
@@ -353,7 +376,7 @@ console.log(reason)
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-   
+  
   },
   
 

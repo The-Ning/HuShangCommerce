@@ -1,5 +1,6 @@
 <scroll-view scroll-y="true" class="scroll">
-  <view wx:if="{{mypublishArr}}">
+  <van-toast id="van-toast" />
+  <view wx:if="{{mypublishArr.length}}">
     <view  wx:for='{{mypublishArr}}' wx:key='index' class='box-0' >
    <view class='item-header'>
     <van-icon name="delete-o"

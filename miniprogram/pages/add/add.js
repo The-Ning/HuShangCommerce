@@ -118,6 +118,21 @@ Page({
         console.log('插入成功',res)
         console.log(event.detail.value)
         wx.hideLoading().then(res1=>{
+          if(event.detail.value.category == 'love'){
+            let list1 = wx.getStorageSync('list1')
+            list1.unshift(res.result)
+            wx.setStorageSync('list1', list1)
+          }
+          else if(event.detail.value.category == 'findItem'){
+            let list2 = wx.getStorageSync('list2')
+            list2.unshift(res.result)
+            wx.setStorageSync('list2', list2)
+          }
+          else{
+            let list2 = wx.getStorageSync('list3')
+            list2.unshift(res.result)
+            wx.setStorageSync('list3', list3)
+          }
            wx.showToast({
              title: '发布成功',
              icon:'success'
@@ -126,7 +141,7 @@ Page({
            this.setData({
             fileList:[]
            })
-           this.onLoad();
+           
         })
        
       })

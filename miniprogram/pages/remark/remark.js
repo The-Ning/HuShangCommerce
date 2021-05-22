@@ -67,15 +67,16 @@ handleRemarkResult(category){
     }
   }).then(res=>{
     console.log(res)
+    Notify({ type: 'success',
+     message: '吐槽成功！',
+     duration:1500
+    });
     this.data.information.remarks = res.result
     this.setData({
       information:this.data.information,
       remarkContent:''
     })
-    Notify({ type: 'success',
-     message: '吐槽成功！',
-     duration:1500
-    });
+    
   }).catch(reason=>{
     console.log(reason)
   })
