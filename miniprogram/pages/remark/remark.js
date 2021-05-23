@@ -12,7 +12,7 @@ Page({
     userInfo:{},
     remarkContent:'',
     myUserInfo:null,
-    isLouzhu:false
+    isLouzhu:true
   },
 
   /**
@@ -20,13 +20,15 @@ Page({
    */
   onLoad: function (options) {
     const information = JSON.parse(options.item);
+    let openid = wx.getStorageSync('openid');
+    let userInfo = wx.getStorageSync('userInfo');
     this.setData({
       information:information,
       remarkArr:information.remarks,
       userInfo:information.userInfo,
-      openid:wx.getStorageSync('openid'),
-      myUserInfo:wx.getStorageSync('userInfo'),
-      isLouzhu:this.data.openid == information.openid
+      openid:openid,
+      myUserInfo:userInfo,
+      isLouzhu:openid == information.openid
     })
     console.log(this.data.information);
   },

@@ -54,7 +54,7 @@ fit='cover'
     <view wx:for="{{information.remarks}}" wx:key='index' class='remark-item' wx:for-item='item'>
       
       <van-icon name='delete-o'
-      wx:if="{{item.openid == openid || isLouzhu}}"
+      wx:if="{{isLouzhu || item.openid == openid}}"
       class='delbtn' catchtap="deleteThis"
      size='40rpx'
       data-category='{{information.category}}'

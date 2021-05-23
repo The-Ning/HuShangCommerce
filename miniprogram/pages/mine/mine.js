@@ -74,7 +74,6 @@ Page({
         let myclickload = 0;
         this.data.mypublishArr.forEach((item)=>{
           myclickload += item.clickload;
-          console.log(item)
         })
         this.setData({
           myclickload:myclickload
@@ -132,12 +131,17 @@ const result = []
     let date = `${month}/${day}`
 
     const history = wx.getStorageSync('history')
-    if(!history.length || history[0].day != date)
+    if(history == null || history[0].day != date)
     wx.request({
       url: `https://v.juhe.cn/todayOnhistory/queryEvent.php?key=bb8c674099eb6f0e4250a91aca42dc07&date=${date}`,
       success:function(res){
        console.log(res.data.result)
-       wx.setStorageSync('history', res.data.result)
+       if(res.data.result != null){
+        wx.setStorageSync('history', res.data.result)
+       }
+      },
+      fail:function(reason){
+        console.log(reason)
       }
     })
 
