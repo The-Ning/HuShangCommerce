@@ -135,7 +135,9 @@ Page({
            this.setData({
             fileList:[],
             title:'',
-            content:''
+            content:'',
+            checked:false,
+            location:null
            })
            
         })
@@ -161,7 +163,9 @@ Page({
         // 清除发布页面的数据
       this.setData({
         title:'',
-        content:''
+        content:'',
+        checked:false,
+        location:null
       })
      })
    
@@ -191,7 +195,7 @@ onInputLocation(e){
    checked:!this.data.checked
  })
  if(this.data.checked){
-  wx.chooseLocation({})
+  wx.chooseLocation()
   .then(res=>{
     console.log(res)
     this.setData({
@@ -207,7 +211,8 @@ onInputLocation(e){
  // 取消了勾选位置
  else{
    this.setData({
-     location:null
+     location:null,
+     checked:false
    })
  }
 },

@@ -11,7 +11,8 @@ Page({
     openid:null,
     userInfo:{},
     remarkContent:'',
-    myUserInfo:null
+    myUserInfo:null,
+    isLouzhu:false
   },
 
   /**
@@ -24,7 +25,8 @@ Page({
       remarkArr:information.remarks,
       userInfo:information.userInfo,
       openid:wx.getStorageSync('openid'),
-      myUserInfo:wx.getStorageSync('userInfo')
+      myUserInfo:wx.getStorageSync('userInfo'),
+      isLouzhu:this.data.openid == information.openid
     })
     console.log(this.data.information);
   },
