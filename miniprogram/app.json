@@ -1,12 +1,13 @@
 {
   "pages": [
     "pages/mine/mine",
+    "pages/history/history",
     "pages/index/index",
-   
     "pages/remark/remark",
     "pages/add/add",
     "pages/author/author",
     "pages/mypublish/mypublish"
+   
   ],
   "window": {
     "backgroundTextStyle": "dark",

@@ -28,7 +28,7 @@
   </view>
   <view class="app_info_wrap">
    <van-cell title="我的发布" is-link icon="orders-o" bind:click='mypublish' class='van-cell'/>
-   <van-cell title="那年今日" is-link icon="star-o" bind:click='mycollect' class='van-cell'/>
+   <van-cell title="那年今日" is-link icon="star-o" bind:click='history' class='van-cell'/>
    <van-cell title="在线客服" is-link icon="friends-o" url='../remark/remark' class='van-cell'/>
    <van-cell title="关于我们" is-link icon="fire-o" url='../author/author' class='van-cell'/>
     

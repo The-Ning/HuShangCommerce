@@ -63,7 +63,6 @@ Page({
         userInfo:userInfo,
         openid:openid
       })
-      console.log(userInfo)
     }
     this.queryMypublish()
     // 获取我的获赞量
@@ -122,6 +121,28 @@ const result = []
     // 已经登录
     wx.navigateTo({
       url: `../mypublish/mypublish?mypublishArr=${JSON.stringify(this.data.mypublishArr)}`,
+    })
+  },
+
+  history(){
+    let now = new Date();
+    let year = now.getFullYear();
+    let month = parseInt(now.getMonth()+1);
+    let day = now.getDate();
+    let date = `${month}/${day}`
+
+    const history = wx.getStorageSync('history')
+    if(!history.length || history[0].day != date)
+    wx.request({
+      url: `https://v.juhe.cn/todayOnhistory/queryEvent.php?key=bb8c674099eb6f0e4250a91aca42dc07&date=${date}`,
+      success:function(res){
+       console.log(res.data.result)
+       wx.setStorageSync('history', res.data.result)
+      }
+    })
+
+    wx.navigateTo({
+      url: `../history/history?date=${year}-${month}-${day}&showdate=${month}月${day}日`
     })
   },
   /**
