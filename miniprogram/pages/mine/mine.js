@@ -36,7 +36,10 @@ Page({
                openid:result.data.openid
              })
              wx.setStorageSync('openid', result.data.openid)
-            that.onLoad()
+             setTimeout(()=>{
+              that.onLoad()
+             },500)
+            
             }
           })
         }else{
