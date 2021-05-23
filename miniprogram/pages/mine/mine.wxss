@@ -1,6 +1,7 @@
 /* pages/mine/mine.wxss */
 #page{
   padding:5rpx;
+  height:100vh;
 }
 .user_img_wrap{
   height:45vh;

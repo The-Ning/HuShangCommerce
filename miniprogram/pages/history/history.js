@@ -15,6 +15,9 @@ Page({
 // day 传-1表始前一天，传1表始后一天
 // JS获取指定日期的前一天，后一天
 getNextDate(e) { 
+  wx.showLoading({
+    title: '加载中',
+  })
   let date = e.currentTarget.dataset.date;
   let day = e.currentTarget.dataset.day;
 　　var dd = new Date(date);
@@ -33,6 +36,7 @@ getNextDate(e) {
         showdate:showresult,
         history:res.data.result
       })
+     wx.hideLoading()
       }
     })
 　　

@@ -17,7 +17,7 @@ App({
   
   
   globalData: {
-    userInfo: null  
+    mypublishChange:false 
   }
 })
 

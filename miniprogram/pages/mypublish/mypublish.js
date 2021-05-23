@@ -1,4 +1,4 @@
-import Toast from '../../miniprogram_npm/@vant/weapp//toast/toast';
+const appInstance = getApp()
 Page({
 
   /**
@@ -46,25 +46,16 @@ Page({
           name:'deleteList',
           data:{
             _id:e.currentTarget.dataset._id,
-            category:e.currentTarget.dataset.category
+            category:e.currentTarget.dataset.category,
+            imglist:e.currentTarget.dataset.imglist
           }
         }).then(res1=>{
           this.data.mypublishArr.splice(e.currentTarget.dataset.index,1)
-          // 删除我的发布，缓存中对应值
-          let mypublish = wx.getStorageSync('mypublish')
-          mypublish.forEach((item,index)=>{
-            if(item._id == e.currentTarget.dataset._id){
-              mypublish.splice(index,1)
-              return
-            }
-          })
-          wx.setStorage({
-            data: mypublish,
-            key: 'mypublish',
-          })
           // 获取点赞缓存，删除对应的点赞信息
           let likeCollection = wx.getStorageSync('likeCollection')
           if(e.currentTarget.dataset.category == 'love'){
+            // 删除云存储图片
+           
             let list1 = wx.getStorageSync('list1')
             list1.forEach((item,index)=>{
               if(item._id == e.currentTarget.dataset._id){
@@ -79,6 +70,7 @@ Page({
             }) 
           }
          else if(e.currentTarget.dataset.category == 'findItem'){
+           
             let list2 = wx.getStorageSync('list2')
             list2.forEach((item,index)=>{
               if(item._id == e.currentTarget.dataset._id){
@@ -113,6 +105,7 @@ Page({
           this.setData({
             mypublishArr:this.data.mypublishArr
           })
+          appInstance.globalData.mypublishChange = true;
         })
       } else if (res.cancel) {
         console.log('用户点击取消')

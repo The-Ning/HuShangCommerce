@@ -1,4 +1,5 @@
-// pages/mine/mine.js
+const appInstance = getApp()
+
 Page({
 
   /**
@@ -35,7 +36,7 @@ Page({
                openid:result.data.openid
              })
              wx.setStorageSync('openid', result.data.openid)
-           
+            that.onLoad()
             }
           })
         }else{
@@ -50,6 +51,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    appInstance.globalData.mypublishChange = false;
     wx.setTabBarStyle({
       color: 'black',
       selectedColor: '#87CEFA',
@@ -63,30 +65,24 @@ Page({
         userInfo:userInfo,
         openid:openid
       })
+      this.queryMypublish()
+      // 获取我的获赞量
+      setTimeout(()=>{
+        let myclickload = 0;
+        this.data.mypublishArr.forEach((item)=>{
+          myclickload += item.clickload;
+          console.log(item)
+        })
+        this.setData({
+          myclickload:myclickload
+        })
+      },1200)
     }
-    this.queryMypublish()
-    // 获取我的获赞量
-    setTimeout(()=>{
-      let myclickload = 0;
-      this.data.mypublishArr.forEach((item)=>{
-        myclickload += item.clickload;
-      })
-      this.setData({
-        myclickload:myclickload
-      })
-    },1200)
+   
     
   },
 
   queryMypublish(){
-    // 若缓存里有
-    const mypublishArr = wx.getStorageSync('mypublish')
-    if(mypublishArr){
-      this.setData({
-        mypublishArr:mypublishArr
-      })
-      return
-    }
 // 查询用户自己的发布
 const arr = ['love','findItem','campus']
 const result = []
@@ -102,11 +98,12 @@ const result = []
     this.setData({
       mypublishArr:result
     })
-    wx.setStorageSync('mypublish', result)
   }).catch(reason=>{
     console.log(reason)
   })
  })
+    
+
   },
 
 
@@ -156,7 +153,9 @@ const result = []
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    if(appInstance.globalData.mypublishChange){
+      this.onLoad()
+    }
   },
 
   /**
@@ -177,7 +176,7 @@ const result = []
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-
+    this.onLoad()
   },
 
   /**

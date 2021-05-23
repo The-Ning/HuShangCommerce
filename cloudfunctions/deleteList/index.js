@@ -6,9 +6,15 @@ const db = cloud.database()
 exports.main = async (event) => {
   const _id = event._id;
   let category = event.category;
-  return await  db.collection(category).doc(_id)
+  const imglist = event.imglist;
+ 
+  return await  db.collection(category).where({
+    _id:_id
+  })
   .remove().then(res=>{
-    return  '删除成功'
+    return  '删除成功'+ cloud.deleteFile({
+      fileList:imglist
+    }).then(res1=>res1).catch(reason=>reason)
   }).catch(reason=>{
     return reason
   })

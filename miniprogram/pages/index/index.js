@@ -291,7 +291,24 @@ this.uploadList(2,'list3')
       }
      
     }).catch(reason=>{
-      console.log(reason)
+      if(list == 'list1'){
+        this.setData({
+          list1:[]
+        })
+        wx.setStorageSync('list1', [])
+      } 
+      else if(list == 'list2'){
+        this.setData({
+          list2:[]
+        })
+        wx.setStorageSync('list2', [])
+      }
+      else{
+        this.setData({
+          list3:[]
+        })
+        wx.setStorageSync('list3', [])
+      }
     })
   },
 
@@ -351,7 +368,9 @@ wx.cloud.callFunction({
     key: 'list1',
   })
 }).catch(reason=>{
-  console.log(reason)
+  this.setData({
+    list1:[]
+  })
 })
 
 // 获取二手交易数据并渲染到list2
@@ -375,7 +394,9 @@ wx.cloud.callFunction({
     key: 'list2',
   })
 }).catch(reason=>{
-  console.log(reason)
+  this.setData({
+    list2:[]
+  })
 })
 
 // 获取校园生活数据并渲染到list3
@@ -399,7 +420,9 @@ wx.setStorage({
   key: 'list3',
 })
 }).catch(reason=>{
-console.log(reason)
+  this.setData({
+    list3:[]
+  })
 })
 
   },

@@ -9,6 +9,7 @@
       data-category='{{item.category}}'
       data-_id='{{item._id}}'
       data-index='{{index}}'
+      data-imglist='{{item.imgsrc}}'
       />
      <image src='{{item.userInfo.avatarUrl}}' class='avatar'></image>
      <view class='profile'>
