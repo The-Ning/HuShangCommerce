@@ -69,13 +69,13 @@ Page({
               }
             }) 
           }
-         else if(e.currentTarget.dataset.category == 'findItem'){
+         else if(e.currentTarget.dataset.category == 'commerce'){
            
             let list2 = wx.getStorageSync('list2')
             list2.forEach((item,index)=>{
               if(item._id == e.currentTarget.dataset._id){
                 list2.splice(index,1)
-                delete likeCollection[`list1-${item._id}`]
+                delete likeCollection[`list2-${item._id}`]
                 wx.setStorage({
                   data: list2,
                   key: 'list2',
@@ -84,15 +84,29 @@ Page({
               }
             }) 
           }
-        else  if(e.currentTarget.dataset.category == 'campus'){
+        else  if(e.currentTarget.dataset.category == 'findItem'){
             let list3 = wx.getStorageSync('list3')
             list3.forEach((item,index)=>{
               if(item._id == e.currentTarget.dataset._id){
                 list3.splice(index,1)
-                delete likeCollection[`list1-${item._id}`]
+                delete likeCollection[`list3-${item._id}`]
                 wx.setStorage({
                   data: list3,
                   key: 'list3',
+                })
+                return
+              }
+            }) 
+          }
+          else{
+            let list4 = wx.getStorageSync('list4')
+            list4.forEach((item,index)=>{
+              if(item._id == e.currentTarget.dataset._id){
+                list4.splice(index,1)
+                delete likeCollection[`list4-${item._id}`]
+                wx.setStorage({
+                  data: list4,
+                  key: 'list4',
                 })
                 return
               }

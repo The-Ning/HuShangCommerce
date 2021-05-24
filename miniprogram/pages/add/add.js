@@ -14,6 +14,7 @@ Page({
     maxWord:300,
     currentWord:0,
     fileList:[],
+    category:'love',
     location:null,
        // 传到数据库的图片云端路径数组
     imgCloudPaths:[]  // 图片上传到云端后的路径存储数组
@@ -39,6 +40,14 @@ Page({
 
   },
  
+  onChange(event) {
+    this.setData({
+      category: event.detail,
+    })
+    console.log(this.data.category)
+  },
+
+
   limitWord:function(e){
     var that = this;
     var value = e.detail.value;
@@ -97,7 +106,8 @@ Page({
     }
     e.detail.value.remarks = [];  // 存储评论的数组
     e.detail.value.userInfo = this.data.userInfo;
-    e.detail.value.openid = this.data.openid
+    e.detail.value.openid = this.data.openid;
+    e.detail.value.category = this.data.category;
     // 获取上传图片的临时url数组
     if(this.data.fileList.length){
     const temUrls = [];
@@ -105,7 +115,6 @@ Page({
       temUrls.push(item.url)
     })
     e.detail.value.imgsrc = [];
-    //
     temUrls.forEach(item=>{
     wx.cloud.uploadFile({
       filePath:item,

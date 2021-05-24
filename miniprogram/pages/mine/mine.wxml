@@ -1,14 +1,14 @@
 <!--pages/mine/mine.wxml-->
 <view id='page'> 
   <view wx:if="{{userInfo.nickName}}" class="user_img_wrap">
-     <image class="user_bg" src="../../imgs/mine/bg.jpg"></image>
+     <image class="user_bg" src="https://z3.ax1x.com/2021/05/25/gx6GNV.jpg"></image>
      <view class="user_info">
       <image class="user_icon" src="{{userInfo.avatarUrl}}"></image>
       <view class="user_name">{{userInfo.nickName}}</view>
      </view>
   </view>
   <view wx:else class="user_login">
-   <image class="user_bg" src="../../imgs/mine/bg.jpg"></image>
+   <image class="user_bg" src="https://z3.ax1x.com/2021/05/25/gx6GNV.jpg"></image>
      <button bindtap='getUserProfile' class='user_btn'>登录</button>
   </view>
   

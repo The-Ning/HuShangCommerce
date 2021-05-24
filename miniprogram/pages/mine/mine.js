@@ -78,7 +78,7 @@ Page({
 
   queryMypublish(){
 // 查询用户自己的发布
-const arr = ['love','findItem','campus']
+const arr = ['love','commerce','findItem','campus']
 const result = []
  arr.forEach(item=>{
   wx.cloud.callFunction({

@@ -1,9 +1,10 @@
 {
   "pages": [
+    "pages/add/add",
     "pages/index/index",
     "pages/author/author",
     
-    "pages/add/add",
+   
     "pages/mine/mine",
     "pages/history/history",
     "pages/remark/remark",

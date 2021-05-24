@@ -76,9 +76,23 @@
   line-height: 30rpx;
 }
 
-radio-group{
+#chooseClass{
+  width:90%;
+  margin-left:5%;
   margin-top: 10rpx;
+  display:flex;
+  justify-content: space-between;
+}
+.category{
+  width:50%;
+  margin-top:10rpx;
   display:flex;
   justify-content: space-around;
 }
+.log{
+  width:60rpx;
+  height:60rpx;
+}
+
+
 

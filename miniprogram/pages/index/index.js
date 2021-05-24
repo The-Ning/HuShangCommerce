@@ -1,7 +1,3 @@
-// pages/index/index.js
-import { createStoreBindings } from'mobx-miniprogram-bindings'
-const userInfo = wx.getStorageSync('userInfo')
-
 
 Page({
 
@@ -200,15 +196,21 @@ this.uploadList(2,'list3')
          else if(list === 'list2'){
            this.setData({
              list2: that.data[list],
-             category:'findItem'
+             category:'commerce'
             })
        
          }
          else if(list === 'list3'){
            this.setData({
              list3: that.data[list],
-             category:'campus'
+             category:'findItem'
             })
+         }
+         else{
+          this.setData({
+            list4: that.data[list],
+            category:'campus'
+           })
          }
          wx.cloud.callFunction({
            name:'pariseThis',
@@ -256,9 +258,12 @@ this.uploadList(2,'list3')
       category = 'love'
     }
     else if(index == 1){
-      category = 'findItem'
+      category = 'commerce'
     }
     else if(index == 2){
+      category = 'findItem'
+    }
+    else{
       category = 'campus'
     }
     // 调用云函数
@@ -283,13 +288,18 @@ this.uploadList(2,'list3')
         })
         wx.setStorageSync('list2', res.result.data)
       }
-      else{
+      else if(list == 'list3'){
         this.setData({
           list3:res.result.data
         })
         wx.setStorageSync('list3', res.result.data)
       }
-     
+     else{
+      this.setData({
+        list4:res.result.data
+      })
+      wx.setStorageSync('list4', res.result.data)
+     }
     }).catch(reason=>{
       if(list == 'list1'){
         this.setData({
@@ -303,11 +313,17 @@ this.uploadList(2,'list3')
         })
         wx.setStorageSync('list2', [])
       }
-      else{
+      else if(list == 'list3'){
         this.setData({
           list3:[]
         })
         wx.setStorageSync('list3', [])
+      }
+      else{
+        this.setData({
+          list4:[]
+        })
+        wx.setStorageSync('list4', [])
       }
     })
   },
@@ -357,7 +373,7 @@ wx.cloud.callFunction({
   this.setData({
     list1:res.result.data
   })
-  this.data.list1.forEach((item,index)=>{
+  this.data.list1.forEach((item)=>{
     item['hasChange']=likeCollection['list1-'+item._id];
   })
   this.setData({
@@ -377,13 +393,13 @@ wx.cloud.callFunction({
 wx.cloud.callFunction({
   name:'getLists',
   data:{
-    category:'findItem'
+    category:'commerce'
   }
 }).then(res=>{
   this.setData({
     list2:res.result.data
   })
-  this.data.list2.forEach((item,index)=>{
+  this.data.list2.forEach((item)=>{
     item['hasChange']=likeCollection['list2-'+item._id];
   })
   this.setData({
@@ -399,17 +415,17 @@ wx.cloud.callFunction({
   })
 })
 
-// 获取校园生活数据并渲染到list3
+// 获取失物招领数据并渲染到list3
 wx.cloud.callFunction({
 name:'getLists',
 data:{
-  category:'campus'
+  category:'findItem'
 }
 }).then(res=>{
 this.setData({
   list3:res.result.data
 })
-this.data.list3.forEach((item,index)=>{
+this.data.list3.forEach((item)=>{
   item['hasChange']=likeCollection['list3-'+item._id];
 })
 this.setData({
@@ -425,6 +441,31 @@ wx.setStorage({
   })
 })
 
+// 获取校园生活数据并渲染到list3
+wx.cloud.callFunction({
+  name:'getLists',
+  data:{
+    category:'campus'
+  }
+  }).then(res=>{
+  this.setData({
+    list4:res.result.data
+  })
+  this.data.list4.forEach((item)=>{
+    item['hasChange']=likeCollection['list4-'+item._id];
+  })
+  this.setData({
+    list4:this.data.list4
+  })
+  wx.setStorage({
+    data: res.result.data,
+    key: 'list4',
+  })
+  }).catch(reason=>{
+    this.setData({
+      list4:[]
+    })
+  })
   },
   /**
    * 页面相关事件处理函数--监听用户下拉动作
