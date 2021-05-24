@@ -27,8 +27,24 @@
   </swiper>
 
 <view id='profile'>
-  <view class=''>
-    每位同学都可以在本小程序上发布自己的心事
+  <view class='detail'>
+    <text class='question'>1.我们为什么做这个小程序？</text>
+    <text class='answer'>我们学校有很多QQ，交流群，有树洞，有贴吧，但还没有小程序上的交流平台，“畅所欲言”就是想为本校学生提供这样一个场所</text>
+  </view>
+
+  <view class='detail'>
+    <text class='question'>2.它有哪些具体用途？</text>
+    <text class='answer'>同学们可以在上面发布自己的文章，目前有表白墙、失物招领、校园生活交流三个模块</text>
+  </view>
+
+  <view class='detail'>
+    <text class='question'>3.关于作者？</text>
+    <text class='answer'>人工智能学院18级本科的四个有梦想的少年</text>
+  </view>
+
+  <view class='detail'>
+    <text class='question'>4.如何联系作者并反馈意见？</text>
+    <text class='answer'>选择小程序底部的“我的”-在线客服</text>
   </view>
 </view>
 </view>

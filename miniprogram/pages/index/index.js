@@ -15,6 +15,7 @@ currentTab: 0,
 list1:[],
 list2:[],
 list3:[],
+list4:[],
 userInfo:null,
 openid:null,
 category:null,
@@ -144,14 +145,13 @@ this.uploadList(1,'list2')
     })
   }
   else{
-// 获取校园生活数据并渲染到list3
+// 获取失物招领数据并渲染到list3
 this.uploadList(2,'list3')
   }
 
   },
   // 点赞函数
   praiseThis(e){
-    console.log(this.isLogin())
    if(this.isLogin()){
       var that = this;
       let list = e.currentTarget.dataset.list;

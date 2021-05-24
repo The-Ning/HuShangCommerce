@@ -22,30 +22,22 @@ Page({
         userInfo:res.userInfo
       })
       console.log(res)
-      wx.login().then(res=>{
-        if(res.code){
-          wx.request({
-            url:'https://api.weixin.qq.com/sns/jscode2session?'+
-            'appid=wxba4ca0d1f2046721&secret=6a67ac618bfefe4e2001d685610f8851&js_code='+res.code+'&grant_type=authorization_code',
-            data:{
-              code:res.code
-            },
-            success(result){
-             console.log(that)
-             that.setData({
-               openid:result.data.openid
-             })
-             wx.setStorageSync('openid', result.data.openid)
-             setTimeout(()=>{
-              that.onLoad()
-             },500)
-            
-            }
+       wx.cloud.callFunction({
+         name:'getopenid'
+       }).then(result=>{
+          console.log(result)
+          that.setData({
+            openid:result.result
           })
-        }else{
-          console.log('登陆失败');
-        }
-      });
+          wx.setStorageSync('openid', result.result)
+          setTimeout(()=>{
+           that.onLoad()
+          },500)
+       })
+           
+         
+       
+    
     });
 
     
@@ -131,7 +123,7 @@ const result = []
     let date = `${month}/${day}`
 
     const history = wx.getStorageSync('history')
-    if(history == null || history[0].day != date)
+    if(history == '' || history[0].day != date)
     wx.request({
       url: `https://v.juhe.cn/todayOnhistory/queryEvent.php?key=bb8c674099eb6f0e4250a91aca42dc07&date=${date}`,
       success:function(res){

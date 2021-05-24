@@ -133,6 +133,7 @@ justify-content: center;
 }
 .item-footer-right{
   width:50%;
+  position: relative;
   display:flex;
   justify-content: center;
 }
@@ -192,6 +193,9 @@ justify-content: center;
     line-height: 50rpx;
     color:rgb(13, 191, 245);
   }
+  
+  
+  
   
   
   

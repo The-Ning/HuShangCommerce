@@ -2,6 +2,7 @@
   "usingComponents": {
   "van-tab": "@vant/weapp/tab/index",
  "van-tabs":"@vant/weapp/tabs/index",
-  "van-image":"@vant/weapp/image/index"
+  "van-image":"@vant/weapp/image/index",
+  "van-transition": "@vant/weapp/transition/index"
   }
 }

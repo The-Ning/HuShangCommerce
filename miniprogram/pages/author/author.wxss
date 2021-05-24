@@ -5,3 +5,31 @@
  swiper{
    height:30vh;
  }
+
+ #profile{
+   margin-top:10rpx;
+   height:calc(70vh - 15rpx);
+   box-sizing: border-box;
+   padding:15rpx;
+   display:felx;
+   flex-direction: column;
+ }
+
+ .detail{
+   display:flex;
+   flex-direction: column;
+ }
+
+ .question{
+   color:rgb(35, 235, 235);
+   font-size:38rpx;
+   font-weight: bold;
+   margin-top:20rpx;
+ }
+ .answer{
+   margin-top:10rpx;
+   padding-left:30rpx;
+   font-size:35rpx;
+   color:rgb(121, 118, 118);
+   line-height: 60rpx;
+ }

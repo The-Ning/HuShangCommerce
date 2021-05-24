@@ -9,8 +9,8 @@
   
  <view class="tab-item {{currentTab==1 ? 'on' : ''}}" data-current="1" bindtap="swichNav">二手交易</view>
   
- <view class="tab-item {{currentTab==2 ? 'on' : ''}}" data-current="2" bindtap="swichNav">校园生活</view>
-  
+ <view class="tab-item {{currentTab==2 ? 'on' : ''}}" data-current="2" bindtap="swichNav">失物招领</view>
+ <view class="tab-item {{currentTab==3 ? 'on' : ''}}" data-current="3" bindtap="swichNav">校园生活</view>
  </view>
   
   
@@ -19,6 +19,7 @@
  <!--内容主体-->
 
  <swiper class="swiper" current="{{currentTab}}" duration="200" bindchange="swiperChange" style='height:{{sumHeight}}'>
+   <!-- 点赞特效元素-->
   
   <!--表白捞人-->
  <swiper-item>
@@ -73,6 +74,7 @@
     <text class='remarkload'>{{item.remarks.length}}</text>
   </view>
  <view class='item-footer-right'>
+  
   <image src='{{item.hasChange?favor_img:favor}}' class='like' bindtap='praiseThis' 
   data-_id='{{item._id}}' data-index='{{index}}' data-list='list1' data-hasChange='{{item.hasChange}}'></image>
   <text class='clickload1'>{{item.clickload}}</text>
@@ -154,8 +156,7 @@
   
  </swiper-item>
   
-
-  <!--校园生活-->
+ <!-- 失物招领-->
  <swiper-item>
   <scroll-view scroll-y="true" class="scroll">
  <view wx:for='{{list3}}' wx:key='index' class='box-0'>
@@ -209,6 +210,73 @@
 <view class='item-footer-right'>
 <image src='{{item.hasChange?favor_img:favor}}' class='like' bindtap='praiseThis' 
 data-_id='{{item._id}}' data-index='{{index}}' data-list='list3' data-hasChange='{{item.hasChange}}'></image>
+<text class='clickload1'>{{item.clickload}}</text>
+</view>
+
+</view>
+</view>
+
+
+<view class='deadline'>我也是有底线的~</view>
+</scroll-view>
+
+ </swiper-item>
+
+
+  <!--校园生活-->
+ <swiper-item>
+  <scroll-view scroll-y="true" class="scroll">
+ <view wx:for='{{list4}}' wx:key='index' class='box-0'>
+   <view class='item-header'>
+     <image src='{{item.userInfo.avatarUrl}}' class='avatar'></image>
+     <view class='profile'>
+     <text class='nickname'>{{item.userInfo.nickName}}</text>
+     <text class='item-date'>{{item.date }}</text>
+    </view>
+   </view>
+  <view class='item-content'>
+
+    <text class='content-text'>{{item.title}}</text>
+
+    <view class='content-img'>
+        <van-image
+        wx:for="{{item.imgsrc}}"
+         wx:for-item='itemimg'
+        wx:key='index'
+        lazy-load
+        width='100%'
+        height='100%'
+  class='item-img'
+ catchtap='imgYulan'
+   data-list='{{item.imgsrc}}'
+    data-src='{{itemimg}}'
+  src="{{itemimg}}"
+   rel="external nofollow"  
+   fit='cover' 
+        />
+   
+    </view>
+    
+  <!-- 地址显示区域 -->
+  <view class='item-location' wx:if="{{item.location}}">
+    <image src='https://z3.ax1x.com/2021/05/20/gT0lFK.png' class='location-img'></image>
+    <text class='location-text'>{{item.location}}</text>
+  </view>
+</view>
+
+<!-- 点赞和评论区域-->
+<view class='item-footer'>
+
+<view class='item-footer-left'>
+  <image src='https://z3.ax1x.com/2021/05/20/gT0tOA.png' class='remark' 
+  catchtap='remark' 
+  data-item='{{item}}'>
+  </image>
+  <text class='remarkload'>{{item.remarks.length}}</text>
+</view>
+<view class='item-footer-right'>
+<image src='{{item.hasChange?favor_img:favor}}' class='like' bindtap='praiseThis' 
+data-_id='{{item._id}}' data-index='{{index}}' data-list='list4' data-hasChange='{{item.hasChange}}'></image>
 <text class='clickload1'>{{item.clickload}}</text>
 </view>
 

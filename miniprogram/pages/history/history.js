@@ -31,12 +31,22 @@ getNextDate(e) {
       url: `https://v.juhe.cn/todayOnhistory/queryEvent.php?key=bb8c674099eb6f0e4250a91aca42dc07&date=${m}/${d}`,
       success:res=>{
        console.log(res.data.result)
-       this.setData({
-        date:result,
-        showdate:showresult,
-        history:res.data.result
-      })
-     wx.hideLoading()
+       if(res.data.result != null){
+        this.setData({
+          date:result,
+          showdate:showresult,
+          history:res.data.result
+        })
+        wx.hideLoading()
+       }
+       // 当接口免费次数用光
+       else{
+        wx.hideLoading()
+        wx.showToast({
+          title:'明天再来吧~'
+        })
+       }
+     
       }
     })
 　　
