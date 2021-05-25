@@ -39,20 +39,19 @@
 <van-radio-group
   id='chooseClass'
   value="{{ category }}"
-  bind:change="onChange"
   direction="horizontal"
 >
-  <van-radio name="love" use-icon-slot class='category'>表白捞人<image class='log' slot="icon" src="{{ category === 'love' ? 'https://z3.ax1x.com/2021/05/20/gT0Cd0.png' : 'https://z3.ax1x.com/2021/05/20/gT0kJU.png' }}" /></van-radio>
-  <van-radio name="commerce" use-icon-slot class='category'>二手交易<image class='log' slot="icon" src="{{ category === 'commerce' ? 'https://z3.ax1x.com/2021/05/24/gxaoNQ.png' : 'https://z3.ax1x.com/2021/05/24/gxaIAg.png' }}" /></van-radio>
-  <van-radio name="findItem" use-icon-slot class='category'>失物招领<image class='log' slot="icon" src="{{ category === 'findItem' ? 'https://z3.ax1x.com/2021/05/24/gxd8Df.png' : 'https://z3.ax1x.com/2021/05/24/gxdGb8.png' }}" /></van-radio>
-  <van-radio name="campus" use-icon-slot class='category'>校园生活<image class='log' slot="icon" src="{{ category === 'campus' ? 'https://z3.ax1x.com/2021/05/24/gxdf2R.png' : 'https://z3.ax1x.com/2021/05/24/gxdWG9.png' }}" /></van-radio>
+  <van-radio name="love" use-icon-slot class='category {{highlight[0]}}' catchtap="onChange" data-index='{{0}}'>表白捞人<image class='log'  slot="icon" src="{{ category === 'love' ? 'https://z3.ax1x.com/2021/05/20/gT0Cd0.png' : 'https://z3.ax1x.com/2021/05/20/gT0kJU.png' }}" /></van-radio>
+  <van-radio name="commerce" use-icon-slot class='category {{highlight[1]}}' catchtap="onChange" data-index='{{1}}'>二手交易<image class='log' slot="icon" src="{{ category === 'commerce' ? 'https://z3.ax1x.com/2021/05/24/gxaoNQ.png' : 'https://z3.ax1x.com/2021/05/24/gxaIAg.png' }}" /></van-radio>
+  <van-radio name="findItem" use-icon-slot class='category {{highlight[2]}}' catchtap="onChange" data-index='{{2}}'>失物招领<image class='log' slot="icon" src="{{ category === 'findItem' ? 'https://z3.ax1x.com/2021/05/24/gxd8Df.png' : 'https://z3.ax1x.com/2021/05/24/gxdGb8.png' }}" /></van-radio>
+  <van-radio name="campus" use-icon-slot class='category {{highlight[3]}}' catchtap="onChange" data-index='{{3}}'>校园生活<image class='log' slot="icon" src="{{ category === 'campus' ? 'https://z3.ax1x.com/2021/05/24/gxdf2R.png' : 'https://z3.ax1x.com/2021/05/24/gxdWG9.png' }}" /></van-radio>
 </van-radio-group>
 <van-cell center title="{{location||'位置'}}">
   <switch  slot="right-icon" size="24" checked="{{checked}}" bindchange="onInputLocation"/>
 </van-cell>
 
 
-  <button formType="submit" type='primary'>提交</button>
+  <button formType="submit" type='primary' id='subbtn'>提交</button>
   </form> 
 </scroll-view>
 </view>

@@ -46,7 +46,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    appInstance.globalData.mypublishChange = false;
+    console.log('Jiazia')
     wx.setTabBarStyle({
       color: 'black',
       selectedColor: '#87CEFA',
@@ -153,7 +153,9 @@ const result = []
    */
   onShow: function () {
     if(appInstance.globalData.mypublishChange){
+      appInstance.globalData.mypublishChange = false;
       this.onLoad()
+
     }
   },
 
@@ -176,6 +178,12 @@ const result = []
    */
   onPullDownRefresh: function () {
     this.onLoad()
+    setTimeout(()=>{
+      wx.stopPullDownRefresh({
+        success: (res) => {},
+      })
+    },500)
+    
   },
 
   /**

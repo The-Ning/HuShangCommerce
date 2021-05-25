@@ -16,9 +16,27 @@ Page({
     fileList:[],
     category:'love',
     location:null,
+    categoryList:['love','commerce','findItem','campus'],
+    highlight:['highlight'],
        // 传到数据库的图片云端路径数组
     imgCloudPaths:[]  // 图片上传到云端后的路径存储数组
   },
+
+  onChange(event) {
+    let index = event.currentTarget.dataset.index;
+    console.log(event.currentTarget.dataset.index,typeof event.currentTarget.dataset.index)
+    this.setData({
+      category: this.data.categoryList[index],
+    })
+    console.log(this.data.category)
+    var highlight = []
+    for (var i = 0; i < this.data.categoryList; i++){
+      highlight[i] = ''
+    }
+    highlight[index] = 'highlight'
+    this.setData({ highlight: highlight})
+  },
+ 
 
   /**
    * 生命周期函数--监听页面加载
@@ -40,12 +58,7 @@ Page({
 
   },
  
-  onChange(event) {
-    this.setData({
-      category: event.detail,
-    })
-    console.log(this.data.category)
-  },
+  
 
 
   limitWord:function(e){

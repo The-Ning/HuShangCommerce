@@ -31,7 +31,11 @@ Page({
     mypublishArr:JSON.parse(options.mypublishArr)
   })
   },
-
+  praiseThis(){
+     wx.showToast({
+       title: '此处未开通点赞',
+     })
+  },
   deleteThis(e){
     console.log(e)
   wx.showModal({
@@ -42,6 +46,9 @@ Page({
     confirmText:'删了',
     success:res=>{
       if (res.confirm) {
+        wx.showLoading({
+          title: '删除中',
+        })
         wx.cloud.callFunction({
           name:'deleteList',
           data:{
@@ -55,7 +62,6 @@ Page({
           let likeCollection = wx.getStorageSync('likeCollection')
           if(e.currentTarget.dataset.category == 'love'){
             // 删除云存储图片
-           
             let list1 = wx.getStorageSync('list1')
             list1.forEach((item,index)=>{
               if(item._id == e.currentTarget.dataset._id){
@@ -120,7 +126,9 @@ Page({
             mypublishArr:this.data.mypublishArr
           })
           appInstance.globalData.mypublishChange = true;
+          wx.hideLoading()
         })
+        
       } else if (res.cancel) {
         console.log('用户点击取消')
       }

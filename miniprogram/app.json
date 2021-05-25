@@ -1,19 +1,16 @@
 {
   "pages": [
-    "pages/add/add",
-    "pages/index/index",
+     "pages/index/index",
+   "pages/mine/mine",
     "pages/author/author",
-    
-   
-    "pages/mine/mine",
+     "pages/add/add",
     "pages/history/history",
     "pages/remark/remark",
     "pages/mypublish/mypublish"
-   
   ],
   "window": {
     "backgroundTextStyle": "dark",
-    "navigationBarBackgroundColor": "#F5F5F5",
+    "navigationBarBackgroundColor": "#E0FFFF",
     "navigationBarTitleText": "畅所欲言在湖商",
     "navigationBarTextStyle": "black",
     "enablePullDownRefresh": true
@@ -30,7 +27,7 @@
         "pagePath": "pages/add/add",
         "text": "毛遂自荐",
         "iconPath": "/imgs/tabbar/message.png",
-        "selectedIconPath": "/imgs/tabbar/message-active.png"
+        "selectedIconPath": "/imgs/tabbar/publish.png"
       },
       {
         "pagePath": "pages/mine/mine",

@@ -88,8 +88,9 @@ handleRemarkResult(category){
 
 // 删除评论函数
 deleteThis(e){
-  console.log(e)
-  console.log(e.currentTarget.dataset.remarkid)
+  wx.showLoading({
+    title: '删除中',
+  })
   wx.cloud.callFunction({
     name:'deleteRemark',
     data:{
@@ -101,6 +102,9 @@ deleteThis(e){
     this.data.information.remarks.splice(e.currentTarget.dataset.index,1)
     this.setData({
       information:this.data.information
+    })
+    wx.hideLoading({
+      success: (res) => {},
     })
     console.log(res)
   }).catch(reason=>{

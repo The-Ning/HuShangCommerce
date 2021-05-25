@@ -4,7 +4,7 @@
   display:flex;
   justify-content: center;
   align-items:center;
-  
+  flex-wrap: wrap;
 }
 .box{
    
@@ -16,9 +16,14 @@
 }
 
 .tologin{
+  width:400rpx;
+  height:80rpx;
   color:red;
-  border-radius: 40%;
- 
+  position:absolute;
+  top:50%;
+  left:50%;
+  margin-left:-70rpx;
+  margin-top: -40rpx;
 }
 .title{
   margin-top:20rpx;
@@ -77,22 +82,48 @@
 }
 
 #chooseClass{
-  width:90%;
-  margin-left:5%;
+  width:98%;
+  box-sizing: border-box;
+  margin-left:1%;
   margin-top: 10rpx;
   display:flex;
   justify-content: space-between;
+  box-shadow: 10rpx 10rpx 10rpx rgb(248, 246, 246);
+  margin-bottom: 10rpx;
 }
 .category{
   width:50%;
   margin-top:10rpx;
+  box-sizing: border-box;
   display:flex;
+  align-items: center;
   justify-content: space-around;
+  font-family: Microsoft YaHei;
 }
 .log{
   width:60rpx;
   height:60rpx;
 }
 
+.highlight{
+  height:65rpx;
+  padding-top: 5rpx;
+   box-sizing: border-box;
+ background-color: rgb(250, 243, 243);
+  color:#f40;
+}
+
+#subbtn{
+  width:60%;
+  margin-left:20%;
+  height:90rpx;
+  line-height: 90rpx;
+  background-color: #f40;
+}
+
+van-cell
+{
+  background-color: red;
+}
 
 
