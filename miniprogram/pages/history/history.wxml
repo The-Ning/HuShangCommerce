@@ -1,5 +1,5 @@
 <view id='page'>
-<view class=''>每天一点历史小知识，你学费了吗？</view>
+<view class=''>每天一点历史小知识，你学废了吗？</view>
 
 <view id='datePlace'>
   <button    class='btn'  catchtap="getNextDate" data-date='{{date}}' data-day='{{-1}}'>前一天</button>

@@ -14,6 +14,7 @@ Page({
     maxWord:300,
     currentWord:0,
     fileList:[],
+    imgError:true,
     category:'love',
     location:null,
     categoryList:['love','commerce','findItem','campus'],
@@ -83,6 +84,9 @@ Page({
       })
   },
   afterRead(event) {
+    wx.showLoading({
+      title: '图片审核中',
+    })
     const { file } = event.detail;
     // 当设置 mutiple 为 true 时, file 为数组格式，否则为对象格式
         // 上传完成需要更新 fileList
@@ -92,6 +96,45 @@ Page({
         });
       
         this.setData({ fileList});
+        let length = this.data.fileList.length
+    //使用getFileSystemManager获取图片的Buffer流
+    this.data.fileList.forEach((item,index)=>{
+      console.log(item.url)
+      wx.getFileSystemManager().readFile({
+        filePath: item.url,                   
+        success: (res)=>{            
+          const buffer = res.data
+          wx.cloud.callFunction({
+            name:'checkSecure',
+            data:{
+              buffer:buffer,
+              checkCategory:'image'
+            }
+          }).then(res1=>{
+            console.log(res1)
+            if(res1.result.errCode != 0){
+              this.setData({
+                imgError:false
+              })
+            }
+          }).catch(reason=>{
+            console.log(reason)
+          })
+        }
+      })
+    })
+    setTimeout(()=>{
+      wx.hideLoading()
+      if(!this.data.imgError){
+        wx.showModal({
+          title: '违规提示',
+          content: `图片违规`,
+          showCancel: false,
+          confirmColor: '#DC143C'
+        })
+      }
+     
+    },length*400)
   },
   
   deleteImage(event){
@@ -111,9 +154,7 @@ Page({
        })
        return;
     }
-    wx.showLoading({
-      title: '发表中',
-    })
+    // 如果选择了地址
     if(this.data.checked){
       e.detail.value.location = this.data.location;
     }
@@ -121,8 +162,18 @@ Page({
     e.detail.value.userInfo = this.data.userInfo;
     e.detail.value.openid = this.data.openid;
     e.detail.value.category = this.data.category;
+    
     // 获取上传图片的临时url数组
     if(this.data.fileList.length){
+      if(!this.data.imgError){
+        wx.showModal({
+          title: '违规提示',
+          content: `图片违规`,
+          showCancel: false,
+          confirmColor: '#DC143C'
+        })
+        return
+      }
     const temUrls = [];
     this.data.fileList.forEach(item=>{
       temUrls.push(item.url)
@@ -171,29 +222,58 @@ Page({
  // 用户没有选择图片时
  e.detail.value.clickload = 1;
  e.detail.value.date = this.getNow();
- console.log(e.detail.value)
-   wx.cloud.callFunction({
-     name:'publish',
-     data:e.detail.value
-   }).then(res=>{
-     console.log('插入成功',res)
-     wx.hideLoading().then(res1=>{
-        wx.showToast({
-          title: '发布成功',
-          icon:'success'
-        })
-        // 清除发布页面的数据
-      this.setData({
-        title:'',
-        content:'',
-        checked:false,
-        location:null
-      })
-     })
-   
-   })
-  }
+ this.msgIsSecure(e);
+ }
   },
+  // 审核内容函数，文本
+msgIsSecure(e){
+  wx.cloud.callFunction({
+     name:'checkSecure',
+     data:{
+       checkCategory:'text',
+       content:e.detail.value.title+e.detail.value.content
+     }
+   }).then(res=>{
+     console.log(res)
+     if(res.result.errCode != 0){
+       wx.showModal({
+         title: '违规提示',
+           content: '输入的内容违规',
+           showCancel: false,
+           confirmColor: '#DC143C'
+       })
+     }
+     else{
+      wx.showLoading({
+        title: '发表中',
+      })
+       //文本验证成功，发布上传
+      wx.cloud.callFunction({
+        name:'publish',
+        data:e.detail.value
+      }).then(res=>{
+        console.log('插入成功',res)
+        wx.hideLoading().then(res1=>{
+           wx.showToast({
+             title: '发布成功',
+             icon:'success'
+           })
+           // 清除发布页面的数据
+         this.setData({
+           title:'',
+           content:'',
+           checked:false,
+           location:null
+         })
+        }) 
+      })
+     }
+   }).catch(reason=>{
+     console.log(reason)
+    
+   })
+ },
+  
   getNow(){
     var date = new Date();
     var year = date.getFullYear();
@@ -210,6 +290,7 @@ Page({
     })
   },
  
+
 
 // 地址处理函数
 onInputLocation(e){
@@ -234,7 +315,8 @@ onInputLocation(e){
  else{
    this.setData({
      location:null,
-     checked:false
+     checked:false,
+     imgError:true
    })
  }
 },

@@ -17,7 +17,7 @@ App({
   
   
   globalData: {
-    mypublishChange:false 
+    mypublishChange:false
   }
 })
 

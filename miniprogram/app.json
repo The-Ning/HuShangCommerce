@@ -1,9 +1,9 @@
 {
   "pages": [
+    "pages/mine/mine",
+    "pages/add/add",
      "pages/index/index",
-   "pages/mine/mine",
     "pages/author/author",
-     "pages/add/add",
     "pages/history/history",
     "pages/remark/remark",
     "pages/mypublish/mypublish"
@@ -27,7 +27,7 @@
         "pagePath": "pages/add/add",
         "text": "毛遂自荐",
         "iconPath": "/imgs/tabbar/message.png",
-        "selectedIconPath": "/imgs/tabbar/publish.png"
+        "selectedIconPath": "/imgs/tabbar/message-active.png"
       },
       {
         "pagePath": "pages/mine/mine",

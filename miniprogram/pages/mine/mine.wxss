@@ -53,10 +53,10 @@
 }
 
 .app_info_wrap{
-  margin-top:250rpx;
+  margin-top:180rpx;
   transform:translateY(-50%);
-  width:98%;
-  margin-left:1%;
+  width:94%;
+  margin-left:3%;
   border-radius: 10rpx;
   box-shadow: 10rpx 10rpx 5rpx rgb(248, 246, 246);
 }
@@ -90,4 +90,42 @@
 #numdisplay>view text{
   font-size:35rpx;
   margin-top: 15rpx;
+}
+
+#footer{
+  margin-top:-100rpx;
+  margin-bottom: 20rpx;
+  transform:translateY(-50%);
+  box-sizing: border-box;
+  width:94%;
+  margin-left:3%;
+  border-radius: 10rpx;
+  box-shadow: 10rpx 10rpx 5rpx rgb(248, 246, 246);
+}
+#contact{
+  box-sizing: border-box;
+  border:none;
+  height:100rpx;
+  margin-top:15rpx;
+  background-color: rgb(255, 255, 255);
+  position:relative;
+}
+
+#contact:before{
+  line-height: 100rpx;
+  content:'客服';
+  position: absolute;
+  left:115rpx;
+  font-size:35rpx;
+}
+#kefu{
+  height:100%;
+  position:absolute;
+  left:65rpx;
+}
+#arrow{
+  position:absolute;
+  height:100%;
+  right:38rpx;
+  color:rgb(168, 172, 172);
 }

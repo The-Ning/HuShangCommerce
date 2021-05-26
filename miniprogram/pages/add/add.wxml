@@ -29,13 +29,6 @@
 
 
 <lable style="margin-top:20rpx;margin-left:30rpx;">您想发布到？</lable>
-<!-- 
-<radio-group name='category'>
-  <radio value='love' checked="true">表白捞人</radio>
-  <radio value='commerce'>二手交易</radio>
-  <radio value='findItem'>失物招领</radio>
-  <radio value='campus'>校园趣事</radio>
-</radio-group> -->
 <van-radio-group
   id='chooseClass'
   value="{{ category }}"
