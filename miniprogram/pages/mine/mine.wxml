@@ -18,16 +18,17 @@
     <text>我的发布</text>
   </view>
     <view>
-      <text style=' font-weight: 1000;font-size:45rpx;'>{{0}}</text>
-    <text>我的收藏</text>
+      <text style=' font-weight: 1000;font-size:45rpx;'>{{personClickload}}</text>
+    <text>我的获赞</text>
     </view>
     <view>
       <text style=' font-weight: 1000;font-size:45rpx;'>{{myclickload}}</text>
-    <text>我的获赞</text>
+    <text>文章获赞</text>
     </view>
   </view>
   <view class="app_info_wrap">
    <van-cell title="我的发布" is-link icon="orders-o" bind:click='mypublish' class='van-cell'/>
+   <van-cell title="个人信息" is-link icon="manager-o" bind:click='mypublish' class='van-cell'/>
    <van-cell title="那年今日" is-link icon="star-o" bind:click='history' class='van-cell'/>
    <van-cell title="关于我们" is-link icon="fire-o" url='../author/author' class='van-cell'/>
   

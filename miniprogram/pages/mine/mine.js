@@ -9,7 +9,8 @@ Page({
   userInfo:null,
   openid:null,
   mypublishArr:[],
-  myclickload:0
+  myclickload:0,
+  personClickload:0
   },
 
   getUserProfile(){

@@ -12,7 +12,9 @@ Page({
     userInfo:{},
     remarkContent:'',
     myUserInfo:null,
-    isLouzhu:true
+    isLouzhu:true,
+    remarking:false,
+    imgsClass:''
   },
 
   /**
@@ -20,6 +22,9 @@ Page({
    */
   onLoad: function (options) {
     const information = JSON.parse(options.item);
+ //  wx.setStorageSync('information', JSON.parse(options.item))
+  
+  // const information = wx.getStorageSync('information')
     let openid = wx.getStorageSync('openid');
     let userInfo = wx.getStorageSync('userInfo');
     this.setData({
@@ -30,6 +35,9 @@ Page({
       myUserInfo:userInfo,
       isLouzhu:openid == information.openid
     })
+
+  
+    
     console.log(this.data.information);
   },
   remarkContent(e){
@@ -53,37 +61,74 @@ addRemark(e){
     })
     return
   }
+
+  if(this.data.remarking){
+    return
+  }
   this.handleRemarkResult(this.data.information.category)
 },
 
 handleRemarkResult(category){
-  wx.cloud.callFunction({
-    name:'addRemark',
-    data:{
-        category:category,
-        id:this.data.information._id,
-        openid:this.data.openid,
-        content:this.data.remarkContent,
-        remarkTime:this.getNow(),
-        nickName:this.data.myUserInfo.nickName,
-        avatarUrl:this.data.myUserInfo.avatarUrl,
-        remarkId:this.data.openid + Date.now()
-    }
-  }).then(res=>{
-    console.log(res)
-    Notify({ type: 'success',
-     message: '吐槽成功！',
-     duration:1500
-    });
-    this.data.information.remarks = res.result
-    this.setData({
-      information:this.data.information,
-      remarkContent:''
-    })
-    
-  }).catch(reason=>{
-    console.log(reason)
+  wx.showLoading({
+    title: '内容审核中',
   })
+  this.setData({
+    remarking:true
+  })
+  // 先审核内容
+  wx.cloud.callFunction({
+    name:'checkSecure',
+    data:{
+      checkCategory:'text',
+      content:this.data.remarkContent
+    }
+  }).then(res1=>{
+    wx.hideLoading()
+    if(res1.result.errCode != 0){
+      Notify({ type: 'warning',
+       message: '内容不合法',
+       duration:1000
+       });
+       this.setData({
+        remarking:false
+      })
+    }
+    else{
+      wx.showLoading({
+        title: '发布中',
+      })
+      wx.cloud.callFunction({
+        name:'addRemark',
+        data:{
+            category:category,
+            id:this.data.information._id,
+            openid:this.data.openid,
+            content:this.data.remarkContent,
+            remarkTime:this.getNow(),
+            nickName:this.data.myUserInfo.nickName,
+            avatarUrl:this.data.myUserInfo.avatarUrl,
+            remarkId:this.data.openid + Date.now()
+        }
+      }).then(res=>{
+        wx.hideLoading()
+        console.log(res)
+        Notify({ type: 'success',
+         message: '吐槽成功！',
+         duration:1500
+        });
+        this.data.information.remarks = res.result
+        this.setData({
+          information:this.data.information,
+          remarkContent:'',
+          remarking:false
+        })
+        
+      }).catch(reason=>{
+        console.log(reason)
+      })
+    }
+  })
+  
 },
 
 // 删除评论函数
@@ -103,9 +148,7 @@ deleteThis(e){
     this.setData({
       information:this.data.information
     })
-    wx.hideLoading({
-      success: (res) => {},
-    })
+    wx.hideLoading()
     console.log(res)
   }).catch(reason=>{
     console.log(reason)
@@ -159,6 +202,16 @@ getNow(){
    * 用户点击右上角分享
    */
   onShareAppMessage: function () {
+    return {
+      title: this.data.information.title,    //自定义标题   string
+      path: '545'  //这个地址需要把页面路径拼接的参数发送出去,直写页面地址的话，别人进入会是空的页面
+    }
+  },
 
+  onShareTimeline(){
+    return {
+      title: this.data.information.title,
+      imageUrl:this.data.information.imgsrc[0] || 'https://z3.ax1x.com/2021/05/27/2CRcC9.jpg'
+    }
   }
 })

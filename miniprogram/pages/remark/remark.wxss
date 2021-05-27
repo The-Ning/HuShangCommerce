@@ -7,18 +7,18 @@
   display:block;
   width:100%;
   height:50rpx;
-  font-size:40rpx;
-  font-weight: bold;
+  font-size:35rpx;
+  font-weight: 600;
   line-height: 50rpx;
-  padding-left:30rpx;
+  padding-left:50rpx;
   margin-top:10rpx;
-  font-family: Arial, Helvetica, sans-serif;
 }
 
 .item-header{
   padding:15rpx;
   display:flex;
   margin-top:15rpx;
+  background-color: rgb(251, 253, 252);
 }
 
 .avatar{
@@ -66,7 +66,6 @@
   height:225rpx;
   margin-top:10rpx;
 }
-
 .item-location{
   width:80%;
   height:45rpx;
@@ -86,6 +85,7 @@
 }
 
 .remark-item{
+  background-color: rgb(251, 253, 252);
   box-sizing: border-box;
   box-shadow: 7rpx 7rpx 5rpx rgb(248, 246, 246);
   padding:5rpx;

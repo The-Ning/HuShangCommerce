@@ -227,6 +227,9 @@ Page({
   },
   // 审核内容函数，文本
 msgIsSecure(e){
+  wx.showLoading({
+    title: '审核中',
+  })
   wx.cloud.callFunction({
      name:'checkSecure',
      data:{

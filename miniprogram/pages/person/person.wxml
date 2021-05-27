@@ -1,0 +1,45 @@
+<view id='page'>
+   <view id='profile'>
+   <image src='https://z3.ax1x.com/2021/05/27/2PVkqA.jpg' id='topbg'></image>
+   <view class='wrap'>
+    <view id='avatar'>
+    <van-image width="100" height="100" src="{{information.avatar}}" 
+    width='100%'
+    height='80%'
+    round='true'
+    fit='cover'
+    />
+    <text id='nickName'>{{information.nickname}}</text>
+   </view>
+   
+
+    <van-icon name="good-job" color='#FF4500'
+    size='90rpx'
+    id='parise'
+    bind:click='parise'
+     info='{{clickload}}'/>
+     
+     <view id='person-footer'>
+       <view class='signature'>个性签名：{{information.signature}}</view>
+     <view class='specify'>
+       <view id='gender'>
+       
+       <image src="{{information.gender == 1?'../../imgs/gender/boy.png':'../../imgs/gender/girl.png'}}" ></image>
+       <text>{{information.gender?'男':'女'}}</text>
+       </view>
+       <view></view>
+       <view></view>
+       <view></view>
+     </view>
+     
+     </view>
+   </view>
+   </view>
+  
+
+   <view id='productions'>
+     <view wx:for="{{productions}}" wx:key='index' class='production-item'>
+      {{item.title}}
+     </view>
+   </view>
+</view>

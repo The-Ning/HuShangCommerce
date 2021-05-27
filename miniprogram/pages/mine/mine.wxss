@@ -53,7 +53,7 @@
 }
 
 .app_info_wrap{
-  margin-top:180rpx;
+  margin-top:230rpx;
   transform:translateY(-50%);
   width:94%;
   margin-left:3%;
@@ -93,7 +93,7 @@
 }
 
 #footer{
-  margin-top:-100rpx;
+  margin-top:-140rpx;
   margin-bottom: 20rpx;
   transform:translateY(-50%);
   box-sizing: border-box;
@@ -113,10 +113,10 @@
 
 #contact:before{
   line-height: 100rpx;
-  content:'客服';
+  content:'联系客服';
   position: absolute;
   left:115rpx;
-  font-size:35rpx;
+  font-size:33rpx;
 }
 #kefu{
   height:100%;

@@ -28,7 +28,7 @@
     width='100%'
     lazy-load
     height='100%'
-class='item-img'
+class="item-img"
 catchtap='imgYulan'
 data-list='{{information.imgsrc}}'
 data-src='{{itemimg}}'
