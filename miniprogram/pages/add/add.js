@@ -1,14 +1,11 @@
-// miniprogram/pages/add/add.js
+const appInstance = getApp()
 Page({
 
-  /**
-   * 页面的初始数据
-   */
   data: {
     userInfo:null,
     content:'',
     title:'',
-    openid:null,
+    openid:'123',
     checked:false,
     //字数限制
     maxWord:300,
@@ -16,13 +13,36 @@ Page({
     fileList:[],
     imgError:true,
     category:'love',
-    location:null,
+    location:'',
     categoryList:['love','commerce','findItem','campus'],
     highlight:['highlight'],
        // 传到数据库的图片云端路径数组
     imgCloudPaths:[]  // 图片上传到云端后的路径存储数组
   },
+  onLoad: function (options) {
+    //设置回调，防止小程序globalData拿到数据为null    
+  appInstance.getopenid(res => {
+   console.log("write cb res", appInstance.globalData.openid)
+   this.setData({
+     openid:appInstance.globalData.openid
+   })
+   console.log(this.data.openid)
+ })
+   wx.setTabBarStyle({
+     color: 'black',
+     selectedColor: '#87CEFA',
+     borderStyle: 'white'
+   })
+ 
+ const userInfo = wx.getStorageSync('userInfo')
+   if(userInfo instanceof Object){
+     this.setData({
+       userInfo
+     })
+   }
 
+ },
+ 
   onChange(event) {
     let index = event.currentTarget.dataset.index;
     console.log(event.currentTarget.dataset.index,typeof event.currentTarget.dataset.index)
@@ -42,22 +62,7 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
-    wx.setTabBarStyle({
-      color: 'black',
-      selectedColor: '#87CEFA',
-      borderStyle: 'white'
-    })
-    const userInfo = wx.getStorageSync('userInfo')
-    const openid = wx.getStorageSync('openid')
-    if(userInfo instanceof Object && openid !=null){
-      this.setData({
-        userInfo,
-        openid
-      })
-    }
-
-  },
+ 
  
   
 
@@ -146,22 +151,35 @@ Page({
   },
   
   // 表单提交函数
-  formSubmit(e){
-    
-    if(!e.detail.value.title){
+  formSubmit(){
+    let obj = {}
+    if(!this.data.title){
        wx.showToast({
          title: '标题不能为空',
        })
        return;
     }
+    if(this.data.openid== ''){
+      wx.showLoading({
+        title:'刷新中',
+      })
+      setTimeout(()=>{
+        wx.hideLoading()
+        this.onLoad()
+        this.formSubmit()
+      },1000)
+      
+       return
+     }
+     obj.title = this.data.title
     // 如果选择了地址
     if(this.data.checked){
-      e.detail.value.location = this.data.location;
+      obj.location = this.data.location;
     }
-    e.detail.value.remarks = [];  // 存储评论的数组
-    e.detail.value.userInfo = this.data.userInfo;
-    e.detail.value.openid = this.data.openid;
-    e.detail.value.category = this.data.category;
+    obj.remarks = [];  // 存储评论的数组
+    obj.userInfo = this.data.userInfo;
+    obj.openid = this.data.openid;
+    obj.category = this.data.category;
     
     // 获取上传图片的临时url数组
     if(this.data.fileList.length){
@@ -174,30 +192,36 @@ Page({
         })
         return
       }
+      else{
+        wx.showLoading({
+          title: '发表中',
+        })
+      
     const temUrls = [];
     this.data.fileList.forEach(item=>{
       temUrls.push(item.url)
     })
-    e.detail.value.imgsrc = [];
+    obj.imgsrc = [];
     temUrls.forEach(item=>{
     wx.cloud.uploadFile({
       filePath:item,
-      cloudPath: 'imgs/' + e.detail.value.category + '/' + Date.now()+item.match(/\.[^.]+?$/)[0],
+      cloudPath: 'imgs/' + obj.category + '/' + Date.now()+item.match(/\.[^.]+?$/)[0],
       success (res){
-        e.detail.value.imgsrc.push(res.fileID) //云存储图片路径,可以把这个路径存到集合，要用的时候再取出来
+        obj.imgsrc.push(res.fileID) //云存储图片路径,可以把这个路径存到集合，要用的时候再取出来
       }
     })
    })
-   setTimeout((event)=>{
-    event.detail.value.clickload = 1;
-    event.detail.value.date = this.getNow();
-    console.log(event.detail.value)
+   setTimeout((obj)=>{
+
+    obj.clickload = 1;
+    obj.date = this.getNow();
+    console.log(obj)
       wx.cloud.callFunction({
         name:'publish',
-        data:event.detail.value
+        data:obj
       }).then(res=>{
         console.log('插入成功',res)
-        console.log(event.detail.value)
+        console.log(obj)
         wx.hideLoading().then(res1=>{
           
            wx.showToast({
@@ -216,17 +240,18 @@ Page({
         })
        
       })
-  },3000,e)
+  },3000,obj)
+}
   }
   else{
  // 用户没有选择图片时
- e.detail.value.clickload = 1;
- e.detail.value.date = this.getNow();
- this.msgIsSecure(e);
+ obj.clickload = 1;
+ obj.date = this.getNow();
+ this.msgIsSecure(obj);
  }
   },
   // 审核内容函数，文本
-msgIsSecure(e){
+msgIsSecure(obj){
   wx.showLoading({
     title: '审核中',
   })
@@ -234,7 +259,7 @@ msgIsSecure(e){
      name:'checkSecure',
      data:{
        checkCategory:'text',
-       content:e.detail.value.title+e.detail.value.content
+       content:obj.title+obj.content
      }
    }).then(res=>{
      console.log(res)
@@ -253,7 +278,7 @@ msgIsSecure(e){
        //文本验证成功，发布上传
       wx.cloud.callFunction({
         name:'publish',
-        data:e.detail.value
+        data:obj
       }).then(res=>{
         console.log('插入成功',res)
         wx.hideLoading().then(res1=>{
@@ -317,7 +342,7 @@ onInputLocation(e){
  // 取消了勾选位置
  else{
    this.setData({
-     location:null,
+     location:'',
      checked:false,
      imgError:true
    })

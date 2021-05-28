@@ -17,6 +17,13 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+     //设置回调，防止小程序globalData拿到数据为null    
+     appInstance.getopenid(res => {
+      console.log("write cb res", appInstance.globalData.openid)
+      this.setData({
+        openid: res
+      })
+    })
     wx.setTabBarStyle({
       color: 'black',
       selectedColor: '#87CEFA',
@@ -26,7 +33,6 @@ Page({
       title: '我的发布',
     })
   this.setData({
-    openid:wx.getStorageSync('openid'),
     userInfo:wx.getStorageSync('userInfo'),
     mypublishArr:JSON.parse(options.mypublishArr)
   })

@@ -1,4 +1,4 @@
-// miniprogram/pages/remark/remark.js
+const appInstance = getApp()
 import Notify from '../../miniprogram_npm/@vant/weapp/notify/notify';
 Page({
   
@@ -22,22 +22,22 @@ Page({
    */
   onLoad: function (options) {
     const information = JSON.parse(options.item);
- //  wx.setStorageSync('information', JSON.parse(options.item))
-  
-  // const information = wx.getStorageSync('information')
-    let openid = wx.getStorageSync('openid');
-    let userInfo = wx.getStorageSync('userInfo');
+    let userInfo;
+   //设置回调，防止小程序globalData拿到数据为null    
+   appInstance.getopenid(res => {
+    console.log("write cb res", appInstance.globalData.openid)
+    userInfo = wx.getStorageSync('userInfo');
     this.setData({
+      openid: res,
       information:information,
       remarkArr:information.remarks,
       userInfo:information.userInfo,
-      openid:openid,
       myUserInfo:userInfo,
-      isLouzhu:openid == information.openid
+      isLouzhu:res == information.openid
     })
 
-  
-    
+  })
+   
     console.log(this.data.information);
   },
   remarkContent(e){

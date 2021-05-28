@@ -53,12 +53,13 @@
 }
 
 .app_info_wrap{
-  margin-top:230rpx;
+  margin-top:250rpx;
   transform:translateY(-50%);
   width:94%;
   margin-left:3%;
-  border-radius: 10rpx;
-  box-shadow: 10rpx 10rpx 5rpx rgb(248, 246, 246);
+  background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 8px 12px #ebedf0;
 }
 
 .van-cell::before{
@@ -75,8 +76,9 @@
   top:10rpx;
   display:flex;
   justify-content: space-between;
-  box-shadow: 10rpx 10rpx 5rpx rgb(248, 246, 246);
-  border-radius: 10rpx;
+  background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 8px 12px #ebedf0;
 }
 
 #numdisplay>view{
@@ -99,8 +101,9 @@
   box-sizing: border-box;
   width:94%;
   margin-left:3%;
-  border-radius: 10rpx;
-  box-shadow: 10rpx 10rpx 5rpx rgb(248, 246, 246);
+  background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 8px 12px #ebedf0;
 }
 #contact{
   box-sizing: border-box;

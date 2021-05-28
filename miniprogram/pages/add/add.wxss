@@ -88,7 +88,9 @@
   margin-top: 10rpx;
   display:flex;
   justify-content: space-between;
-  box-shadow: 10rpx 10rpx 10rpx rgb(248, 246, 246);
+  background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 8px 12px #ebedf0;
   margin-bottom: 10rpx;
 }
 .category{
@@ -98,7 +100,6 @@
   display:flex;
   align-items: center;
   justify-content: space-around;
-  font-family: Microsoft YaHei;
 }
 .log{
   width:60rpx;

@@ -60,12 +60,17 @@ getNextDate(e) {
     wx.setNavigationBarTitle({
       title:'历史上的今天'
     })
-   
-   this.setData({
-     history:wx.getStorageSync('history'),
-    date:options.date,
-    showdate:options.showdate
+   wx.getStorage({
+     key:'history',
+     success:(res)=>{
+      this.setData({
+        history:res.data,
+       date:options.date,
+       showdate:options.showdate
+      })
+     }
    })
+   
   console.log(this.data.history)
 
   },

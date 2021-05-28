@@ -7,15 +7,19 @@ Page({
   data: {
   information:{},
   productions:[],
-  clickload:0
+  clickload:0,
+  openid:null
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-   
-    let openid = 'oLdFI472i8OiQJxNv78-zML1tP-o'
+    let openid = options.openid;
+    console.log(openid)
+    this.setData({
+      openid:openid
+    })
     wx.cloud.callFunction({
       name:'person',
       data:{

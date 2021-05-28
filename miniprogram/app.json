@@ -1,8 +1,9 @@
 {
   "pages": [
+    "pages/index/index",
     "pages/person/person",
     "pages/mine/mine",
-    "pages/index/index",
+    
     "pages/remark/remark",
     "pages/add/add",
     "pages/author/author",

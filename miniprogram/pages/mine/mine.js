@@ -23,22 +23,6 @@ Page({
         userInfo:res.userInfo
       })
       console.log(res)
-       wx.cloud.callFunction({
-         name:'getopenid'
-       }).then(result=>{
-          console.log(result)
-          that.setData({
-            openid:result.result
-          })
-          wx.setStorageSync('openid', result.result)
-          setTimeout(()=>{
-           that.onLoad()
-          },500)
-       })
-           
-         
-       
-    
     });
 
     
@@ -47,7 +31,13 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log('Jiazia')
+    //设置回调，防止小程序globalData拿到数据为null    
+    appInstance.getopenid(res => {
+      console.log("write cb res", appInstance.globalData.openid)
+      this.setData({
+        openid: res
+      })
+    })
     wx.setTabBarStyle({
       color: 'black',
       selectedColor: '#87CEFA',
@@ -55,11 +45,9 @@ Page({
     })
     // 先从本地缓存找用户登录信息
     let userInfo = wx.getStorageSync('userInfo')
-    let openid = wx.getStorageSync('openid')
     if(userInfo){
       this.setData({
         userInfo:userInfo,
-        openid:openid
       })
       this.queryMypublish()
       // 获取我的获赞量
@@ -115,6 +103,21 @@ const result = []
       url: `../mypublish/mypublish?mypublishArr=${JSON.stringify(this.data.mypublishArr)}`,
     })
   },
+  // 跳转到个人信息页面
+  myInformation(){
+    if(!this.data.userInfo ){
+      wx.showToast({
+        title: '请先登录',
+      })
+      return;
+    }
+    
+    // 已经登录
+    wx.navigateTo({
+      url: `../person/person?openid=${this.data.openid}`,
+    })
+  },
+
 
   history(){
     let now = new Date();
@@ -127,10 +130,13 @@ const result = []
     if(history == '' || history[0].day != date)
     wx.request({
       url: `https://v.juhe.cn/todayOnhistory/queryEvent.php?key=bb8c674099eb6f0e4250a91aca42dc07&date=${date}`,
-      success:function(res){
+      success:(res)=>{
        console.log(res.data.result)
        if(res.data.result != null){
         wx.setStorageSync('history', res.data.result)
+        wx.navigateTo({
+          url: `../history/history?date=${year}-${month}-${day}&showdate=${month}月${day}日`
+        })
        }
       },
       fail:function(reason){
@@ -138,9 +144,7 @@ const result = []
       }
     })
 
-    wx.navigateTo({
-      url: `../history/history?date=${year}-${month}-${day}&showdate=${month}月${day}日`
-    })
+    
   },
   /**
    * 生命周期函数--监听页面初次渲染完成

@@ -51,7 +51,9 @@
 }
 
 .content-img{
-  box-shadow: 10rpx 10rpx 5rpx rgb(248, 246, 246);
+  background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 8px 12px #ebedf0;
   display:flex;
   flex-wrap: wrap;
   justify-content: space-between;
@@ -87,7 +89,8 @@
 .remark-item{
   background-color: rgb(251, 253, 252);
   box-sizing: border-box;
-  box-shadow: 7rpx 7rpx 5rpx rgb(248, 246, 246);
+    border-radius: 3px;
+    box-shadow: 0 8px 12px #ebedf0;
   padding:5rpx;
   display:flex;
   margin-top:15rpx;

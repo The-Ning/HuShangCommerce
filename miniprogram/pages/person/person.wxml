@@ -14,7 +14,7 @@
    
 
     <van-icon name="good-job" color='#FF4500'
-    size='90rpx'
+    size='80rpx'
     id='parise'
     bind:click='parise'
      info='{{clickload}}'/>
@@ -27,8 +27,8 @@
        <image src="{{information.gender == 1?'../../imgs/gender/boy.png':'../../imgs/gender/girl.png'}}" ></image>
        <text>{{information.gender?'男':'女'}}</text>
        </view>
-       <view></view>
-       <view></view>
+       <view id='location'>{{information.location}}</view>
+       <view id='campus'>{{information.campus}}</view>
        <view></view>
      </view>
      

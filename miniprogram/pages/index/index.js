@@ -1,4 +1,4 @@
-
+const appInstance = getApp()
 Page({
 
   
@@ -65,7 +65,7 @@ favor: "https://z3.ax1x.com/2021/05/20/gT0kJU.png"
         wx.navigateTo({
           url: '../remark/remark?item='+item,
         }).then(res=>{
-          console.log(res);
+        
         }).catch(reason=>{
           console.log(reason)
         })
@@ -94,11 +94,16 @@ favor: "https://z3.ax1x.com/2021/05/20/gT0kJU.png"
    */
   onLoad: function (options) {
     
-   let openid =   wx.getStorageSync('openid')
+   //设置回调，防止小程序globalData拿到数据为null    
+   appInstance.getopenid(res => {
+    console.log("write cb res", appInstance.globalData.openid)
+    this.setData({
+      openid: res
+    })
+  })
    const userInfo = wx.getStorageSync('userInfo')
-   if(openid != '' && userInfo != ''){
+   if(userInfo != ''){
      this.setData({
-       openid:openid,
        userInfo:userInfo
      })
    }
@@ -328,40 +333,30 @@ this.uploadList(2,'list3')
     })
   },
 
-
   btnHandler(e) {
-   
     this.updateNum(e.target.dataset.step)
   },
 
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-   
-  },
-  
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-   
-  },
 /**
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
    
     const userInfo = wx.getStorageSync('userInfo')
-    const openid = wx.getStorageSync('openid')
-    if(userInfo instanceof Object && openid !==null){
+    if(userInfo instanceof Object){
       this.setData({
-        userInfo,
-        openid
+        userInfo  
       })
     }
 
-let likeCollection = wx.getStorageSync('likeCollection');
+
+  },
+  /**
+   * 页面相关事件处理函数--监听用户下拉动作
+   */
+  onPullDownRefresh: function () {
+   this.onShow();
+   let likeCollection = wx.getStorageSync('likeCollection');
 // 获取表白墙数据并渲染
 
 wx.cloud.callFunction({
@@ -466,12 +461,6 @@ wx.cloud.callFunction({
       list4:[]
     })
   })
-  },
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-   this.onShow();
    setTimeout(()=>{
     wx.stopPullDownRefresh({
       success: (res) => {
