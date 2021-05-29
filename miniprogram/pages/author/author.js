@@ -14,7 +14,7 @@ Page({
    */
   onLoad: function (options) {
     wx.setNavigationBarTitle({
-      title:'美丽湖商'
+      title:'关于我们'
     })
     wx.setTabBarStyle({
       color: 'black',

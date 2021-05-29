@@ -348,120 +348,25 @@ this.uploadList(2,'list3')
         userInfo  
       })
     }
+     if(appInstance.globalData.myremarkChange){
+       this.getList()
+       appInstance.globalData.myremarkChange = false;
+       return
+     }
 
-
+     if(appInstance.globalData.mypublishChange){
+      this.getList()
+      appInstance.globalData.mypublishChange = false;
+      return
+     }
   },
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
    this.onShow();
-   let likeCollection = wx.getStorageSync('likeCollection');
-// 获取表白墙数据并渲染
-
-wx.cloud.callFunction({
-  name:'getLists',
-  data:{
-    category:'love'
-  }
-}).then(res=>{
-  this.setData({
-    list1:res.result.data
-  })
-  this.data.list1.forEach((item)=>{
-    item['hasChange']=likeCollection['list1-'+item._id];
-  })
-  this.setData({
-    list1:this.data.list1
-  })
-  wx.setStorage({
-    data: res.result.data,
-    key: 'list1',
-  })
-}).catch(reason=>{
-  this.setData({
-    list1:[]
-  })
-})
-
-// 获取二手交易数据并渲染到list2
-wx.cloud.callFunction({
-  name:'getLists',
-  data:{
-    category:'commerce'
-  }
-}).then(res=>{
-  this.setData({
-    list2:res.result.data
-  })
-  this.data.list2.forEach((item)=>{
-    item['hasChange']=likeCollection['list2-'+item._id];
-  })
-  this.setData({
-    list2:this.data.list2
-  })
-  wx.setStorage({
-    data: res.result.data,
-    key: 'list2',
-  })
-}).catch(reason=>{
-  this.setData({
-    list2:[]
-  })
-})
-
-// 获取失物招领数据并渲染到list3
-wx.cloud.callFunction({
-name:'getLists',
-data:{
-  category:'findItem'
-}
-}).then(res=>{
-this.setData({
-  list3:res.result.data
-})
-this.data.list3.forEach((item)=>{
-  item['hasChange']=likeCollection['list3-'+item._id];
-})
-this.setData({
-  list3:this.data.list3
-})
-wx.setStorage({
-  data: res.result.data,
-  key: 'list3',
-})
-}).catch(reason=>{
-  this.setData({
-    list3:[]
-  })
-})
-
-// 获取校园生活数据并渲染到list3
-wx.cloud.callFunction({
-  name:'getLists',
-  data:{
-    category:'campus'
-  }
-  }).then(res=>{
-  this.setData({
-    list4:res.result.data
-  })
-  this.data.list4.forEach((item)=>{
-    item['hasChange']=likeCollection['list4-'+item._id];
-  })
-  this.setData({
-    list4:this.data.list4
-  })
-  wx.setStorage({
-    data: res.result.data,
-    key: 'list4',
-  })
-  }).catch(reason=>{
-    this.setData({
-      list4:[]
-    })
-  })
-   setTimeout(()=>{
+  this.getList()
+  setTimeout(()=>{
     wx.stopPullDownRefresh({
       success: (res) => {
         wx.showToast({
@@ -470,10 +375,140 @@ wx.cloud.callFunction({
       },
     })
    },1000)
-  
   },
   
-
+  getList(){
+    let likeCollection = wx.getStorageSync('likeCollection');
+    // 获取表白墙数据并渲染
+    
+    wx.cloud.callFunction({
+      name:'getLists',
+      data:{
+        category:'love'
+      }
+    }).then(res=>{
+      this.setData({
+        list1:res.result.data
+      })
+      this.data.list1.forEach((item)=>{
+        item['hasChange']=likeCollection['list1-'+item._id];
+      })
+      this.setData({
+        list1:this.data.list1
+      })
+      wx.setStorage({
+        data: res.result.data,
+        key: 'list1',
+      })
+    }).catch(reason=>{
+      this.setData({
+        list1:[]
+      })
+    })
+    
+    // 获取二手交易数据并渲染到list2
+    wx.cloud.callFunction({
+      name:'getLists',
+      data:{
+        category:'commerce'
+      }
+    }).then(res=>{
+      this.setData({
+        list2:res.result.data
+      })
+      this.data.list2.forEach((item)=>{
+        item['hasChange']=likeCollection['list2-'+item._id];
+      })
+      this.setData({
+        list2:this.data.list2
+      })
+      wx.setStorage({
+        data: res.result.data,
+        key: 'list2',
+      })
+    }).catch(reason=>{
+      this.setData({
+        list2:[]
+      })
+    })
+    
+    // 获取失物招领数据并渲染到list3
+    wx.cloud.callFunction({
+    name:'getLists',
+    data:{
+      category:'findItem'
+    }
+    }).then(res=>{
+    this.setData({
+      list3:res.result.data
+    })
+    this.data.list3.forEach((item)=>{
+      item['hasChange']=likeCollection['list3-'+item._id];
+    })
+    this.setData({
+      list3:this.data.list3
+    })
+    wx.setStorage({
+      data: res.result.data,
+      key: 'list3',
+    })
+    }).catch(reason=>{
+      this.setData({
+        list3:[]
+      })
+    })
+    
+    // 获取校园生活数据并渲染到list3
+    wx.cloud.callFunction({
+      name:'getLists',
+      data:{
+        category:'campus'
+      }
+      }).then(res=>{
+      this.setData({
+        list4:res.result.data
+      })
+      this.data.list4.forEach((item)=>{
+        item['hasChange']=likeCollection['list4-'+item._id];
+      })
+      this.setData({
+        list4:this.data.list4
+      })
+      wx.setStorage({
+        data: res.result.data,
+        key: 'list4',
+      })
+      }).catch(reason=>{
+        this.setData({
+          list4:[]
+        })
+      })
+       
+  },
+  person(e){
+    if(!this.isLogin()){
+      wx.showModal({
+        title:'登录提示',
+        content:'您还没登录哦~',
+        cancelText:'不了~',
+        confirmText:'登录~',
+        success:res=>{
+         if (res.confirm) {
+          wx.switchTab({
+            url: '../mine/mine',
+          })
+         }
+       }
+    })
+    }
+    else{
+      let openid = e.currentTarget.dataset.openid
+      wx.navigateTo({
+        url: `../person/person?openid=${openid}`,
+      })
+    }
+   
+  },
   /**
    * 页面上拉触底事件的处理函数
    */

@@ -30,4 +30,42 @@ exports.main = async (event) => {
        return reason
      })
 }
+   else if(way == 'modify'){
+     let signature = event.signature
+     let location = event.location
+     let campus = event.campus
+     return await db.collection('person').where({
+       openid:openid
+     }).update({
+       data:{
+        signature:signature,
+        location:location,
+        campus:campus
+       }
+        
+     }).then(res=>{
+       return res
+     }).catch(reason=>{
+       return reason
+     })
+   }
+
+   else if(way == 'insert'){
+    return await db.collection('person').add({
+       data:{
+         openid:openid,
+         avatar:event.avatar,
+         signature:'默认签名',
+         location:'默认地址',
+         clickload:1,
+         campus:'默认学校',
+         nickname:event.nickname,
+         gender:event.gender
+       }
+     }).then(res=>{
+       return res
+     }).catch(reason=>{
+       return reason
+     })
+   }
 }

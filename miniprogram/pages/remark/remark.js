@@ -122,7 +122,7 @@ handleRemarkResult(category){
           remarkContent:'',
           remarking:false
         })
-        
+        appInstance.globalData.myremarkChange = true
       }).catch(reason=>{
         console.log(reason)
       })
@@ -148,6 +148,7 @@ deleteThis(e){
     this.setData({
       information:this.data.information
     })
+    appInstance.globalData.myremarkChange = true
     wx.hideLoading()
     console.log(res)
   }).catch(reason=>{
@@ -162,6 +163,15 @@ getNow(){
     var month = parseInt(date.getMonth()+1)>9?parseInt(date.getMonth()+1):'0'+ parseInt(date.getMonth()+1);
     var day = date.getDate()>9?date.getDate() : '0' + date.getDate();
     return year +' '+month+'-'+day;
+  },
+
+  person(e){
+      let openid = e.currentTarget.dataset.openid
+      wx.navigateTo({
+        url: `../person/person?openid=${openid}`,
+      })
+    
+   
   },
   /**
    * 生命周期函数--监听页面显示

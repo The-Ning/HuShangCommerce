@@ -172,6 +172,7 @@ Page({
        return
      }
      obj.title = this.data.title
+     obj.content = this.data.content
     // 如果选择了地址
     if(this.data.checked){
       obj.location = this.data.location;
@@ -281,6 +282,7 @@ msgIsSecure(obj){
         data:obj
       }).then(res=>{
         console.log('插入成功',res)
+        appInstance.globalData.mypublishChange = true
         wx.hideLoading().then(res1=>{
            wx.showToast({
              title: '发布成功',

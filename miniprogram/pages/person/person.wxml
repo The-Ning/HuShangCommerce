@@ -11,7 +11,9 @@
     />
     <text id='nickName'>{{information.nickname}}</text>
    </view>
-   
+   <view id='modifybtn' wx:if="{{myopenid == openid}}" catchtap="showForm">
+     +点击修改
+   </view>
 
     <van-icon name="good-job" color='#FF4500'
     size='80rpx'
@@ -36,10 +38,70 @@
    </view>
    </view>
   
-
-   <view id='productions'>
-     <view wx:for="{{productions}}" wx:key='index' class='production-item'>
-      {{item.title}}
-     </view>
+<scroll-view scroll-y="true" class="scroll">
+  <view wx:if="{productions.length}}">
+    <view  wx:for='{{productions}}' wx:key='index' class='box-0' catchtap="toRemark" data-item='{{item}}'>
+   <view class='item-header'>
+     <image src='{{item.userInfo.avatarUrl}}' class='avatar'></image>
+     <view class='profile'>
+     <text class='nickname'>{{item.userInfo.nickName}}</text>
+     <text class='item-date'>{{item.date }}</text>
+    </view>
    </view>
+  <view class='item-content'>
+
+    <text class='content-text'>{{item.title}}</text>
+
+    <view class='content-img'>
+        <van-image
+        wx:for="{{item.imgsrc}}"
+         wx:for-item='itemimg'
+        wx:key='index'
+        lazy-load
+        width='100%'
+        height='100%'
+  class='item-img'
+ catchtap='imgYulan'
+   data-list='{{item.imgsrc}}'
+    data-src='{{itemimg}}'
+  src="{{itemimg}}"
+   rel="external nofollow"  
+   fit='cover' 
+        />
+   
+    </view>
+    
+  <!-- 地址显示区域 -->
+ <view class='item-location' wx:if="{{item.location}}">
+    <image src='https://z3.ax1x.com/2021/05/20/gT0lFK.png' class='location-img'></image>
+    <text class='location-text'>{{item.location}}</text>
+  </view>
+</view>
+ 
+ </view>
+ <view class='deadline'>我也是有底线的~</view>
+  </view>
+  <view wx:else id='empty'>空空如也~</view>
+ </scroll-view>
+
+ 
+<!-- 修改信息表单-->
+<form catchsubmit="formSubmit"  wx:if="{{show}}">
+  <van-cell-group>
+  <van-field
+    name='signature'
+    label='个性签名'
+  />
+  <van-field
+    name='location'
+    label = '地址'
+  />
+  <van-field
+    name='campus'
+    label = '学校'
+  />
+</van-cell-group>
+<button catchtap="cancel">取消</button>
+<button form-type='submit'>提交</button>
+</form>
 </view>

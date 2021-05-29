@@ -27,7 +27,7 @@
  <view wx:for='{{list1}}' wx:key='index' class='box-0'>
    <view class='item-header'>
     
-     <image src='{{item.userInfo.avatarUrl}}' class='avatar'></image>
+     <image src='{{item.userInfo.avatarUrl}}' class='avatar' catchtap="person" data-openid='{{item.openid}}'></image>
      <view class='profile'>
      <text class='nickname'>{{item.userInfo.nickName}}</text>
      <text class='item-date'>{{item.date }}</text>
@@ -94,7 +94,7 @@
   <scroll-view scroll-y="true" class="scroll">
  <view wx:for='{{list2}}' wx:key='index' class='box-0'>
    <view class='item-header'>
-     <image src='{{item.userInfo.avatarUrl}}' class='avatar'></image>
+     <image src='{{item.userInfo.avatarUrl}}' class='avatar' catchtap="person" data-openid='{{item.openid}}'></image>
      <view class='profile'>
      <text class='nickname'>{{item.userInfo.nickName}}</text>
      <text class='item-date'>{{item.date }}</text>
@@ -161,7 +161,7 @@
   <scroll-view scroll-y="true" class="scroll">
  <view wx:for='{{list3}}' wx:key='index' class='box-0'>
    <view class='item-header'>
-     <image src='{{item.userInfo.avatarUrl}}' class='avatar'></image>
+     <image src='{{item.userInfo.avatarUrl}}' class='avatar' catchtap="person" data-openid='{{item.openid}}'></image>
      <view class='profile'>
      <text class='nickname'>{{item.userInfo.nickName}}</text>
      <text class='item-date'>{{item.date }}</text>
@@ -228,7 +228,7 @@ data-_id='{{item._id}}' data-index='{{index}}' data-list='list3' data-hasChange=
   <scroll-view scroll-y="true" class="scroll">
  <view wx:for='{{list4}}' wx:key='index' class='box-0'>
    <view class='item-header'>
-     <image src='{{item.userInfo.avatarUrl}}' class='avatar'></image>
+     <image src='{{item.userInfo.avatarUrl}}' class='avatar' catchtap="person" data-openid='{{item.openid}}'></image>
      <view class='profile'>
      <text class='nickname'>{{item.userInfo.nickName}}</text>
      <text class='item-date'>{{item.date }}</text>

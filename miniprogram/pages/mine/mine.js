@@ -23,6 +23,32 @@ Page({
         userInfo:res.userInfo
       })
       console.log(res)
+     // 查询用户信息表中是否有用户信息
+     // 没有就插入
+      wx.cloud.callFunction({
+        name:'person',
+        data:{
+          openid:this.data.openid,
+          way:'query'
+        }
+      }).then(res=>{
+        console.log(res)
+        // 如果没有，插入一条默认信息
+       if(res.result.data.length == 0){
+         wx.cloud.callFunction({
+           name:'person',
+           data:{
+             openid:this.data.openid,
+             avatar:this.data.userInfo.avatarUrl,
+             way:'insert',
+             nickname:this.data.userInfo.nickName,
+             gender:this.data.userInfo.gender
+           }
+         })
+       }
+       
+      })
+    
     });
 
     
@@ -37,7 +63,22 @@ Page({
       this.setData({
         openid: res
       })
+      // 获取我的个人获赞
+    wx.cloud.callFunction({
+      name:'person',
+      data:{
+        openid:res,
+        way:'query'
+      }
+    }).then(res1=>{
+      console.log(res1)
+      this.setData({
+        personClickload:res1.result.data[0].clickload
+      })
+    }).catch(reason=>{
+      console.log(reason)
     })
+
     wx.setTabBarStyle({
       color: 'black',
       selectedColor: '#87CEFA',
@@ -63,7 +104,9 @@ Page({
     }
    
     
-  },
+  })
+},
+
 
   queryMypublish(){
 // 查询用户自己的发布
@@ -120,6 +163,7 @@ const result = []
 
 
   history(){
+   
     let now = new Date();
     let year = now.getFullYear();
     let month = parseInt(now.getMonth()+1);
@@ -128,6 +172,7 @@ const result = []
 
     const history = wx.getStorageSync('history')
     if(history == '' || history[0].day != date)
+    console.log(545)
     wx.request({
       url: `https://v.juhe.cn/todayOnhistory/queryEvent.php?key=bb8c674099eb6f0e4250a91aca42dc07&date=${date}`,
       success:(res)=>{
