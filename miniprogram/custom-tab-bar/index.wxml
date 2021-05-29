@@ -1,6 +1,6 @@
 <!--custom-tab-bar/index.wxml-->
 <!-- 底部TabBar区域 -->
-<van-tabbar active="{{ active }}" bind:change="onChange">
+<van-tabbar active="{{ active }}" bind:change="onChange" active-color="#00ff00" inactive-color="#ccc">
   <van-tabbar-item wx:for="{{list}}" wx:key="index" info="{{item.info ? item.info : ''}}">
     <image
       slot="icon"
