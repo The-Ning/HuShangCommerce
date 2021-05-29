@@ -68,7 +68,7 @@ fit='cover'
     <image src='{{item.avatarUrl}}' class='remark-avatar'  catchtap='person'
     data-openid='{{item.openid}}'></image>
     <text class='remark-lou'>第{{index+1}}楼</text>
-    <text class='louzhu' wx:if="{{isLouzhu}}">楼主</text>
+    <text class='louzhu' wx:if="{{information.openid == item.openid}}">楼主</text>
 <view class='remark-text'>
     <text class='remark-nickName'>{{item.nickName}}</text>
     <text class='remarkTime'>{{item.remarkTime}}</text>
