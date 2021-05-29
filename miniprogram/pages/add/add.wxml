@@ -52,7 +52,8 @@ model:value="{{ title }}" placeholder-style="color:#5F5F5F;font-size:28rpx;" bin
 </view>
 
 <view class='tologin' wx:else >
-  <van-button  type="warning" size='normal' color='red' bindtap='tologin'>未登录</van-button> 
+  <van-button  type="warning" size='normal' color='red' >未登录</van-button> 
+ 
 </view>
 
 

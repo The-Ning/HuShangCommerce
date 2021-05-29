@@ -3,13 +3,11 @@
     "pages/index/index",
     "pages/person/person",
     "pages/mine/mine",
-    
     "pages/remark/remark",
     "pages/add/add",
     "pages/author/author",
     "pages/history/history",
     "pages/mypublish/mypublish"
-    
   ],
   "window": {
     "backgroundTextStyle": "dark",
@@ -29,21 +27,19 @@
       {
         "pagePath": "pages/add/add",
         "text": "毛遂自荐",
-        "iconPath": "/imgs/tabbar/message.png",
-        "selectedIconPath": "/imgs/tabbar/message-active.png"
+        "iconPath": "/imgs/tabbar/publish.png",
+        "selectedIconPath": "/imgs/tabbar/publish-active.png"
       },
       {
         "pagePath": "pages/mine/mine",
         "text": "我的",
-        "iconPath": "/imgs/tabbar/user.png",
-        "selectedIconPath": "/imgs/tabbar/user-active.png"
+        "iconPath": "/imgs/tabbar/mine.png",
+        "selectedIconPath": "/imgs/tabbar/mine-active.png"
       }
     ]
   },
   "sitemapLocation": "sitemap.json",
   "usingComponents": {
-    "van-tabbar": "@vant/weapp/tabbar/index",
-    "van-tabbar-item": "@vant/weapp/tabbar-item/index",
-    "van-slider": "@vant/weapp/slider/index"
+   
   }
 }

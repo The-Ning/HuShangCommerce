@@ -1,6 +1,5 @@
 // app.js
 App({
- 
   onLaunch() {
     // 展示本地存储能力
    
@@ -27,6 +26,10 @@ App({
           //闭包函数内，可以用this,而不需要用that=this
           that.globalData.openid = res.result
           typeof cb == "function" && cb(that.globalData.openid)
+          wx.setStorage({
+            key:'openid',
+            data:res.result
+          })
         },
         fail: err => {
           wx.showToast({

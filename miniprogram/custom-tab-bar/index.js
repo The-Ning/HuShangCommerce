@@ -2,8 +2,8 @@
 import { storeBindingsBehavior } from 'mobx-miniprogram-bindings'
 import { store } from '../store/store'
 
-Component({
 
+export default   Component({
   options: {
     styleIsolation: 'shared'
   },
@@ -73,6 +73,7 @@ Component({
     onChange(event) {
       // event.detail 的值为当前选中项的索引
       this.updateActive(event.detail)
+      console.log(event.detail)
       wx:wx.switchTab({
         url: this.data.list[event.detail].pagePath
       })

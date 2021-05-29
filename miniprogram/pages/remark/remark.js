@@ -23,20 +23,18 @@ Page({
   onLoad: function (options) {
     const information = JSON.parse(options.item);
     let userInfo;
-   //设置回调，防止小程序globalData拿到数据为null    
-   appInstance.getopenid(res => {
-    console.log("write cb res", appInstance.globalData.openid)
+   let openid = wx.getStorageSync('openid')
     userInfo = wx.getStorageSync('userInfo');
     this.setData({
-      openid: res,
+      openid: openid,
       information:information,
       remarkArr:information.remarks,
       userInfo:information.userInfo,
       myUserInfo:userInfo,
-      isLouzhu:res == information.openid
+      isLouzhu:openid == information.openid
     })
 
-  })
+  
    
     console.log(this.data.information);
   },
@@ -221,7 +219,7 @@ getNow(){
   onShareTimeline(){
     return {
       title: this.data.information.title,
-      imageUrl:this.data.information.imgsrc[0] || 'https://z3.ax1x.com/2021/05/27/2CRcC9.jpg'
+      imageUrl:this.data.information.imgsrc == undefined ? 'https://z3.ax1x.com/2021/05/27/2CRcC9.jpg':this.data.information.imgsrc[0]
     }
   }
 })
