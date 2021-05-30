@@ -324,8 +324,10 @@ msgIsSecure(obj){
 
 // 地址处理函数
 onInputLocation(e){
+  console.log(this.data.checked)
+  let checked = !this.data.checked
  this.setData({
-   checked:!this.data.checked
+   checked:checked
  })
  if(this.data.checked){
   wx.chooseLocation()
