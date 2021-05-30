@@ -1,9 +1,4 @@
-.page {
- 
-  
-  }
-   
-   
+
   .swiper-tab {
   display: flex;
    width:100%;

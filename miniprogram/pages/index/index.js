@@ -348,24 +348,16 @@ this.uploadList(2,'list3')
         userInfo  
       })
     }
-     if(appInstance.globalData.myremarkChange){
        this.getList()
-       appInstance.globalData.myremarkChange = false;
        return
-     }
+     
 
-     if(appInstance.globalData.mypublishChange){
-      this.getList()
-      appInstance.globalData.mypublishChange = false;
-      return
-     }
   },
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-   this.onShow();
-  this.getList()
+  this.onShow()
   setTimeout(()=>{
     wx.stopPullDownRefresh({
       success: (res) => {
