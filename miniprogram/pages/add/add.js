@@ -212,6 +212,8 @@ Page({
       }
     })
    })
+  let length = temUrls.length;
+
    setTimeout((obj)=>{
 
     obj.clickload = 1;
@@ -241,7 +243,7 @@ Page({
         })
        
       })
-  },3000,obj)
+  },550*length,obj)
 }
   }
   else{
@@ -316,7 +318,7 @@ msgIsSecure(obj){
 
   oversize(){
     wx.showToast({
-      title: '文件不能超过2M',
+      title: '文件超过2M',
     })
   },
  
@@ -329,7 +331,21 @@ onInputLocation(e){
  this.setData({
    checked:checked
  })
+ wx.getSetting().then(res=>{
+   console.log(res)
+   if(!res.authSetting['scope.userLocation']){
+     wx.authorize({
+       scope: 'scope.userLocation',
+     }).then(res1=>{
+       console.log(res1)
+     })
+   }
+   else{
+     console.log(res.authSetting['scope.userLocation'])
+   }
+ })
  if(this.data.checked){
+ 
   wx.chooseLocation()
   .then(res=>{
     console.log(res)

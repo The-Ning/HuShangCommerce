@@ -41,5 +41,10 @@
   "sitemapLocation": "sitemap.json",
   "usingComponents": {
    
+  },
+  "permission": {
+    "scope.userLocation": {
+      "desc": "位置信息效果展示"
+    }
   }
 }

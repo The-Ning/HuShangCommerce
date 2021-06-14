@@ -40,6 +40,7 @@ Page({
            data:{
              openid:this.data.openid,
              avatar:this.data.userInfo.avatarUrl,
+             
              way:'insert',
              nickname:this.data.userInfo.nickName,
              gender:this.data.userInfo.gender
